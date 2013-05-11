@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>无标题文档</title>
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		var global;
+		var maxWidth = $(window).width();
+		var columns = [];
+		if (maxWidth > 960) {
+			generateColumns(4);
+		} else {
+			generateColumns(parseInt(maxWidth / 240));
+		}
+		
+		function setLocation(str)
+		{
+			var parent = $(str);
+			$('#store').append(parent);
+			global = parent;
+			var height = parent.height();
+			console.log(height);
+			var column = getLowestColumn();
+			parent.css({'top':columns[column], 'left':column * 240});
+			columns[column] = columns[column] + height + 20;
+			parent.css('visibility', 'visible');
+		}
+		
+		function getImgParentDiv(str)
+		{
+			return $(str).parent('a').parent('li').parent('ul').parent('div').parent('div');
+		}
+		
+		function getLowestColumn()
+		{
+			var lowest = columns[0];
+			var column = 0;
+			for (var i = 1; i < columns.length; i++) {
+				if (lowest > columns[i]) {
+					lowest = columns[i];
+					column = i;
+				}
+			}
+			return column;
+		}
+		
+		function generateColumns(str)
+		{
+			for (var i = 0; i < str; i++) {
+				columns[i] = 0;
+			}
+		}
+		
+		$(function() {
+			var test = [];
+			test[0] = '<div class="book_item hide1 masonry-brick" shareid="5258" id="share_item_5258" style="visibility: hidden; position: absolute;"><div class="bi_body"><ul class="pic"><li><a style="width:200px;" href="/note/5258" target="_blank"> <img class="book_img lazyload" width="200" src="http://image.taobao.com/bao/uploaded/i1/16738022270335280/T12GupXr8aXXXXXXXX_!!2-item_pic.png" alt="" style="display: block;" "> </a><p>¥79.00</p></li></ul><div class="content">非常非常喜欢这件 牛仔破洞翻边高腰牛仔短裤</div><div class="favorite"><a href="javascript:;" class="favaImg" onclick="$.Fav_Share(5258,this,32,\'#share_item_5258\');"></a><div class="favDiv"><a target="_blank" class="favCount SHARE_FAV_COUNT" href="/note/5258">1</a></div><a target="_blank" href="/note/5258" class="creply"><b>0</b>评论</a></div><div class="user"><a title="amy" href="/u/9" target="_blank"><img class="GUID lazyload" uid="9" original="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" src="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" width="30" alt="amy" style="display: block;"></a><p><span class="u"><a class="GUID " uid="9" title="amy" href="/u/9" target="_blank">amy</a></span><span class="t">03月27日 17:54</span></p></div></div><div class="bi_foot"></div></div>';
+			test[1] = '<div class="book_item hide1 masonry-brick" shareid="5258" id="share_item_5258" style="visibility: hidden; position: absolute;"><div class="bi_body"><ul class="pic"><li><a style="width:200px;" href="/note/5258" target="_blank"> <img class="book_img lazyload" width="200" src="http://img02.taobaocdn.com/bao/uploaded/i2/13884022363702159/T1ks9oXBdhXXXXXXXX_!!0-item_pic.jpg" alt="" style="display: block;" "> </a><p>¥79.00</p></li></ul><div class="content">非常非常喜欢这件 牛仔破洞翻边高腰牛仔短裤</div><div class="favorite"><a href="javascript:;" class="favaImg" onclick="$.Fav_Share(5258,this,32,\'#share_item_5258\');"></a><div class="favDiv"><a target="_blank" class="favCount SHARE_FAV_COUNT" href="/note/5258">1</a></div><a target="_blank" href="/note/5258" class="creply"><b>0</b>评论</a></div><div class="user"><a title="amy" href="/u/9" target="_blank"><img class="GUID lazyload" uid="9" original="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" src="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" width="30" alt="amy" style="display: block;"></a><p><span class="u"><a class="GUID " uid="9" title="amy" href="/u/9" target="_blank">amy</a></span><span class="t">03月27日 17:54</span></p></div></div><div class="bi_foot"></div></div>';
+			test[2] = '<div class="book_item hide1 masonry-brick" shareid="5258" id="share_item_5258" style="visibility: hidden; position: absolute;"><div class="bi_body"><ul class="pic"><li><a style="width:200px;" href="/note/5258" target="_blank"> <img class="book_img lazyload" width="200" src="http://img04.taobaocdn.com/bao/uploaded/i4/12217022452792769/T1iUmrXqXaXXXXXXXX_!!0-item_pic.jpg" alt="" style="display: block;" "> </a><p>¥79.00</p></li></ul><div class="content">非常非常喜欢这件 牛仔破洞翻边高腰牛仔短裤</div><div class="favorite"><a href="javascript:;" class="favaImg" onclick="$.Fav_Share(5258,this,32,\'#share_item_5258\');"></a><div class="favDiv"><a target="_blank" class="favCount SHARE_FAV_COUNT" href="/note/5258">1</a></div><a target="_blank" href="/note/5258" class="creply"><b>0</b>评论</a></div><div class="user"><a title="amy" href="/u/9" target="_blank"><img class="GUID lazyload" uid="9" original="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" src="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" width="30" alt="amy" style="display: block;"></a><p><span class="u"><a class="GUID " uid="9" title="amy" href="/u/9" target="_blank">amy</a></span><span class="t">03月27日 17:54</span></p></div></div><div class="bi_foot"></div></div>';
+			test[3] = '<div class="book_item hide1 masonry-brick" shareid="5258" id="share_item_5258" style="visibility: hidden; position: absolute;"><div class="bi_body"><ul class="pic"><li><a style="width:200px;" href="/note/5258" target="_blank"> <img class="book_img lazyload" width="200" src="http://img03.taobaocdn.com/bao/uploaded/i3/15559022384012658/T13ItUXsXXXXXXXXXX_!!0-item_pic.jpg" alt="" style="display: block;" "> </a><p>¥79.00</p></li></ul><div class="content">非常非常喜欢这件 牛仔破洞翻边高腰牛仔短裤</div><div class="favorite"><a href="javascript:;" class="favaImg" onclick="$.Fav_Share(5258,this,32,\'#share_item_5258\');"></a><div class="favDiv"><a target="_blank" class="favCount SHARE_FAV_COUNT" href="/note/5258">1</a></div><a target="_blank" href="/note/5258" class="creply"><b>0</b>评论</a></div><div class="user"><a title="amy" href="/u/9" target="_blank"><img class="GUID lazyload" uid="9" original="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" src="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" width="30" alt="amy" style="display: block;"></a><p><span class="u"><a class="GUID " uid="9" title="amy" href="/u/9" target="_blank">amy</a></span><span class="t">03月27日 17:54</span></p></div></div><div class="bi_foot"></div></div>';
+			test[4] = '<div class="book_item hide1 masonry-brick" shareid="5258" id="share_item_5258" style="visibility: hidden; position: absolute;"><div class="bi_body"><ul class="pic"><li><a style="width:200px;" href="/note/5258" target="_blank"> <img class="book_img lazyload" width="200" src="http://img03.taobaocdn.com/bao/uploaded/i3/15559023156903653/T1uxx4Xu4XXXXXXXXX_!!0-item_pic.jpg" alt="" style="display: block;" "> </a><p>¥79.00</p></li></ul><div class="content">非常非常喜欢这件 牛仔破洞翻边高腰牛仔短裤</div><div class="favorite"><a href="javascript:;" class="favaImg" onclick="$.Fav_Share(5258,this,32,\'#share_item_5258\');"></a><div class="favDiv"><a target="_blank" class="favCount SHARE_FAV_COUNT" href="/note/5258">1</a></div><a target="_blank" href="/note/5258" class="creply"><b>0</b>评论</a></div><div class="user"><a title="amy" href="/u/9" target="_blank"><img class="GUID lazyload" uid="9" original="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" src="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" width="30" alt="amy" style="display: block;"></a><p><span class="u"><a class="GUID " uid="9" title="amy" href="/u/9" target="_blank">amy</a></span><span class="t">03月27日 17:54</span></p></div></div><div class="bi_foot"></div></div>';
+			test[5] = '<div class="book_item hide1 masonry-brick" shareid="5258" id="share_item_5258" style="visibility: hidden; position: absolute;"><div class="bi_body"><ul class="pic"><li><a style="width:200px;" href="/note/5258" target="_blank"> <img class="book_img lazyload" width="200" src="http://img01.taobaocdn.com/bao/uploaded/i1/15559022577717371/T1SMauXCpXXXXXXXXX_!!0-item_pic.jpg" alt="" style="display: block;" "> </a><p>¥79.00</p></li></ul><div class="content">非常非常喜欢这件 牛仔破洞翻边高腰牛仔短裤</div><div class="favorite"><a href="javascript:;" class="favaImg" onclick="$.Fav_Share(5258,this,32,\'#share_item_5258\');"></a><div class="favDiv"><a target="_blank" class="favCount SHARE_FAV_COUNT" href="/note/5258">1</a></div><a target="_blank" href="/note/5258" class="creply"><b>0</b>评论</a></div><div class="user"><a title="amy" href="/u/9" target="_blank"><img class="GUID lazyload" uid="9" original="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" src="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" width="30" alt="amy" style="display: block;"></a><p><span class="u"><a class="GUID " uid="9" title="amy" href="/u/9" target="_blank">amy</a></span><span class="t">03月27日 17:54</span></p></div></div><div class="bi_foot"></div></div>';
+			test[6] = '<div class="book_item hide1 masonry-brick" shareid="5258" id="share_item_5258" style="visibility: hidden; position: absolute;"><div class="bi_body"><ul class="pic"><li><a style="width:200px;" href="/note/5258" target="_blank"> <img class="book_img lazyload" width="200" src="http://img03.taobaocdn.com/bao/uploaded/i3/10440022352406378/T1ktKqXChfXXXXXXXX_!!0-item_pic.jpg" alt="" style="display: block;" "> </a><p>¥79.00</p></li></ul><div class="content">非常非常喜欢这件 牛仔破洞翻边高腰牛仔短裤</div><div class="favorite"><a href="javascript:;" class="favaImg" onclick="$.Fav_Share(5258,this,32,\'#share_item_5258\');"></a><div class="favDiv"><a target="_blank" class="favCount SHARE_FAV_COUNT" href="/note/5258">1</a></div><a target="_blank" href="/note/5258" class="creply"><b>0</b>评论</a></div><div class="user"><a title="amy" href="/u/9" target="_blank"><img class="GUID lazyload" uid="9" original="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" src="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" width="30" alt="amy" style="display: block;"></a><p><span class="u"><a class="GUID " uid="9" title="amy" href="/u/9" target="_blank">amy</a></span><span class="t">03月27日 17:54</span></p></div></div><div class="bi_foot"></div></div>';
+			
+			for (var i = 0; i < 7; i++) {
+				setLocation(test[i]);
+			}
+		});
+		</script>
+		<style>
+			/*CSSLab CSS Reset*/
+			html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				outline: 0;
+				font-size: 100%;
+				vertical-align: baseline;
+				background: transparent;
+			}
+			body, textarea, pre, input {
+				font: 12px/1.6 Arial, '宋体b8b\4f53', 'Helvetica Neue', 'Liberation Sans', FreeSans, sans-serif;
+			}
+			ul {
+				list-style: none;
+			}
+			a {
+				text-decoration: none;
+			}
+			.book_item {
+				float: left;
+				width: 226px;
+				position: relative;
+			}
+			.hide1 {
+				visibility: hidden;
+			}
+			.book_item .bi_body {
+				width: 224px;
+				border: solid 1px #ccc;
+				border-bottom: none;
+				background: #fff;
+				float: left;
+			}
+			.book_item .pic {
+				width: 200px;
+				padding: 9px 12px 0 12px;
+				float: left;
+			}
+			.book_item .pic li {
+				float: left;
+				position: relative;
+				margin: 2px 0 0 0;
+			}
+			.book_item .pic li a, .book_item .pic li a img {
+				float: left;
+			}
+			.book_item .pic li p {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				display: block;
+				color: #fff;
+				background: url(http://www.ibudian.com/tpl/pink2/images/book_p.png);
+				_background: none;
+				_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://www.ibudian.com/tpl/pink2/images/book_p.png',sizingMethod='scale');
+				padding: 3px 6px;
+				border-radius: 4px 0 0 0;
+			}
+			.book_item .content {
+				padding: 12px 12px 8px 12px;
+				font-size: 12px;
+				line-height: 1.5em;
+				color: #414141;
+				float: left;
+				width: 200px;
+				word-wrap: break-word;
+				word-break: break-all;
+			}
+			.book_item .favorite {
+				padding: 0 12px 0px 12px;
+				height: 22px;
+				position: relative;
+				float: left;
+				width: 200px;
+			}
+			.book_item .favorite a.favaImg {
+				background: url(http://www.ibudian.com/tpl/pink2/images/lbg.gif) no-repeat 0 0;
+				height: 15px;
+				width: 16px;
+				display: block;
+				float: left;
+			}
+			.book_item .favorite .favCount {
+				line-height: normal;
+				width: auto;
+				float: left;
+				margin-left: 2px;
+				color: #ff579a;
+				padding-left: 4px;
+				font-size: 14px;
+				font-weight: bold;
+				display: block;
+			}
+			.book_item .favorite .creply {
+				background: url(http://www.ibudian.com/tpl/pink2/images/lbg.gif) 0 -45px no-repeat;
+				color: #666;
+				line-height: 14px;
+				position: absolute;
+				right: 0;
+				top: 0px;
+				padding-left: 20px;
+				margin-right: 10px;
+			}
+			.book_item .favorite .creply b {
+				color: #fe5d9b;
+			}
+			.book_item .user {
+				padding: 12px;
+				border-top: solid 1px #e6e6e6;
+				background: #f8f8f8;
+				float: left;
+				width: 200px;
+			}
+			.book_item .user * {
+				float: left;
+			}
+			.book_item .user img {
+				height: 30px;
+				border: solid 1px #e6e6e6;
+			}
+			.book_item .user p {
+				float: right;
+				width: 162px;
+			}
+			.book_item .user span {
+				width: 162px;
+				height: 14px;
+				line-height: 14px;
+				overflow: hidden;
+				color: #949693;
+				float: left;
+				display: block;
+			}
+			.book_item .user span a {
+				font-weight: bold;
+				color: #666;
+			}
+			.book_item .bi_foot {
+				width: 226px;
+				height: 7px;
+				overflow: hidden;
+				background: url(http://www.ibudian.com/tpl/pink2/images/book_foot.png) no-repeat;
+			}
+			.test {
+				height: 100px;
+				width: 100px;
+				display: block;
+			}
+			#main {
+				width:960px;
+				height:auto;
+				margin:0 auto;
+			}
+			#store {
+				width:960px;
+				height:auto;
+				margin:0 auto;
+				position:relative;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+		<div id="store"></div>
+		</div>
+		<!-- div class="book_item hide1 masonry-brick" shareid="5258" id="share_item_5258" style="visibility: visible; position: absolute; top: 0px; left: 732px;">
+			<div class="bi_body">
+				<ul class="pic">
+					<li>
+						<a style="width:200px;" href="/note/5258" target="_blank"> <img class="book_img lazyload" original="http://img01.taobaocdn.com/bao/uploaded/i1/15667020823196981/T1DLRQXp8fXXXXXXXX_!!0-item_pic.jpg" width="200" src="http://img01.taobaocdn.com/bao/uploaded/i1/15667020823196981/T1DLRQXp8fXXXXXXXX_!!0-item_pic.jpg" oldwidth="700" oldheight="1134" alt="" height="324" style="display: block;"> </a>
+						<p>
+							¥79.00
+						</p>
+					</li>
+				</ul>
+				<div class="content">
+					非常非常喜欢这件 牛仔破洞翻边高腰牛仔短裤
+				</div>
+				<div class="favorite">
+					<a href="javascript:;" class="favaImg" onclick="$.Fav_Share(5258,this,32,'#share_item_5258');"></a>
+					<div class="favDiv">
+						<a target="_blank" class="favCount SHARE_FAV_COUNT" href="/note/5258">1</a>
+					</div>
+					<a target="_blank" href="/note/5258" class="creply"><b>0</b>评论</a>
+				</div>
+				<div class="user">
+					<a title="amy" href="/u/9" target="_blank"><img class="GUID lazyload" uid="9" original="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" src="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" width="30" alt="amy" style="display: block;"></a>
+					<p>
+						<span class="u"><a class="GUID " uid="9" title="amy" href="/u/9" target="_blank">amy</a></span>
+						<span class="t">03月27日 17:54</span>
+					</p>
+				</div>
+			</div>
+			<div class="bi_foot"></div>
+		</div -->
+	</body>
+</html>

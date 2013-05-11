@@ -82,6 +82,41 @@
 	
 </div>
 <div id="container"><!--content-->
+	<div id="body" class="fm960">
+			<div class="piece1">
+				<div class="piece1_hd"></div>
+				<div class="piece1_bd clearfix">
+					<div id="content" style="width:960px;">
+						<script type="text/javascript" src="/js/city_utf8.js?v=1367138323"></script>
+						<div class="fl " id="setting_bar">
+							<h1>帐号设置</h1>
+							<div class="base_info">
+							<a href="personal.html" class="c">基本信息</a><br />
+							<a href="avatar.html" class="">修改头像</a><br />
+							<a href="setpassword.html" class="">修改密码</a><br />
+							</div>
+						</div>
+						<div id="setting_box" class="fl">
+							<div id="setting_form" class="setting_avartar">
+								<form id="avartarForm" enctype="multipart/form-data" method="POST" action="/upload/addpic">
+									<input type="hidden" name="type" value="avatar" />
+									<dl>
+										<dd>当前头像：</dd><dt><img class="head_bd r3" src="http://s5.mogujie.cn/b1/avatar/111029/11bug_kqyweyk7krbegzdwgfjeg5sckzsew_720x420.jpg_100x100.jpg" alt=""></dt>
+										<dd>上传新头像：</dd><dt style="position:relative;"><input type="text" id="viewAvartar" readonly="readonly" class="gray_text" onmouseout="document.getElementById('uploadAvartar').style.display='none';"/><input type="button" class="gray_button" onmouseover="document.getElementById('uploadAvartar').style.display='block';"  value="浏览..."/><input type="file" onchange="document.getElementById('viewAvartar').value=this.value;this.style.display='none';" class="tfile" id="uploadAvartar" name="avatar"/></dt>
+										<dd class="msg">&nbsp;</dd><dt class="msg">建议使用正方形的图片，支持JPG、GIF、JPG格式，100K以内。</dt>
+										<dd class="preview">预览：</dd><dt class="preview"></dt>
+										<dd class="avartar_confirm">&nbsp;</dd><dt class="avartar_confirm"><input type="button" value="确定" class="green_button"/></dt>
+									</dl>
+								</form>
+							</div>
+							<input type="hidden" id="refer" value="http://www.mogujie.com/settings/personal">
+					</div>
+
+               </div>
+            </div>
+           <div class="piece1_ft"></div>
+	</div>
+</div>
 
 </div>
 </div>
