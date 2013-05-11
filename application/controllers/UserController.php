@@ -13,4 +13,19 @@ class UserController extends Zend_Controller_Action
     {
     
     }
+    
+    public function infoAction()
+    {
+    
+    }
+    
+    public function avatarAction()
+    {
+    
+    }
+    
+    public function passwdAction()
+    {
+    
+    }
 }
