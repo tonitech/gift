@@ -1,0 +1,48 @@
+<?php $config = Zend_Registry::get('config'); ?>
+<?php echo $this->render('common/header.phtml')?>
+<?php echo $this->render('common/login.phtml')?>
+<?php $detail = $this->detail; ?> 
+<div class="wrapper">
+  <div id="main">
+    <div class="main_item">
+ <!--根据时间、天气从数据库读取图片显示在这里-->
+ <div id="detail_bg">
+  <div id="detail">
+  <div id="detail_left">
+            <div id="detail_all">
+              <div id="detail_picture">
+                <img width="260px" height="260px" alt="<?php echo $detail[$config->producttable->name]; ?>" 
+                src="<?php echo PUBLIC_PATH . $detail[$config->producttable->picture]; ?>">
+              </div>
+              <div id="detail_whiteheart"> 
+              <a href="javascript:void(0);" onclick="setLike(<?php echo $detail[$config->producttable->id]; ?>)">
+              <?php echo $detail[$config->producttable->liked]; ?>
+              </a>
+              </div>
+            </div>
+            <div id="detail_description"><?php echo $detail[$config->producttable->description]; ?></div>
+  </div>
+     <div id="detail_right">
+     	<form id="detailForm" action="<?php echo URL_PATH . 'purchase/order/productid/'?>" method="post">
+     		<input type="hidden" id="productid" name="productid" value="<?php echo $detail[$config->producttable->id]; ?>" />
+            <p>Tea Name: <?php echo $detail[$config->producttable->name]; ?></p>
+            <p> Quantity: 
+            <input id="quantity" name="quantity" type="text" class="text_quan" value="1">
+            (stock:<?php echo $detail[$config->producttable->quantity]; ?>)</p>
+            <p></p>
+            <p>Price: £ <?php echo $detail[$config->producttable->price]; ?></p>
+            <p>
+              <input value="Add to Shopping Cart" class="btn_detail" id="addCart" name="Add to Shopping Cart" type="button" />
+            </p>
+            <p>
+              <input type="submit" class="btn_buy" id="buy" value="Buy" />
+            </p>
+            </form>
+          </div>
+  </div>
+ </div>
+  </div>
+    <?php echo $this->render('common/shoppingcart.phtml')?>
+  </div>
+</div>
+<?php echo $this->render('common/footer.phtml')?>

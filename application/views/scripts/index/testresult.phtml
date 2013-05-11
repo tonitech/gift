@@ -1,0 +1,32 @@
+<?php $config = Zend_Registry::get('config'); ?>
+<?php echo $this->render('common/header.phtml')?>
+<?php echo $this->render('common/login.phtml')?>
+<div class="wrapper">
+  <div id="main">
+    <div class="main_item">
+      <div id="detail_bg">
+      <?php $detail = $this->result['result'][0];?>
+        <p class="teatest">We recommend you: </p>
+        <div id="teatest">
+        <input type="hidden" id="productid" name="productid" value="<?php echo $detail[$config->producttable->id]; ?>" />
+        <input id="quantity" name="quantity" type="hidden" class="text_quan" value="1">
+           <div id="testresults_all">
+          <div id="testresults_picture">
+          <img width="230px" height="230px" alt="<?php echo $detail[$config->producttable->name]; ?>" 
+                src="<?php echo PUBLIC_PATH . $detail[$config->producttable->picture]; ?>">
+          </div>
+           </div>
+           <p class="result_teaname">Tea Name: <?php echo $detail[$config->producttable->name]; ?></p>
+    <div id="testresults_description"><?php echo $detail[$config->producttable->description]; ?></div>
+     <p>
+      <input value="Add to Shopping Cart" id="addCart" class="addtoshop" name="Add to Shopping Cart" type="button" />
+    </p>
+          
+        </div>
+        
+      </div>
+    </div>
+    <?php echo $this->render('common/shoppingcart.phtml')?>
+  </div>
+</div>
+<?php echo $this->render('common/footer.phtml')?>

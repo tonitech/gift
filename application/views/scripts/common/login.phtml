@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <div id="teapot"> <img src="<?php echo PUBLIC_PATH;?>images/teapot.png" />
+  	<div id="loginText"><a>Login</a></div>
+  	
+      <div id="login_done" style="display:none;" ><a></a>
+      <p><img src="<?php echo PUBLIC_PATH;?>images/teabag_big.png" width="28" height="25" /><a href="<?php echo URL_PATH . 'user/logout'; ?>">Logout</a></p>
+      </div>
+  </div>
+</div>
+<div class="wrapper" id="loginWrapper" style="display:none;">
+<div id="login">
+<div id="login_bg">
+<div id="login_form">
+<p>Username: 
+  <input class="input" name="username" id="username" type="text"> 
+  </p>
+<p> Password: 
+  <input class="input" name="password" id="password" type="password"></p>
+  <p><input name="btn_login" class="login_btn" id="loginBtn" type="button" value="Login"><input name="btn_register" class="register_btn" id="toRegister" type="button" value="Register"> </p>
+</div>
+
+<div id="register_form" style="display:none;">
+<p>User name: 
+  <input class="input" name="username" id="username2" type="text"> 
+  </p>
+<p> Password:&nbsp;&nbsp;<input class="input" name="password" id="password2" type="password"></p>
+ 
+  <p>   E-mail:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+         <input class="input" name="password" id="email" type="email"></p>
+  
+   <p><input name="btn_login" id="registerBtn" class="login_btn" type="submit" value="Register"><input name="btn_register" class="register_btn" id="toLogin" type="button" value="Login"> </p>
+</div>
+
+
+</div>
+</div>
+</div>

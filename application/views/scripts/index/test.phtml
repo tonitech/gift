@@ -1,0 +1,36 @@
+<?php echo $this->render('common/header.phtml')?>
+<?php echo $this->render('common/login.phtml')?>
+<div class="wrapper">
+  <div id="main">
+    <div class="whole">
+      <div id="hexgonbg"> </div>
+      <div id="hexgonclick"> 
+        <script type="text/javascript">
+        document.write('<canvas id="myCanvas" width="' + width + '" height="' + height + '" style=" #c3c3c3;">');
+        </script> 
+        Your browser does not support the canvas element.
+        </canvas>
+      </div>
+      <script type="text/javascript" src="<?php echo PUBLIC_PATH;?>js/test.js"></script>
+      <div id="testinstruction">
+        <p>Click the black spot according to your symptomt to get your result</p>
+      </div>
+      <div id="sympton1">fatigued</div>
+      <div id="sympton2">dull skin</div>
+      <div id="sympton3">anxiety</div>
+      <div id="sympton4">depression</div>
+      <div id="sympton5">insomnia</div>
+      <div id="sympton6">upset stomach</div>
+      <div id="example"></div>
+      <div id="bubbleresult">
+        <form action="<?php echo URL_PATH . 'index/testresult'; ?>" method="post">
+        <input type="hidden" name="symptom" id="symptom" value="" />
+        <input type="hidden" name="type" value="symptom" />
+        <input id="seeRec" type="submit" value="" />
+      	</form>
+      </div>
+    </div>
+  
+  </div>
+</div>
+<?php echo $this->render('common/footer.phtml')?>
