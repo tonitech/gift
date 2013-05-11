@@ -21,6 +21,7 @@ define(
 
 defined('APPLICATION_ACTION_PATH') ||
  define('APPLICATION_ACTION_PATH', '');
+ 
 // Ensure library/ is on include_path
 set_include_path(
     implode(
