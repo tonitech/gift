@@ -1,0 +1,48 @@
+<?php
+echo $this->render('common/header.phtml');
+?>
+<?php
+echo $this->render('common/menu.phtml');
+?>
+<div id="container"><!--content-->
+	<div id="talk_content">
+		<div id="talk_title" >
+			<div class="gr_info r5">
+				<h2>Gift 讨论吧</h2>无主题的主题吧，欢迎扎堆唠嗑。      
+			</div>
+		</div>
+		<div id="write_content">
+			<div id="gr_set_top">
+				<h2 id="new_topic" >发表主题</h2>
+			</div>
+			<div id="topic_con" class="gr_set_form ">
+				<dl>
+					<dt>标题：</dt>
+					<dd>
+                        <input class="form_text form_text_title" type="text" name="title"  />
+						<span class="desc"><b>最多25个字</b></span>
+					</dd>
+				</dl>
+				<dl>
+					<dt>正文：</dt>
+					<dd>
+					<textarea class="editor-textarea" name="content" style="height:250px;" ></textarea>
+						<span class="desc"></span>
+					</dd>
+				</dl>
+				<dl class="sub_form" >
+				<dt style="width: 75px;"></dt>
+				<dd>
+					<input type="submit" class="form_sub mogu-editor-post" value="发表" />
+					<a href="#" class="form_yulan" >预览主题</a>
+				</dd>
+				</dl>
+            </div>
+			
+		</div>
+	</div>
+
+</div>
+<?php
+echo $this->render('common/footer.phtml');
+?>
