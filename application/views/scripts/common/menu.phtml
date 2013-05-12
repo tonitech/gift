@@ -3,7 +3,7 @@
 	<div id="guide-inner"><!--Inner -->
     	<div class="l">
 			<div class="item-guide-top dropdown">
-				<a id="link-logo-guide" href="index.html">Gift</a>
+				<a id="link-logo-guide" href="<?php echo APPLICATION_ACTION_PATH; ?>/">Gift</a>
 			</div>
 			<div class="item-guide-top dropdown">
 				<a class="item-channel-guide" href="<?php echo APPLICATION_ACTION_PATH; ?>/goods" target="_blank">选礼物</a>
@@ -18,9 +18,9 @@
 		<div class="r">
 			<div id="login-guide" class="item-guide-top"><div id="area-public-guide-top" class="item-guide-top"><a class="btn mini" onclick="" title="分享">分享</a></div></div>
 			<div id="search-guide" class="item-guide-top"><!--Search -->
-				<input id="input-search-guide" name="q" type="text" value="搜索" autocomplete="off" x-webkit-speech=""><button id="btn-09252008595503867" class="btn-search" title="搜索" style="left: 136px; top: 9px;"><i class="icon icon-search">搜索</i></button><ul id="menu-09252008595503867" class="menu menu-search" style="left: 0px; top: 44px; min-width: 162px;"></ul>
+				<input id="input-search-guide" name="q" type="text" placeholder="搜索" autocomplete="off" x-webkit-speech=""><button id="btn-09252008595503867" class="btn-search" title="搜索" style="left: 136px; top: 9px;"><i class="icon icon-search">搜索</i></button><ul id="menu-09252008595503867" class="menu menu-search" style="left: 0px; top: 44px; min-width: 162px;"></ul>
 			</div><!--Search -->
-			<div id="login-guide" class="item-guide-top"><div id="area-public-guide-top" class="item-guide-top"><a class="btn info mini" onclick="javascript:$(this).call('login'); return false;" title="帐号登录">登录</a><a class="btn success mini" onclick="javascript:$(this).call('reg');" title="帐号注册">注册</a></div></div>
+			<div id="login-guide" class="item-guide-top"><div id="area-public-guide-top" class="item-guide-top"><a class="btn info mini" id="loginBtn" title="帐号登录" href="<?php echo APPLICATION_ACTION_PATH?>/user/login">登录</a><a class="btn success mini" onclick="javascript:$(this).call('reg');" title="帐号注册">注册</a></div></div>
 		</div>
 		<span class="clearfix"></span>
     </div><!--Inner -->

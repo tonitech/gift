@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><?php echo $this -> title;?></title>
+        <meta name='robots' content='noindex,nofollow' />
+        <style type="text/css">
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		p {
+			display: block;
+			-webkit-margin-before: 1em;
+			-webkit-margin-after: 1em;
+			-webkit-margin-start: 0px;
+			-webkit-margin-end: 0px;
+		}
+		#login {
+			width: 320px;
+			padding: 114px 0 0;
+			margin: auto;
+		}
+		.login * {
+			margin: 0;
+			padding: 0;
+		}
+		.login h1 a {
+			background-size: 274px 63px;
+			background-position: top center;
+			background-repeat: no-repeat;
+			width: 326px;
+			height: 67px;
+			outline: 0;
+			overflow: hidden;
+			padding-bottom: 15px;
+			display: block;
+			line-height: 67px;
+			text-align: center;
+			text-decoration: none;
+			font-size: 48px;
+			color: #21759b;
+		}
+		.login form {
+			margin-left: 8px;
+			padding: 26px 24px 46px;
+			font-weight: normal;
+			background: #fff;
+			border: 1px solid #e5e5e5;
+			-webkit-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+			box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+			border-width: 1px;
+			border-style: solid;
+		}
+		#login form p {
+		margin-bottom: 0;
+		}
+		.login label {
+			color: #777;
+			font-size: 14px;
+		}
+		.login form .input, .login input[type="text"] {
+			font-weight: 200;
+			font-size: 24px;
+			line-height: 1;
+			width: 100%;
+			padding: 3px;
+			margin-top: 2px;
+			margin-right: 6px;
+			margin-bottom: 16px;
+			border: 1px solid #e5e5e5;
+			background: #fbfbfb;
+			outline: 0;
+			-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+			box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+			border-width: 1px;
+			border-style: solid;
+		}
+		.login form .forgetmenot {
+			font-weight: normal;
+			float: left;
+		}
+		.login form .forgetmenot label {
+			font-size: 12px;
+			line-height: 19px;
+		}
+		input[type="checkbox"] {
+			vertical-align: text-top;
+			padding: 0;
+			margin: 0;
+		}
+		#login form p.submit {
+			padding: 0;
+		}
+		.button-primary {
+			background-color: #278ab7;
+			background-image: -webkit-linear-gradient(top,#2e9fd2,#21759b);
+			border-color: #1b607f;
+			-webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
+			box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
+			color: #fff;
+			text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+			cursor: pointer;
+			border-width: 1px;
+			border-style: solid;
+			-webkit-border-radius: 3px;
+			-webkit-appearance: none;
+			border-radius: 3px;
+			white-space: nowrap;
+			float: right;
+		}
+		.button.button-large {
+			height: 30px;
+			line-height: 28px;
+			padding: 0 12px 2px;
+		}
+		#backtoblog {
+			text-shadow: #fff 0 1px 0;
+			margin: 0 0 0 16px;
+			padding: 16px 16px 0;
+		}
+		.login #backtoblog a {
+			color: #21759b!important;
+		}
+		</style>
+	</head>
+    <body class="login login-action-login wp-core-ui">
+        <div id="login">
+            <h1><a href="<?php echo APPLICATION_ACTION_PATH;?>"><?php echo $this->title;?></a></h1>
+            <?php echo $this -> errormsg;?>
+            <form name="loginform" id="loginform"
+            action="<?php echo APPLICATION_ACTION_PATH;?>/manage/login" method="post">
+                <p>
+                    <label for="user_login">用户名
+                        <br />
+                        <input type="text" name="username" id="user_login" class="input" value=""
+                        size="20" />
+                    </label>
+                </p>
+                <p>
+                    <label for="user_pass">密码
+                        <br />
+                        <input type="password" name="password" id="user_pass" class="input" value=""
+                        size="20" />
+                    </label>
+                </p>
+                <p class="forgetmenot">
+                    <label for="rememberme">
+                        <input name="rememberme"
+                        type="checkbox" id="rememberme" value="1" />
+                        记住我</label>
+                </p>
+                <p class="submit">
+                    <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="登录" />
+                </p>
+            </form>
+            <p id="backtoblog">
+                <a href="<?php echo APPLICATION_ACTION_PATH;?>/"
+                title="Are you lost?">&larr; 返回Gift首页</a>
+            </p>
+        </div>
+        <div class="clear"></div>
+    </body>
+</html>

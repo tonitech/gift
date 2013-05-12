@@ -23,7 +23,8 @@ class Utility_Db
     public function conn()
     {
         $config = Zend_Registry::get('db');
-    	$connParams = array("host" => $config->db->host,
+    	$connParams = array(
+    			"host" => $config->db->host,
 				"username" => $config->db->username,
     			"password" => $config->db->password,
     			"dbname" => $config->db->dbname,

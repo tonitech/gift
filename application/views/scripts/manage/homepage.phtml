@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title><?php echo $this->title; ?></title>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+        <link type="text/css" rel="stylesheet" href="<?php echo APPLICATION_PUBLIC_PATH;?>/theme/backadmin.css" />
+        <script type="text/javascript" src="<?php echo APPLICATION_PUBLIC_PATH;?>/js/base/jquery-1.5.min.js"></script>
+        <script type="text/javascript" src="<?php echo APPLICATION_PUBLIC_PATH;?>/ckeditor/ckeditor.js"></script>
+    </head>
+    <script type="text/javascript">
+    $(function(){
+        $('#addPic').click(function(){
+            var id = $('#countRow').val();
+            var currid = parseInt(id) + 1;
+            $('#countRow').val(currid);
+            var arr = [];
+            arr.push('<tr><td>');
+            arr.push(id + '</td><td><input id="title');
+            arr.push(id + '" type="text" width="100%" name="title');
+            arr.push(id + '" /></td><td><input id="description');
+            arr.push(id + '" type="text" width="100%" name="description');
+            arr.push(id + '" /></td><td><input id="detailUrl');
+       		arr.push(id + '" type="text" width="100%" name="detailUrl');
+            arr.push(id + '" /></td><td><input id="imageUrl');
+            arr.push(id + '" type="text" width="100%" name="imageUrl');
+            arr.push(id + '" /></td></tr>');
+            var html = arr.join("");
+            $('#sliderTable').append(html);
+        });
+    });
+    </script>
+    <body>
+        <h1 class="title"><?php echo $this->title;?></h1>
+        <div class="content">
+            <p id="msg" style="color:red;font-size:18px;font-weight:bold;">
+                <?php echo $this -> errormsg;?>
+            </p>
+            <form name="homepage" action="<?php echo APPLICATION_ACTION_PATH . "/manage/mod-homepage-slider";?>" method="post">
+                <table width="900px" border="1px" cellspacing="0" id="sliderTable">
+                    <tr>
+                        <th colspan="5">首页图片轮转设置</th>
+                    </tr>
+                    <tr>
+                        <th width="5%">编号</th>
+                        <th width="10%">图片标题</th>
+                        <th width="25%">图片描述</th>
+                        <th width="30%">图片地址</th>
+                        <th width="30%">点击图片跳转地址</th>
+                    </tr>
+                    <?php 
+                    $slider = $this->slider;
+                    $sliderTable = $this->sliderTable;
+                    $count = 1;
+                    foreach ($slider as $pic) {
+                    ?>
+                    <tr>
+                        <td><?php echo $count; ?></td>
+                        <td>
+                        <input id="title<?php echo $count; ?>" type="text" width="100%" name="title<?php echo $count; ?>" value="<?php echo $pic[$sliderTable->title]; ?>" />
+                        </td>
+                        <td>
+                        <input id="description<?php echo $count; ?>" type="text" width="100%" name="description<?php echo $count; ?>" value="<?php echo $pic[$sliderTable->description]; ?>" />
+                        </td>
+                        <td>
+                        <input id="imageUrl<?php echo $count; ?>" type="text" width="100%" name="imageUrl<?php echo $count; ?>" value="<?php echo $pic[$sliderTable->imageUrl]; ?>" />
+                        </td>
+                        <td>
+                        <input id="detailUrl<?php echo $count; ?>" type="text" width="100%" name="detailUrl<?php echo $count; ?>" value="<?php echo $pic[$sliderTable->detailUrl]; ?>" />
+                        </td>
+                    </tr>
+                    <?php 
+                        $count++;
+                    }
+                    ?>
+                </table>
+                <p>
+                	<input id="countRow" type="hidden" value="<?php echo $count; ?>" />
+                	<input id="addPic" type="button" value="添加一张图片" />
+                    <input type="submit" value="Submit" />
+                </p>
+            </form>
+            <br />
+            
+            <?php 
+            $modules = $this->modules;
+            $modulesTable = $this->modulesTable;
+            ?>
+            <form name="homepage" action="<?php echo APPLICATION_ACTION_PATH . "/manage/mod-homepage-modules";?>" method="post">
+                <table width="900px" border="1px" cellspacing="0">
+                    <tr>
+                        <th colspan="4">首页模块图片设置</th>
+                    </tr>
+                    <tr>
+                        <th width="20%">图片区域</th>
+                        <th width="20%">图片标题</th>
+                        <th width="30%">图片地址</th>
+                        <th width="30%">点击图片跳转地址</th>
+                    </tr>
+                    <tr>
+                        <td>左侧大图</td>
+                        <td>
+                        <input id="leftTitle" type="text" size="18" name="leftTitle" value="<?php echo $modules[$modulesTable->leftTitle]; ?>" />
+                        </td>
+                        <td>
+                        <input id="leftUrl" type="text" size="18" name="leftUrl" value="<?php echo $modules[$modulesTable->leftUrl]; ?>" />
+                        </td>
+                        <td>
+                        <input id="leftDetailUrl" type="text" size="18" name="leftDetailUrl" value="<?php echo $modules[$modulesTable->leftDetailUrl]; ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>flash</td>
+                        <td>
+                        <input id="flashTitle" type="text" size="18" name="flashTitle" value="<?php echo $modules[$modulesTable->flashTitle]; ?>"/>
+                        </td>
+                        <td>
+                        <input id="flashUrl" type="text" size="18" name="flashUrl" value="<?php echo $modules[$modulesTable->flashUrl]; ?>"/>
+                        </td>
+                        <td>
+                        flash无跳转
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>右侧小图</td>
+                        <td>
+                        <input id="rightTitle" type="text" size="18" name="rightTitle" value="<?php echo $modules[$modulesTable->rightTitle]; ?>" />
+                        </td>
+                        <td>
+                        <input id="rightUrl" type="text" size="18" name="rightUrl" value="<?php echo $modules[$modulesTable->rightUrl]; ?>"/>
+                        </td>
+                        <td>
+                        <input id="rightDetailUrl" type="text" size="18" name="rightDetailUrl" value="<?php echo $modules[$modulesTable->rightDetailUrl]; ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>底部第一张图</td>
+                        <td>
+                        <input id="bottom1Title" type="text" size="18" name="bottom1Title" value="<?php echo $modules[$modulesTable->bottom1Title]; ?>" />
+                        </td>
+                        <td>
+                        <input id="bottom1Url" type="text" size="18" name="bottom1Url" value="<?php echo $modules[$modulesTable->bottom1Url]; ?>" />
+                        </td>
+                        <td>
+                        <input id="bottom1DetailUrl" type="text" size="18" name="bottom1DetailUrl" value="<?php echo $modules[$modulesTable->bottom1DetailUrl]; ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>底部第二张图</td>
+                        <td>
+                        <input id="bottom2Title" type="text" size="18" name="bottom2Title" value="<?php echo $modules[$modulesTable->bottom2Title]; ?>" />
+                        </td>
+                        <td>
+                        <input id="bottom2Url" type="text" size="18" name="bottom2Url" value="<?php echo $modules[$modulesTable->bottom2Url]; ?>" />
+                        </td>
+                        <td>
+                        <input id="bottom2DetailUrl" type="text" size="18" name="bottom2DetailUrl" value="<?php echo $modules[$modulesTable->bottom2DetailUrl]; ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>底部第三张图</td>
+                        <td>
+                        <input id="bottom3Title" type="text" size="18" name="bottom3Title" value="<?php echo $modules[$modulesTable->bottom3Title]; ?>" />
+                        </td>
+                        <td>
+                        <input id="bottom3Url" type="text" size="18" name="bottom3Url" value="<?php echo $modules[$modulesTable->bottom3Url]; ?>" />
+                        </td>
+                        <td>
+                        <input id="bottom3DetailUrl" type="text" size="18" name="bottom3DetailUrl" value="<?php echo $modules[$modulesTable->bottom3DetailUrl]; ?>" />
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    <input type="submit" value="Submit" />
+                </p>
+            </form>
+        </div>
+    </body>
+</html>

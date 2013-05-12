@@ -9,50 +9,15 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $this->view->title = 'Gift分享';
-    }
-    
-    public function testAction()
-    {
-        $this->view->title = 'Test';
-    }
-    
-    public function testresultAction()
-    {
-        $symptomList = $this->_request->getParam('symptom');
-        $type = $this->_request->getParam('type');
-        $symptomList = explode(',', $symptomList);
-        if (isset($symptomList) && $type == 'symptom') {
-            $recommendObj = Business_Recommend::factory($type);
-            $max = 1;
-            $symptom = '';
-            $symptomMap = Zend_Registry::get('config')->symptom;
-            foreach ($symptomList as $key => $value) {
-                if ($value > $max) {
-                    $max = $value;
-                    $which = 's'.($key + 1);
-                    $symptom = $symptomMap->$which;
-                }
-            }
-            $recommendObj->setSymptom($symptom);
-            $result = $recommendObj->getGoodsList();
-            if ($result == null) {
-                $result = array(
-                    'errorcode' => -1,
-                    'errormsg' => 'no recommendation'
-                );
-            } else {
-                $result = array(
-                    'errorcode' => 0,
-                    'errormsg' => 'success',
-                    'result' => $result
-                );
-            }
-        } else {
-            $result = array(
-                'errorcode' => -1,
-                'errormsg' => 'no type'
-            );
-        }
-        $this->view->result = $result;
+        $homepageObj = new Business_Manage_Homepage();
+        $sliderTable = $homepageObj->getHomepageSliderTableInfo();
+        $slider = $homepageObj->getHomepageSlider();
+        $modulesTable = $homepageObj->getHomepageModulesTableInfo();
+        $modules = $homepageObj->getHomepageModules();
+        
+        $this->view->slider = $slider;
+        $this->view->modules = $modules;
+        $this->view->sliderTable = $sliderTable;
+        $this->view->modulesTable = $modulesTable;
     }
 }

@@ -1,10 +1,9 @@
 <?php
 /**
- * 管理员登录授权
- * @author 王志昂<wangzhiang@qq.com>
+ * 登录授权
  * @create 2013-04-29 18:32:37
  */
-class Business_Manage_Auth
+class Business_Auth
 {
     /**
      * 获取cookie的生命周期
