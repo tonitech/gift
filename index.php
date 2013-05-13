@@ -39,7 +39,8 @@ require_once 'Zend/Registry.php';
 require_once "Zend/Config/Ini.php";
 $configs = array(
     'db' => APPLICATION_CONFIG_PATH . '/db.ini',
-	'config' => APPLICATION_CONFIG_PATH . '/config.ini'
+	'config' => APPLICATION_CONFIG_PATH . '/config.ini',
+	'dbtable' => APPLICATION_CONFIG_PATH . '/dbtable.ini'
 );
 foreach ($configs as $key => $configPath) {
     $config = new Zend_Config_Ini($configPath, APPLICATION_ENV);

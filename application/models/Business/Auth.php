@@ -68,7 +68,7 @@ class Business_Auth
      */
     public function validateAuthSignature($signature = '')
     {
-        $cookieName = Zend_Registry::get('config')->admin->cookie;
+        $cookieName = Zend_Registry::get('dbtable')->admin->cookie;
         if (empty($signature)) {
             if (!isset($_COOKIE[$cookieName])) {
                 return array(
@@ -127,7 +127,7 @@ class Business_Auth
      */
     public function checkLogin($username, $password)
     {
-        $adminTable = Zend_Registry::get('config')->admin;
+        $adminTable = Zend_Registry::get('dbtable')->admin;
         $rtn = Utility_Db::getInstance()
             ->conn()
             ->select()
@@ -157,7 +157,7 @@ class Business_Auth
      */
     public function getUserInfoById($userid)
     {
-        $adminTable = Zend_Registry::get('config')->admin;
+        $adminTable = Zend_Registry::get('dbtable')->admin;
         $rtn = Utility_Db::getInstance()
             ->conn()
             ->select()
@@ -220,7 +220,7 @@ class Business_Auth
      */
     public function deleteCookie()
     {
-        $cookieName = Zend_Registry::get('config')->admin->cookie;
+        $cookieName = Zend_Registry::get('dbtable')->admin->cookie;
         setcookie($cookieName, '', time());
     }
     

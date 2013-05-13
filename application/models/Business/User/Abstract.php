@@ -12,6 +12,6 @@ abstract class Business_User_Abstract
     public function __construct()
     {
         $this->_db = Utility_Db::getInstance()->conn();
-        $this->_config = Zend_Registry::get('config')->user;
+        $this->_config = Zend_Registry::get('dbtable')->user;
     }
 }

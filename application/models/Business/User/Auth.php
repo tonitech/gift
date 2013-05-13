@@ -69,7 +69,7 @@ class Business_User_Auth extends Business_User_Abstract
      */
     public function validateAuthSignature($signature = '')
     {
-        $cookieName = Zend_Registry::get('config')->user->cookie;
+        $cookieName = Zend_Registry::get('dbtable')->user->cookie;
         if (empty($signature)) {
             if (!isset($_COOKIE[$cookieName])) {
                 return array(
@@ -217,7 +217,7 @@ class Business_User_Auth extends Business_User_Abstract
      */
     public function deleteCookie()
     {
-        $cookieName = Zend_Registry::get('config')->user->cookie;
+        $cookieName = Zend_Registry::get('dbtable')->user->cookie;
         setcookie($cookieName, '', time());
     }
     

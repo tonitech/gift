@@ -9,7 +9,7 @@ class ManageController extends Zend_Controller_Action
      */
     public function init()
     {
-        $cookieName = Zend_Registry::get('config')->admin->cookie;
+        $cookieName = Zend_Registry::get('dbtable')->admin->cookie;
         if (isset($_COOKIE[$cookieName])) {
             $authObj = new Business_Auth();
             $cookieResult = $authObj->validateAuthSignature(
@@ -51,7 +51,7 @@ class ManageController extends Zend_Controller_Action
             $authResult = $authObj->checkLogin($username, $password);
             if ($authResult['errorcode'] == 0) {
                 if (isset($rememberme)) {
-                    $cookieName = Zend_Registry::get('config')->admin->cookie;
+                    $cookieName = Zend_Registry::get('dbtable')->admin->cookie;
                     $cookie = $authObj->generateAuthSignature(
                         $authResult['result'], 
                         $authObj->getCookieExpireTime()
