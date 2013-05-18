@@ -2,10 +2,10 @@
 abstract class Business_Goods_Abstract
 {
     protected $_db;
-    protected $_config;
+    protected $_table;
     public function __construct()
     {
         $this->_db = Utility_Db::getInstance()->conn();
-        $this->_config = Zend_Registry::get('config')->producttable;
+        $this->_table = Zend_Registry::get('dbtable')->goods;
     }
 }

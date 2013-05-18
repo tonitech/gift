@@ -1005,7 +1005,7 @@ cursor: pointer;
 background-color: #75a707;
 float:left;
 }
-/*avatar*/
+/*avatar头像*/
 #setting_box .head_bd {
 border: 3px solid #e3e3e3;
 margin-right: 15px;
@@ -1196,7 +1196,7 @@ padding: 0 10px;
 color: #666;
 display: inline-block;
 }
-.topic_filter .filter_module .selector {
+.filter_module .selector {
 display: inline-block;
 padding: 0 3px 0 20px;
 height: 16px;
@@ -1213,4 +1213,14 @@ background-position: 0 -100px;
 float: right;
 margin: 4px 10px;
 display: inline;
+}
+.goods_filter {
+height: 40px;
+line-height: 40px;
+overflow: hidden;
+}
+.goods_filter .filter_module .title {
+padding: 0 10px;
+color: #666;
+display: inline-block;
 }

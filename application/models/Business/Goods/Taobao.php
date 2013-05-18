@@ -5,11 +5,10 @@
  * @author acer
  *
  */
-class Business_Goods_Taobao extends Business_Goods_Abstract
+class Business_Goods_Taobao
 {
     public function __construct()
     {
-        parent::__construct();
         include 'taobao/top/RequestCheckUtil.php';
     }
     

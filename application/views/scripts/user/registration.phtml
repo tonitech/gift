@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><?php echo $this->title; ?></title>
+		<script type="text/javascript" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery.placeholder.js"></script>
+		<script type='text/javascript' src='<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery.pop.js'></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo APPLICATION_PUBLIC_PATH; ?>/css/gift.css" />
+        <meta name='robots' content='noindex,nofollow' />
+		<style type="text/css">
+		#registration{
+			width: 645px;
+			padding: 60px 0 0;
+			margin: auto;
+		}
+		#register h1 {
+			margin-top: 18px;
+			color: #000;
+			display: block;
+			margin-bottom: 10px;
+			text-align: center;
+			font-size: 48px;
+			color: #21759b;
+		}
+		.blank15 {
+			clear: both;
+			height: 15px;
+			overflow: hidden;
+			display: block;
+		}
+		#register span {
+			color: #999;
+			font-size: 12px;
+			display: block;
+			text-align: center;
+		}
+		#register_center {
+			width: 644px;
+			border: 1px solid #e5e5e5;
+			height: 380px;
+			margin-top: 20px;
+		}
+		#register_form {
+			width: 360px;
+			float: left;
+			_overflow: hidden;
+		}
+		.ipt_ulike {
+			margin-left: 48px;
+			margin-top: 20px;
+			overflow: hidden;
+			room: 1;
+			_width: 334px;
+			line-height: 30px;
+		}
+		#register_form span {
+			color: #000;
+			font-size: 14px;
+			float: left;
+			vertical-align: middle;
+			text-align: center;
+		}
+		#register_form .text {
+			float: left;
+			width: 244px;
+			height: 30px;
+			margin-left: 5px;
+			line-height: 30px;
+			padding-left: 5px;
+			padding-right: 5px;
+			border: 1px solid #e5e5e5;
+			background: #fbfbfb;
+			outline: 0;
+			-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+			box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+			border-width: 1px;
+			border-style: solid;
+		}
+		.ipt_password {
+			margin-left: 48px;
+			margin-top: 20px;
+			overflow: hidden;
+			room: 1;
+			_width: 334px;
+			line-height: 30px;
+		}
+		.ipt_respassword {
+			margin-left: 20px;
+			margin-top: 20px;
+			overflow: hidden;
+			room: 1;
+			_width: 334px;
+			line-height: 30px;
+		}
+		.ipt_check {
+			margin-left: 34px;
+			margin-top: 20px;
+			overflow: hidden;
+			room: 1;
+			_width: 334px;
+			line-height: 30px;
+		}
+		#register_form .check {
+			float: left;
+			width: 114px;
+			height: 30px;
+			margin-left: 5px;
+			line-height: 30px;
+			border: 1px solid #e5e5e5;
+			background: #fbfbfb;
+			outline: 0;
+			-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+			box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+			border-width: 1px;
+			border-style: solid;
+		}
+		.ipt_check #img_checkcode {
+			width: 78px;
+			height: 26px;
+			margin-top: 2px;
+			float: left;
+			margin-left: 4px;
+			vertical-align: middle;
+			text-align: center;
+		}
+		.ipt_check a {
+			color: #09e;
+			float: left;
+			margin-left: 6px;
+			text-decoration: none;
+		}
+		.ipt_box {
+			margin-left: 91px;
+			margin-top: 20px;
+			overflow: hidden;
+			room: 1;
+			_width: 290px;
+		}
+		.ipt_box .box {
+			margin-right: 2px;
+		}
+		.fl {
+			float: left;
+			display: inline;
+		}
+		#register_form .ipt_box span {
+			font-size: 12px;
+			margin-top: 2px;
+			display: inline;
+			line-height: 12px;
+		}
+		.ipt_sub {
+			margin-left: 92px;
+			margin-top: 20px;
+			overflow: hidden;
+			room: 1;
+			width: 430px;
+		}
+		.ipt_sub .sub {
+			border: 0;
+			background-color: #278ab7;
+			background-image: -webkit-linear-gradient(top,#2e9fd2,#21759b);
+			border-color: #1b607f;
+			-webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
+			box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
+			color: #fff;
+			text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+			cursor: pointer;
+			border-style: solid;
+			-webkit-border-radius: 3px;
+			-webkit-appearance: none;
+			border-radius: 3px;
+			white-space: nowrap;
+			width: 154px;
+			height: 40px;
+			display: block;
+			cursor: pointer;
+			float: left;
+			font-size: 20px;
+		}
+		.lg_reg_loading {
+			float: left;
+			line-height: 26px;
+			background: url(/tpl/pink2/images/loading_blue1.gif) no-repeat left center;
+			padding: 0 0 0 20px;
+			margin: 8px 0 0 20px;
+			display: none;
+		}
+		.lg_reg_check {
+			float: left;
+			line-height: 26px;
+			background: url(/tpl/pink2/images/error_02.png) no-repeat left center;
+			padding: 0 0 0 20px;
+			margin: 8px 0 0 20px;
+			display: none;
+		}
+		#register_error {
+			float: left;
+			width: 280px;
+		}
+		.err_ulike {
+			font-size: 12px;
+			color: #999;
+			margin-top: 15px;
+			line-height: 150%;
+			height: 36px;
+			visibility: hidden;
+			_margin-top: 14px;
+		}
+		.err_password {
+			font-size: 12px;
+			color: #999;
+			margin-top: 60px;
+			line-height: 150%;
+			height: 26px;
+			padding-top: 10px;
+			visibility: hidden;
+			_margin-top: 60px;
+		}
+		.err_rstpassword {
+			font-size: 12px;
+			color: #999;
+			margin-top: 15px;
+			line-height: 150%;
+			height: 26px;
+			padding-top: 10px;
+			visibility: hidden;
+			_margin-top: 14px;
+		}
+		.err_rstpassword div {
+			float: left;
+		}
+		#register_left span {
+			color: #999;
+			font-size: 12px;
+			display: block;
+		}
+		
+	</style>
+</head>
+<body>
+	<?php
+	echo $this->render('common/menu.phtml');
+	?>
+	<div id="registration">
+		<div id="register">
+		<h1>Gift新会员注册</h1>
+			<div class="blank15"></div>
+			<span>加入gift，发现最美好的礼物，分享选购礼品乐趣。</span>
+			<div id="register_center">
+				<div id="register_form">
+					<form action="/user/ajax_register" method="post" id="registerForm">
+					<div class="ipt_ulike">
+					<span>昵称：</span>
+					<input style="*margin-left:-1px;" maxlength="36" type="text" name="user_name" id="reg_user_name" class="text" value="" istip="0" rel=".err_ulike" check="0">
+					</div>
+					<div class="ipt_password">
+					<span>密码：</span>
+					<input style="*margin-left:-1px;" maxlength="36" type="password" name="password" id="reg_password" class="text" istip="0" rel=".err_password" check="0">
+					</div>
+					<div class="ipt_respassword">
+					<span>确认密码：</span>
+					<input type="password" maxlength="36" name="confirm_password" id="reg_cpassword" class="text" istip="0" rel=".err_rstpassword" check="0">
+					</div>
+					<div class="ipt_check">
+						<span>验证码：</span>
+						<input class="check" type="text" maxlength="10" name="checkcode">
+						<img id="img_checkcode" alt="验证码" src="/misc.php?action=verify&amp;rhash=521ac1ad">
+						<a id="checkcode_change" href="javascript:void(0);">换一张</a>
+					</div>
+					<div class="ipt_box">
+					<input class="box fl" type="checkbox" name="agreement" id="reg_agreement" checked="checked" value="1"><span class="fl">我已看过并同意《Gift网络服务使用协议》</span>
+					</div>
+					<div class="ipt_sub">
+					<input type="submit" class="sub" id="reg_submit" value="立即注册">
+					<div class="lg_reg_loading">
+					<span style="font-size:13px;">注册中，请稍候...</span>
+					</div>
+					<div class="lg_reg_check">
+					<span style="font-size:13px; color:#f00;">请先完善注册信息。</span>
+					</div>
+					</div>
+					<input name="rhash" id="regRHash" value="521ac1ad" type="hidden">
+																																																														<input name="refer" value="/settings/bind" type="hidden">
+																								<input name="action" value="ajax_register" type="hidden">
+					</form>
+				</div>
+				<div id="register_error">
+					<div class="err_ulike">支持中文，不能以数字开头，由2~20个字符组成，中文算两个字符。</div>
+					<div class="err_password">6-20个字母、数字或者符号</div>
+					<div class="err_rstpassword">这里要重复输入一下你的密码</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

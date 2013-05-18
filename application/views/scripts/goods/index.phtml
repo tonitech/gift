@@ -56,8 +56,18 @@ echo $this->render('common/menu.phtml');
 			</div>
 		</div>			
 	</div>
-	<div id="content2">
-	</div>
+		<div class="goods_filter">
+			<div class="fl">
+				<div class="filter_module">
+					<b class="title">排序方式</b>
+					<a href="#" class="selector">最新分享</a>
+					<a href="#" class="selector ">最受欢迎</a>
+				</div>
+			</div>
+		</div>
+	<?php
+	echo $this->render('common/block.phtml');
+	?>
 	<div id="footer">
 	</div>
 </div>

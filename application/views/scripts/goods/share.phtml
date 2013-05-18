@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>aa</title>
+		<script type="text/javascript" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery.placeholder.js"></script>
+		<script type='text/javascript' src='<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery.pop.js'></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo APPLICATION_PUBLIC_PATH; ?>/css/gift.css" />
+        <meta name='robots' content='noindex,nofollow' />
+		<style type="text/css">
+		.fm960 {
+			margin: 0 auto;
+			width: 960px;
+		}
+		#body {
+			font-size: 12px;
+			color: #484848;
+		}
+			.piece_w960 {
+			width: 960px;
+		}
+		.piece {
+			border-radius: 10px;
+		}
+		.piece_note .piece_hd {
+			background: url(<?php echo APPLICATION_PUBLIC_PATH; ?>/images/note-piece-bg.png) no-repeat;
+			width: 960px;
+			height: 5px;
+			margin: 0	9;
+		}
+		.piece_note .piece_bd {
+			background: url(<?php echo APPLICATION_PUBLIC_PATH; ?>/images/note-piece-bd-bg.png) repeat-y;
+			width: 960px;
+		}
+		#content_body {
+			width: 489px;
+			padding: 15px 0 0 21px;
+			overflow: hidden;
+		}
+		.show_body {
+			padding: 0 0 10px 0;
+			border-bottom: 1px solid #f1f1f1;
+			margin: 0 0 20px 0;
+		}
+		.img_show {
+			width: 468px;
+			margin-bottom: 25px;
+			position: relative;
+		}
+		.add_to_album_btn {
+			background: url(/img/add_to_album_v4.png?v=20120810) no-repeat;
+			display: none;
+			width: 77px;
+			height: 22px;
+			position: absolute;
+			right: 8px;
+			top: 7px;
+			z-index: 888;
+			_background-image: none;
+			_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/add_to_album_v4.png',sizingMethod='scale');
+		}
+		#right_side {
+			width: 451px;
+			padding: 15px 30px 0 30px;
+		}
+		.fr {
+			float: right;
+			display: inline;
+		}
+		.fav_wrap_content {
+			margin-top: 17px;
+			padding-bottom: 17px;
+			height:44px;
+		}
+		.fav_wrap_content .favorite {
+			height: 25px;
+			float: left;
+		}
+		.fav_wrap_content .favorite .favaImg {
+			background-position: 0 0;
+			height: 26px;
+			width: 65px;
+			float: left;
+			display: block;
+			text-indent: -9999em;
+			overflow: hidden;
+		}
+		.fav_wrap_content .favorite .favaImg, .fav_wrap_content .favorite .favCount, .fav_wrap_content .favorite i {
+			background: url(<?php echo APPLICATION_PUBLIC_PATH; ?>/images/icon-big-v4.png) no-repeat;
+		}
+		.fav_wrap_content .favorite .favCount {
+			background-position: -80px 0;
+			line-height: 26px;
+			height: 26px;
+			width: auto;
+			float: left;
+			margin-left: 2px;
+			color: #ff76ab;
+			padding-left: 4px;
+			font-size: 12px;
+			display: block;
+			font-weight: bold;
+		}
+		.fav_wrap_content .favorite i {
+			background-position: -146px 0;
+			display: block;
+			float: left;
+			height: 26px;
+			width: 5px;
+		}
+		.body_info {
+			margin: 0 0 20px;
+			border: 1px solid #fff1cd;
+			border-radius: 5px;
+			background-color: #fffdf7;
+		}
+		.goods_link, .goods_tuan_link {
+			padding: 5px 10px 10px 12px;
+			position: relative;
+			overflow: hidden;
+			border-radius: 5px;
+		}
+		.goods_link .shop_link_box {
+			height: 25px;
+			line-height: 25px;
+			overflow: hidden;
+		}
+		.goods_link .shop_link, .goods_tuan_link .shop_link {
+			height: 22px;
+			line-height: 22px;
+			font-size: 14px;
+			color: #666;
+			text-decoration: underline;
+		}
+		.goods_link .price {
+			color: #444;
+			font-size: 24px;
+			font-weight: bold;
+			font-family: 'MicroSoft Yahei';
+			line-height: 28px;
+			height: 28px;
+		}
+		.goods_link .price a {
+			color: #444;
+		}
+		.goods_link .buy_link, .tuan_info .buy_link {
+			height: 41px;
+			line-height: 41px;
+			background-position: 0 -200px;
+			width: 101px;
+			font-size: 14px;
+			font-weight: bold;
+			color: #fff;
+			text-align: center;
+			position: absolute;
+			top: 20px;
+			left: 280px;
+			_left: 270px;
+		}
+		.buy_link, .get_tuan_btn, .get_tuan_btn .s, .tuan_div .tuan_account, .tuan_div i, .same_tip_box .same_tip, .same_tip_box i {
+			background: url(<?php echo APPLICATION_PUBLIC_PATH; ?>/images/icon-note-v5.png) no-repeat;
+		}
+		.clearfix {
+			zoom: 1;
+		}
+		.first_share {
+			margin: 40px 0;
+		}
+		.first_share .title {
+			font-size: 14px;
+			color: #444;
+			font-weight: bold;
+			margin-bottom: 12px;
+		}
+		.share_user_info .pic {
+			margin-right: 8px;
+		}
+		.share_user_info .content {
+			overflow: hidden;
+			zoom: 1;
+			min-height: 50px;
+			_height: 50px;
+		}
+		.share_user_info .content .uname {
+			font-size: 14px;
+			color: #ff89a7;
+			font-weight: bold;
+			margin-right: 8px;
+		}
+		.share_user_info .content .get_fav {
+			color: #999;
+		}
+		.share_user_info .share_content {
+			color: #666;
+			line-height: 20px;
+			margin-top: 5px;
+		}
+		.share_user_info .share_content .t {
+			color: #ccc;
+			margin-left: 10px;
+		}
+		.pub_area {
+			padding-top: 30px;
+		}
+		.pub_area .pub_txt {
+			width: 380px;
+			height: 60px;
+			border: 1px solid #bbb;
+			line-height: 16px;
+			padding: 5px;
+			resize: none;
+			overflow: hidden;
+			border-radius: 3px;
+			color: #ccc;
+		}
+		.pub_area_ft {
+			overflow: hidden;
+			zoom: 1;
+			margin-top: 3px;
+		}
+		.gray_btn {
+			background: url(<?php echo APPLICATION_PUBLIC_PATH; ?>/images/icon-button-bg-v4.png) no-repeat right 0;
+			display: block;
+			width: 46px;
+			height: 24px;
+			margin: 0 0 0 5px;
+			padding-right: 2px;
+		}
+		.gray_btn .s {
+			background: url(<?php echo APPLICATION_PUBLIC_PATH; ?>/images/icon-button-bg-v4.png) no-repeat;
+			line-height: 24px;
+			font-weight: 600;
+			display: block;
+			color: #333;
+			height: 24px;
+			text-align: center;
+			padding-left: 2px;
+			cursor: pointer;
+		}
+		.note_comment {
+			margin-top: 20px;
+			margin-bottom: 40px;
+		}
+		.note_comment .c_l {
+			background-color: #fff;
+			padding-bottom: 20px;
+			overflow: hidden;
+			margin-left: -10px;
+		}
+		.note_comment .c_l li {
+			padding: 10px 10px 10px 0;
+			min-height: 40px;
+			position: relative;
+		}
+		.note_comment .c_l .avt {
+			width: 36px;
+			height: 36px;
+			float: left;
+			border-radius: 3px;
+			margin: 3px 10px 0 10px;
+		}
+		.note_comment .c_l .sms {
+			padding: 0 45px 0 58px;
+			font-size: 14px;
+			line-height: 18px;
+			color: #666;
+		}
+		.note_comment .c_l .sms .n {
+			font-size: 12px;
+		}
+		.note_comment .c_l .sms a {
+			color: #ff89a7;
+		}
+		.note_comment .c_l .sms {
+			padding: 0 45px 0 58px;
+			font-size: 14px;
+			line-height: 18px;
+			color: #666;
+		}
+		.note_comment .c_l .sms span {
+			color: #b3b3b3;
+			font-size: 12px;
+		}
+		.note_comment .c_l div a {
+			color: #87bd34;
+			margin-left: 10px;
+			text-decoration: underline;
+		}
+		.mt25 {
+			margin-top: 25px!important;
+		}
+		</style>
+</head>
+<body>
+	<?php
+	echo $this->render('common/menu.phtml');
+	?>
+	<div id="body" class="fm960 clearfix">
+		<div id="content_top">
+		</div>
+		<div class="piece piece_w960 piece_note">
+			<div class="piece_hd"></div>
+			<div class="piece_bd clearfix">
+				<div class="fl" id="content_body">
+					<!-- 显示图片 begin  -->
+					<div class="show_body ">
+						<input type="hidden" value="1epg4pg" class="tid_view">  
+						<input type="hidden" value="1" class="show_history_btn">
+						<div tid="1epg4pg" class="img_show " type="goods" iid="18jayy0">
+							<a rel="nofollow" target="_blank" href="http://t.mogujie.cn/tgo/?to=aHR0cDovL2l0ZW0udGFvYmFvLmNvbS9pdGVtLmh0bT9pZD0yNTExODY1MjA4MQ&amp;id=519717616c63f&amp;tid=1epg4pg&amp;iid=18jayy0&amp;uid=122nqg&amp;cfav=1zi&amp;creply=11m&amp;ff=%2Fshopping%2F&amp;sfrom=user.qzone.qq.com%5E201305172000YYGJtxkj&amp;ma=%3D%3DwM1MzMxIDN&amp;uuid=1bb73a24-b4ec-76f4-967e-c1a13cc005f9&amp;bwp=&amp;from_cate=&amp;itemId=1198ww8&amp;lady=0&amp;from=noteimg" class="show_big qplus_link">
+							<img title="【虫虫家】甜美链条包复古包信封包手提包糖果包斜跨包单肩包小包" alt="【虫虫家】甜美链条包复古包信封包手提包糖果包斜跨包单肩包小包" src="http://s6.mogujie.cn/b7/bao/130515/q116h_kqyumy27njbegwtwgfjeg5sckzsew_400x540.jpg_468x468.jpg">
+							</a>
+							<a href="javascript:;" class="add_to_album_btn" style="display: none;"></a>
+						</div>
+							<!-- 下方小图(兼容老的推) begin  -->		
+					</div>
+<!--    <a href="#test" class="anchor">测试锚点</a>
+<a name="test" ></a>-->
+<!-- 显示图片 end  -->
+<!-- 同类产品 end  -->
+				</div>
+				<div class="fr" id="right_side">						
+					<div class="fav_wrap_content clearfix">
+						<div class="favorite ">
+							<a tid="1epg4pg" fc="shopping" valid="4u4bde1363197602st8a1ba7a991c0cc0652a7e4" validcode="9236c4d0f447ca7bce139f52b83bb4da" class="favaImg" href="javascript:;">喜欢</a>
+							<div class="favDiv fl">
+								<a target="_blank" class="favCount">617</a>
+								<i></i>
+							</div>
+						</div>    
+					</div>
+					<img style="display:none" src="/mbs.htm?timestamp=1368856417&amp;from=note_no_tongkuan">
+					<div class="body_info" tuanid="1178gs" tid="1epg4pg" gid="18jayy0">
+						<div class="goods_link">
+							<div class="shop_link_box">
+								<a href="http://t.mogujie.cn/tgo/?to=aHR0cDovL2l0ZW0udGFvYmFvLmNvbS9pdGVtLmh0bT9pZD0yNTExODY1MjA4MQ&amp;id=519717616c63f&amp;tid=1epg4pg&amp;iid=18jayy0&amp;uid=122nqg&amp;cfav=1zi&amp;creply=11m&amp;ff=%2Fshopping%2F&amp;sfrom=user.qzone.qq.com%5E201305172000YYGJtxkj&amp;ma=%3D%3DwM1MzMxIDN&amp;uuid=1bb73a24-b4ec-76f4-967e-c1a13cc005f9&amp;bwp=&amp;from_cate=&amp;itemId=1198ww8&amp;lady=0&amp;ntk=1&amp;from=notelink" title="【虫虫家】甜美链条包复古包信封包手提包糖果包斜跨包单肩包小包" target="_blank" class="shop_link" rel="nofollow">【虫虫家】甜美链条包复古包信封包手...</a>
+							</div>
+							<p class="price"><a href="http://t.mogujie.cn/tgo/?to=aHR0cDovL2l0ZW0udGFvYmFvLmNvbS9pdGVtLmh0bT9pZD0yNTExODY1MjA4MQ&amp;id=519717616c63f&amp;tid=1epg4pg&amp;iid=18jayy0&amp;uid=122nqg&amp;cfav=1zi&amp;creply=11m&amp;ff=%2Fshopping%2F&amp;sfrom=user.qzone.qq.com%5E201305172000YYGJtxkj&amp;ma=%3D%3DwM1MzMxIDN&amp;uuid=1bb73a24-b4ec-76f4-967e-c1a13cc005f9&amp;bwp=&amp;from_cate=&amp;itemId=1198ww8&amp;lady=0&amp;ntk=1&amp;from=noteprice" target="_blank">¥85.00</a></p>
+							<a target="_blank" href="http://t.mogujie.cn/tgo/?to=aHR0cDovL2l0ZW0udGFvYmFvLmNvbS9pdGVtLmh0bT9pZD0yNTExODY1MjA4MQ&amp;id=519717616c63f&amp;tid=1epg4pg&amp;iid=18jayy0&amp;uid=122nqg&amp;cfav=1zi&amp;creply=11m&amp;ff=%2Fshopping%2F&amp;sfrom=user.qzone.qq.com%5E201305172000YYGJtxkj&amp;ma=%3D%3DwM1MzMxIDN&amp;uuid=1bb73a24-b4ec-76f4-967e-c1a13cc005f9&amp;bwp=&amp;from_cate=&amp;itemId=1198ww8&amp;lady=0&amp;ntk=1&amp;from=notebutton" class="buy_link" rel="nofollow">去购买</a>
+						</div>				
+					</div>	
+					<!-- 纯图片时显示用户信息 begin-->
+					<div class="first_share">
+						<h2 class="title">第一个分享的可爱会员</h2> 
+						<div class="share_user_info clearfix">
+							<div class="pic fl">
+								<a target="_blank" href="/u/11g22ei">
+								<img src="http://s6.mogujie.cn/b7/avatar/130418/q116h_kqyuovs2njbewysugfjeg5sckzsew_120x120.jpg_48x48.jpg" alt="WangShangHai" class="icard avt fl r3">
+								</a>
+							</div>
+							<div class="content">
+								<a target="_blank" href="/u/11g22ei" class="icard avt uname">WangShangHai</a>
+								<span class="get_fav">获得其中3个喜欢</span>
+								<p class="tweet_from">
+									<span></span>
+								</p>
+								<p class="share_content"><span class="t">05月15日 21:56</span></p>
+							</div>
+						</div>
+					</div>
+				<!-- 第一个分享的人 end -->
+
+<!-- 评论框 begin -->
+					<div class="note_comment_wrap note_content" id="note_1epg4pg" data="{&quot;is_public&quot;:&quot;p&quot;,&quot;type&quot;: &quot;goods&quot;, &quot;itemInfoId&quot;: &quot;1198ww8&quot;,&quot;ff&quot;:&quot;%2Fshopping%2F&quot;}">
+						<div class="pub_area">
+							<div class="pub_area_bd">
+								<textarea id="pub_content" class="pub_txt" def-v="你也可以顺便说点什么 O(∩_∩)O">你也可以顺便说点什么 O(∩_∩)O</textarea>
+							</div>
+							<div class="pub_area_ft">
+								<a href="javascript:;" class="gray_btn submit r3 fr" id="pub_submit"><span class="s">确定</span></a>
+							</div>
+						</div>
+			<!-- 评论框 end -->
+			<!-- 评论列表 begin -->
+						<div class="note_comment">
+							<ul id="note_comment_list" class="c_l rb5">  
+								<li class="c_f" uid="" tid="1eq7pq8">
+									<a href="/u/1lxx68" target="_blank"><img src="http://s9.mogujie.cn/b7/avatar/130507/ayykc_kqyxa327njbhmrlwgfjeg5sckzsew_689x328.jpg_48x48.jpg" class="avt icard" alt="小鸟包袋"></a>
+									<p class="sms"><a href="/u/1lxx68" target="_blank" class="n icard">小鸟包袋</a></p>
+									<p class="sms">好看<span>&nbsp;&nbsp;&nbsp;今天 09:51</span></p>
+									<div>
+										<a href="javascript:;" w="f" class="rpl">回复</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+			<!-- 评论列表 end -->
+					</div>
+				</div>
+			</div>
+			<div class="piece_ft"></div>
+		</div>
+		<div id="content_bottom">
+			<div class="mt25 fm960" style="font-size:30px; color:#690;font-weight:bold;">你可能还喜欢</div>
+			<div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

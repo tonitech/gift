@@ -1,0 +1,161 @@
+@CHARSET "UTF-8";
+/*CSSLab CSS Reset*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body, textarea, pre, input {
+	font: 12px/1.6 Arial, '宋体b8b\4f53', 'Helvetica Neue', 'Liberation Sans', FreeSans, sans-serif;
+}
+ul {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+.book_item {
+	float: left;
+	width: 226px;
+	position: relative;
+}
+.hide1 {
+	visibility: hidden;
+}
+.book_item .bi_body {
+	width: 224px;
+	border: solid 1px #ccc;
+	border-bottom: none;
+	background: #fff;
+	float: left;
+}
+.book_item .pic {
+	width: 200px;
+	padding: 9px 12px 0 12px;
+	float: left;
+}
+.book_item .pic li {
+	float: left;
+	position: relative;
+	margin: 2px 0 0 0;
+}
+.book_item .pic li a, .book_item .pic li a img {
+	float: left;
+}
+.book_item .pic li p {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: block;
+	color: #fff;
+	background: url(http://www.ibudian.com/tpl/pink2/images/book_p.png);
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://www.ibudian.com/tpl/pink2/images/book_p.png',sizingMethod='scale');
+	padding: 3px 6px;
+	border-radius: 4px 0 0 0;
+}
+.book_item .content {
+	padding: 12px 12px 8px 12px;
+	font-size: 12px;
+	line-height: 1.5em;
+	color: #414141;
+	float: left;
+	width: 224px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.book_item .favorite {
+	padding: 0 12px 0px 12px;
+	height: 22px;
+	position: relative;
+	float: left;
+	width: 215px;
+}
+.book_item .favorite a.favaImg {
+	background: url(http://www.ibudian.com/tpl/pink2/images/lbg.gif) no-repeat 0 0;
+	height: 15px;
+	width: 16px;
+	display: block;
+	float: left;
+}
+.book_item .favorite .favCount {
+	line-height: normal;
+	width: auto;
+	float: left;
+	margin-left: 2px;
+	color: #ff579a;
+	padding-left: 4px;
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+}
+.book_item .favorite .creply {
+	background: url(http://www.ibudian.com/tpl/pink2/images/lbg.gif) 0 -45px no-repeat;
+	color: #666;
+	line-height: 14px;
+	position: absolute;
+	right: 0;
+	top: 0px;
+	padding-left: 20px;
+	margin-right: 10px;
+}
+.book_item .favorite .creply b {
+	color: #fe5d9b;
+}
+.book_item .user {
+	padding: 12px;
+	border-top: solid 1px #e6e6e6;
+	background: #f8f8f8;
+	float: left;
+	width: 222px;
+}
+.book_item .user * {
+	float: left;
+}
+.book_item .user img {
+	height: 30px;
+	border: solid 1px #e6e6e6;
+}
+.book_item .user p {
+	float: right;
+	width: 162px;
+}
+.book_item .user span {
+	width: 162px;
+	height: 14px;
+	line-height: 14px;
+	overflow: hidden;
+	color: #949693;
+	float: left;
+	display: block;
+}
+.book_item .user span a {
+	font-weight: bold;
+	color: #666;
+}
+.book_item .bi_foot {
+	width: 224px;
+	height: 7px;
+	overflow: hidden;
+	background: url(http://www.ibudian.com/tpl/pink2/images/book_foot.png) no-repeat;
+}
+.test {
+	height: 100px;
+	width: 100px;
+	display: block;
+}
+#main {
+	width:960px;
+	height:auto;
+	margin:0 auto;
+}
+#store {
+	width:960px;
+	height:auto;
+	margin:0 auto;
+	position:relative;
+}

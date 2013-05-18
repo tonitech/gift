@@ -67,6 +67,11 @@ class UserController extends Zend_Controller_Action
 		}
 	}
 	
+	public function registrationAction()
+	{
+		$this->view->title = 'Gift注册';
+	}
+	
     public function loginAction()
     {
     	$this->view->title = 'Gift登录';

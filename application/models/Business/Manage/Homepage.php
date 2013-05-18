@@ -11,7 +11,7 @@ class Business_Manage_Homepage
      */
     public function getHomepageModulesTableInfo()
     {
-        return Zend_Registry::get('config')->homepage;
+        return Zend_Registry::get('dbtable')->homepage;
     }
     
 	/**
@@ -20,7 +20,7 @@ class Business_Manage_Homepage
      */
     public function getHomepageSliderTableInfo()
     {
-        return Zend_Registry::get('config')->homepageslider;
+        return Zend_Registry::get('dbtable')->homepageslider;
     }
     
     /**
