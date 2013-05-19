@@ -1,19 +1,10 @@
-var global;
-var maxWidth = $(window).width();
-var columns = [];
-
-
-if (maxWidth > 960) {
-	generateColumns(4);
-} else {
-	generateColumns(parseInt(maxWidth / 240));
-}
+var maxWidth;
+var columns;
 
 function setLocation(str)
 {
 	var parent = $(str);
 	$('#store').append(parent);
-	global = parent;
 	var height = parent.height();
 	var column = getLowestColumn();
 	parent.css({'top':columns[column], 'left':column * 240});
@@ -67,8 +58,22 @@ function getProductList()
 	});
 }
 
-$(function() {
+function initColumns()
+{
+	$('#pageValue').val(1);
+	$('#store').html('');
+	maxWidth = $(window).width();
+	columns = [];
+	if (maxWidth > 960) {
+		generateColumns(4);
+	} else {
+		generateColumns(parseInt(maxWidth / 240));
+	}
 	getProductList();
+}
+
+$(function() {
+	initColumns();
 	
 	$(document).scroll(function(){
 		var windowHeight = $(window).height();
@@ -83,4 +88,19 @@ $(function() {
 		}
 	});
 	
+	$('.mulu').click(function(){
+		$('.mulu').find('a').css({'color':'', 'font-weight':''});
+		$(this).find('a').css({'color':'red', 'font-weight':'bolder'});
+		var cate = $(this).find('input').val();
+		$('#cateValue').val(cate);
+		initColumns();
+	});
+	
+	$('.filter_module a').click(function(){
+		$('.filter_module a').removeClass().addClass('selector');
+		$(this).removeClass().addClass('current');
+		var order = $(this).attr('order');
+		$('#orderValue').val(order);
+		initColumns();
+	});
 });

@@ -1,0 +1,58 @@
+<script type='text/javascript' src='<?php echo APPLICATION_PUBLIC_PATH; ?>/js/share.js'></script>
+<script src="http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=<?php echo $this->getTaobaoAppkey(); ?>"></script>
+<?php
+$this->setTaobaoCookies();
+?>
+<div id="preShareLink" style="display:none; position:fixed;">
+<table class="share-lb">
+	<tr>
+		<td>
+			<div id="lb_hd">
+				<span class="lb_title">我要分享</span>
+				<span style="float:right;cursor:pointer" class="shareLinkClose1">关闭</span>
+			</div>
+			<div id="lb_bd1">
+				<div class="clearfix">
+					<input id="shareLinkUrl" class="g_url fl" type="text"
+						placeholder="将商品网址粘贴到这里"> <input id="shareLinkBtn" class="g_s fl" value="确定"
+						type="button">
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+<div id="afterShareLink" style="display:none; position:fixed;">
+<table class="share-lb">
+	<tr>
+		<td>
+			<div id="lb_hd">
+				<span class="lb_title">我要分享</span>
+				<span style="float:right;cursor:pointer" class="shareLinkClose2">关闭</span>
+			</div>
+			<div id="lb_bd2">
+				<div class="pub_goods_content">
+					<div class="goods_img fl">
+						<div class="img_wrap" id="shareLinkImage">
+						</div>
+					</div>
+					<div class="pub_info fl">
+						<p class="goods_info r3" id="shareLinkPrice">
+							<span class="p">¥55.00</span>【蘑菇街】推荐波西米亚风蕾丝公主半自动透明晴...
+						</p>
+						<div class="pub_top">
+							还可以输入 <em class="word_count">140</em>个字
+						</div>
+						<div class="pub_content">
+							<textarea id="shareLinkDesc" class="pub_txt fl rl5"
+								def-v="说点什么吧~" style="color: rgb(204, 204, 204);"></textarea>
+							<input id="shareLinkSubmit" type="button"
+								class="pub_btn fl rr5 pub_submit" pubtype="say_say" value="发表">
+						</div>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>

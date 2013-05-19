@@ -9,10 +9,12 @@ class GoodsController extends View_Helper
     {
         $this->view->title = 'Gift-选礼物';
         $this->getLoginUserInfoView();
-        $this->view->cate = $this->_request->getParam('cate');
-        $this->view->userid = $this->_request->getParam('userid');
-        $this->view->order = $this->_request->getParam('order');
-        
+    }
+    
+    public function detailAction()
+    {
+    	$this->view->title = 'Gift-查看礼物';
+    	$this->getLoginUserInfoView();
     }
     
     public function getProductIdAction()
@@ -85,7 +87,9 @@ class GoodsController extends View_Helper
     	}
     	$this->_helper->getHelper('Json')->sendJson($blocks);
     }
+    
 	public function shareAction()
 	{
+		$goods = $this->_request->getParam('goods');
 	}
 }

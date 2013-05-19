@@ -12,7 +12,6 @@ class Business_Goods_Operation extends Business_Goods_Abstract
 			->conn()
 			->select()
 			->from($this->_table->tablename)
-			->order('price DESC')
 			->limitPage($page, $rowcount);
 		
 		if ($userid != null) {
@@ -22,7 +21,9 @@ class Business_Goods_Operation extends Business_Goods_Abstract
 			$stmt->where($this->_table->cates . '=?', $cates);
 		}
 		if ($order != null) {
-			$stmt->order('`' . $order . '` DESC');
+			$stmt->order($order . ' DESC');
+		} else {
+			$stmt->order('price DESC');
 		}
 		return $stmt->query()->fetchAll();
 	}

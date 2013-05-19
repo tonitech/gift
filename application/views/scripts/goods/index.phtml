@@ -13,45 +13,45 @@ echo $this->render('common/menu.phtml');
 			<div class="block">
 			<span class="st">送给谁</span>
 			<ul>
-			<li class="mulu">送女友</li>
-			<li class="mulu">送男友</li>
-			<li class="mulu">送长辈</li>
-			<li class="mulu">送领导</li>
-			<li class="mulu">送女生</li>
-			<li class="mulu">送男生</li>
-			<li class="mulu">送客户</li>
+			<li class="mulu"><input type="hidden" value="1"/><a id="cate-1" href="###">送女友</a></li>
+			<li class="mulu"><input type="hidden" value="2"/><a id="cate-2" href="###">送男友</a></li>
+			<li class="mulu"><input type="hidden" value="3"/><a id="cate-3" href="###">送长辈</a></li>
+			<li class="mulu"><input type="hidden" value="4"/><a id="cate-4" href="###">送领导</a></li>
+			<li class="mulu"><input type="hidden" value="5"/><a id="cate-5" href="###">送女生</a></li>
+			<li class="mulu"><input type="hidden" value="6"/><a id="cate-6" href="###">送男生</a></li>
+			<li class="mulu"><input type="hidden" value="7"/><a id="cate-7" href="###">送客户</a></li>
 			</ul>
 			</div><div class="block">
 			<span class="st">场合</span>
 			<ul>
-			<li class="mulu">生日</li>
-			<li class="mulu">结婚</li>
-			<li class="mulu">纪念日</li>
-			<li class="mulu">圣诞</li>
-			<li class="mulu">约会</li>
-			<li class="mulu">晋升</li>
-			<li class="mulu">乔迁之喜</li>
-			<li class="mulu">感谢</li>
-			<li class="mulu">拜访</li>
-			<li class="mulu">道歉</li>
-			<li class="mulu">探病</li>
-			<li class="mulu">教师节</li>
+			<li class="mulu"><input type="hidden" value="8"/><a id="cate-8" href="###">生日</a></li>
+			<li class="mulu"><input type="hidden" value="9"/><a id="cate-9" href="###">结婚</a></li>
+			<li class="mulu"><input type="hidden" value="10"/><a id="cate-10" href="###">纪念日</a></li>
+			<li class="mulu"><input type="hidden" value="11"/><a id="cate-11" href="###">圣诞</a></li>
+			<li class="mulu"><input type="hidden" value="12"/><a id="cate-12" href="###">约会</a></li>
+			<li class="mulu"><input type="hidden" value="13"/><a id="cate-13" href="###">晋升</a></li>
+			<li class="mulu"><input type="hidden" value="14"/><a id="cate-14" href="###">乔迁之喜</a></li>
+			<li class="mulu"><input type="hidden" value="15"/><a id="cate-15" href="###">感谢</a></li>
+			<li class="mulu"><input type="hidden" value="16"/><a id="cate-16" href="###">拜访</a></li>
+			<li class="mulu"><input type="hidden" value="17"/><a id="cate-17" href="###">道歉</a></li>
+			<li class="mulu"><input type="hidden" value="18"/><a id="cate-18" href="###">探病</a></li>
+			<li class="mulu"><input type="hidden" value="19"/><a id="cate-19" href="###">教师节</a></li>
 			</ul>
 			</div>
 			<div class="block">
 			<span class="st">收礼爱好</span>
 			<ul>
-			<li class="mulu">爱浪漫</li>
-			<li class="mulu">爱喝酒</li>
-			<li class="mulu">爱旅游</li>
-			<li class="mulu">爱艺术</li>
-			<li class="mulu">爱养生</li>
-			<li class="mulu">爱运动</li>
-			<li class="mulu">爱品茶/咖啡</li>
-			<li class="mulu">居家实用型</li>
-			<li class="mulu">爱美/爱打扮</li>
-			<li class="mulu">爱毛绒公仔</li>
-			<li class="mulu">爱创意</li>
+			<li class="mulu"><input type="hidden" value="20"/><a id="cate-20" href="###">爱浪漫</a></li>
+			<li class="mulu"><input type="hidden" value="21"/><a id="cate-21" href="###">爱喝酒</a></li>
+			<li class="mulu"><input type="hidden" value="22"/><a id="cate-22" href="###">爱艺术</a></li>
+			<li class="mulu"><input type="hidden" value="23"/><a id="cate-23" href="###">爱养生</a></li>
+			<li class="mulu"><input type="hidden" value="24"/><a id="cate-24" href="###">爱运动</a></li>
+			<li class="mulu"><input type="hidden" value="25"/><a id="cate-25" href="###">爱品茶/咖啡</a></li>
+			<li class="mulu"><input type="hidden" value="26"/><a id="cate-26" href="###">居家实用型</a></li>
+			<li class="mulu"><input type="hidden" value="27"/><a id="cate-27" href="###">爱美/爱打扮</a></li>
+			<li class="mulu"><input type="hidden" value="28"/><a id="cate-28" href="###">爱毛绒公仔</a></li>
+			<li class="mulu"><input type="hidden" value="29"/><a id="cate-29" href="###">爱创意</a></li>
+			<li class="mulu"><input type="hidden" value="30"/><a id="cate-30" href="###">爱旅游</a></li>
 			</ul>
 			</div>
 		</div>			
@@ -60,8 +60,8 @@ echo $this->render('common/menu.phtml');
 			<div class="fl">
 				<div class="filter_module">
 					<b class="title">排序方式</b>
-					<a href="#" class="selector">最新分享</a>
-					<a href="#" class="selector ">最受欢迎</a>
+					<a order="ctime" id="order-ctime" href="###" class="selector">最新分享</a>
+					<a order="like" id="order-like" href="###" class="selector">最受欢迎</a>
 				</div>
 			</div>
 		</div>
