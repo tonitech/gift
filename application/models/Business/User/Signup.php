@@ -7,7 +7,16 @@
  */
 class Business_User_Signup extends Business_User_Abstract
 {
-
+    private static $_instance;
+    
+    public static function getInstance()
+    {
+        if (empty(self::$_instance)) {
+            self::$_instance = new Business_User_Signup();
+        }
+        return self::$_instance;
+    }
+    
     /**
      * 将注册信息写入数据库
      *
@@ -113,6 +122,21 @@ class Business_User_Signup extends Business_User_Abstract
         $login = new Zend_Session_Namespace('code');
         if ($code == $login->code) {
             return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function isCurrentUser($username)
+    {
+        $rtn = Business_User_Auth::getInstance()->getUserInfoBySession();
+        if ($rtn['errorcode'] == 0) {
+            $username2 = $rtn['result']['username'];
+            if ($username == $username2) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }

@@ -53,4 +53,46 @@ class Business_User_Info extends Business_User_Abstract
     {
         return $this->_db->select()->from('occupation')->query()->fetchAll();
     }
+    
+    /**
+     * 判断电子邮件地址是否存在
+     *
+     * @param string $email
+     * @return boolean
+     */
+    public function isEmailAddress($email)
+    {
+        $validator = new Zend_Validate_EmailAddress();
+        if ($validator->isValid($email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function setBaseInfo($userInfo)
+    {
+        try {
+            $user = Business_User_Auth::getInstance()->getUserInfoBySession();
+            $where = array('id=?' => $user['result']['id']);
+            $rtn = $this->_db->update($this->_config->tablename, $userInfo, $where);
+            if ($rtn) {
+                return array(
+                    'errorcode' => 0,
+                    'errormsg' => '修改成功'
+                );
+            } else {
+                return array(
+                    'errorcode' => -1,
+                    'errormsg' => '失败'
+                );
+            }
+        } catch (Exception $e) {
+            return array(
+                'errorcode' => -2,
+                'errormsg' => $e->getMessage()
+            );
+        }
+        return $rtn;
+    }
 }

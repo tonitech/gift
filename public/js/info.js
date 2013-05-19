@@ -117,15 +117,15 @@ $(function(){
         $('#day-select').html(day);
     });
     
-    $('#button').click(function() {
-        var username = $('#username').val();
+    $('#submitUpdate').click(function() {
+        var username = $('#usrname').val();
         var email = $('#email').val();
         var blog = $('#blog').val();
         var province = $('#province-select').val();
         var city = $('#city-select').val();
         var district = $('#district-select').val();
         var gender;
-        if($('#female:checked').val() == 1) {
+        if($('#female:checked').val() == 0) {
             gender = $('#female:checked').val();
         } else {
             gender = $('#male:checked').val();
@@ -136,7 +136,7 @@ $(function(){
         var occupation = $('#occupation').val();
         var introduction = $('#textarea').val();
 
-        $.get('submit', {
+        $.get('/user/update-info', {
             username : username,
             gender : gender,
             email : email,

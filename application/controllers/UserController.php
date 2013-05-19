@@ -285,4 +285,77 @@ class UserController extends View_Helper
             $this->_helper->getHelper('Json')->sendJson($callBack);
         }
     }
+    
+    public function updateInfoAction()
+    {
+        $request = $this->getRequest();
+        if ($request->isGet()) {
+            $userInfo = array();
+            $username = NULL;
+            $userInfo['username'] = $this->_request->getQuery("username");
+            if (mb_strlen($userInfo['username']) < 6 || mb_strlen($userInfo['username']) > 20) {
+                $errormsg = "用户名长度必须为6-20个字符！";
+                $usernameJudge = false;
+            } elseif (!Business_User_Signup::getInstance()->isCurrentUser($userInfo['username'])
+			&&!Business_User_Signup::getInstance()->isNotExist($userInfo['username'])) {
+                $errormsg = "用户名已被注册！";
+                $usernameJudge = false;
+            } else {
+                $usernameJudge = true;
+            }
+            	
+            $email = NULL;
+            $userInfo['email'] = $this->_request->getQuery("email");
+            if (empty($userInfo['email'])) {
+                $emailJudge = true;
+            } elseif (!Business_User_Info::getInstance()->isEmailAddress($userInfo['email'])) {
+                $errormsg = "电子邮箱地址不正确！";
+                $emailJudge = false;
+            } else {
+                $emailJudge = true;
+            }
+            	
+            $userInfo['province'] = $this->_request->getQuery("province");
+            $userInfo['city'] = $this->_request->getQuery("city");
+           $userInfo['district'] = $this->_request->getQuery("district");
+            
+            $userInfo['gender'] = $this->_request->getQuery("gender");
+            
+            $birthdate = NULL;
+            $year = $this->_request->getQuery("year");
+            $month = $this->_request->getQuery("month");
+            $day = $this->_request->getQuery("day");
+            if ($year != 0 && $month != 0 && $day != 0) {
+                $userInfo['birthday'] = $year."-".$month."-".$day;
+                $birthdateJudge = true;
+            } else if ($year == 0 && $month == 0 && $day == 0) {
+                $userInfo['birthday'] = NULL;
+                $birthdateJudge = true;
+            } else {
+                $errormsg = "请输入完整日期！";
+                $birthdateJudge = false;
+            }
+            
+            $userInfo['occupation'] = $this->_request->getQuery("occupation");
+            $userInfo['blog'] = $this->_request->getQuery("blog");
+            $userInfo['introduction'] = $this->_request->getQuery("introduction");
+            
+            $resultSent = NULL;
+            if ($usernameJudge && $emailJudge && $birthdateJudge) {
+                $time = date('Y-m-d H:i:s');
+                $base = array(
+                    'ctime' => $time,
+                    'mtime' => $time
+                );
+                $userInfo = array_merge($base, $userInfo);
+                $result = Business_User_Info::getInstance()->setBaseInfo($userInfo);
+            } else {
+                $result = array(
+                    'errorcode' => -3,
+                    'errormsg' => $errormsg
+                );
+            }
+            $this->_helper->getHelper('Json')->sendJson($result);
+        }
+    }
 }

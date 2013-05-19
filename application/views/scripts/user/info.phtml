@@ -26,9 +26,8 @@ $info = $this->userinfo;
 								<dl>
 								<dd>昵称：</dd>
 								<dt class="unick">
-									<input class="r3" type="text" name="username" value="<?php echo $info['username'];?>" /><div class="iner" style="color:#666;"></div>
+									<input class="r3" type="text" id="usrname" value="<?php echo $info['username'];?>" /><div class="iner" style="color:#666;"></div>
 								</dt>
-				
 								<dd>性别：</dd>
 								<dt class="sex" style="line-height: 30px;">
 								<?php 
@@ -49,7 +48,7 @@ $info = $this->userinfo;
 								<dt>
 									<input class="r3" type="text" id="email" value="<?php echo $info['email'];?>" /><div class="iner" style="color:#666;"></div>
 								<dd>个人博客：</dd>
-								<dt class="weibo"><input class="r3" id="blog" type="text" value="" /></dt>
+								<dt class="weibo"><input class="r3" id="blog" type="text" value="<?php echo $info['blog'];?>" /></dt>
 		
 								<dd>所在地：</dd>
 								<dt class="location">
@@ -216,13 +215,19 @@ $info = $this->userinfo;
 								</dt>
 							<dd>职业：</dd>
 							<dt class="profession">
-								<select id="profession" name="occupation">
+								<select id="occupation" name="occupation">
 								<option value="0"></option>
 								<?php 
 								foreach ($this->occupation as $item) {
+                                    if ($item['id'] == $info['occupation']) {
+                                ?>
+									<option selected value="<?php echo $item['id']?>"><?php echo $item['name']; ?></option>
+								<?php 
+                                    } else {
 								?>
 									<option value="<?php echo $item['id']?>"><?php echo $item['name']; ?></option>
 								<?php 
+								    }
 								}
 								?>
 								</select>
@@ -230,9 +235,8 @@ $info = $this->userinfo;
 						</dl>
 						<dd>自我介绍：</dd>
 						<dt><textarea name="introduce" id="" rows="10" class="r3" ><?php echo $info['introduction']; ?></textarea></dt>
-
 							<dd>&nbsp;&nbsp;</dd>
-							<dt><input class="green_button r3" type="button" value="确认修改"></dt>
+							<dt><input id="submitUpdate" class="green_button r3" type="button" value="确认修改"></dt>
 						</dl>
 					</form>
 					</div>
