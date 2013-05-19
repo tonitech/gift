@@ -21,11 +21,71 @@ echo $this->render('common/menu.phtml');
 						<a href="#" class="selector ">回复最多</a>
 					</div>
 				</div>
-				<a href="<?php echo APPLICATION_ACTION_PATH; ?>/bbs/post" class="newtopic_btn"></a>
+				<a href="###" class="newtopic_btn"></a>
           </div>
 		</div>
 	</div>
-
+	<div id="content_list">
+	<ul class="threadlist">
+		<?php foreach ($this->articles as $key => $article) : ?> 
+		<?php $title = $article->title; $likeTimes = $article->liked_times; ?>
+		<li class="j_thread_list <?php if ($key % 2 == 1) echo "threadlist_li_gray"; ?>">
+			<div class="threadlist_li_left j_threadlist_li_left"> 
+			<div title="<?php echo $likeTimes; ?>个赞" class="threadlist_rep_num j_rp_num"><?php echo $likeTimes; ?></div> 
+			</div>
+			<div class="threadlist_li_right">
+				<div class="threadlist_lz clearfix">
+					<div class="threadlist_text threadlist_title j_th_tit  notStarList ">
+					<a href="/bbs/detail/aid/<?php echo $article->id;?>" title="<?php echo $title;?>" target="_blank" class="j_th_tit"><?php echo $title;?></a>
+					</div>
+					<div class="threadlist_author" title="主题作者"> 
+					<span class="tb_icon_author "><a class="sign_highlight" href="###"><?php echo $article->author ?></a></span>
+					</div>
+				</div>
+				<div class="threadlist_detailclearfix">	
+					<div class="threadlist_text">
+					<div class="threadlist_abs threadlist_abs_onlyline"><?php echo $article->content; ?></div>
+					</div>
+					<div class="threadlist_author">
+						<span class="tb_icon_author_rely j_replyer" title="最后回复人"><a href="/i/sys/jump?un=%CF%FB%CA%C5%CC%EC%B1%DF%B5%C4%BB%D8%D2%E4" target="_blank">消逝天边的回忆</a></span>
+						<span class="threadlist_reply_date j_reply_data" title="最后回复时间">22:16</span>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<?php endforeach; ?>
+	</ul>
+	</div>
+	<div id="write_content">
+			<div id="gr_set_top">
+				<h2 id="new_topic" >发表主题</h2>
+			</div>
+			<div id="topic_con" class="gr_set_form ">
+				<dl>
+					<dt>标题：</dt>
+					<dd>
+                        <input class="form_text form_text_title" type="text" name="title"  />
+						<span class="desc"><b>最多25个字</b></span>
+					</dd>
+				</dl>
+				<dl>
+					<dt>正文：</dt>
+					<dd style="position:relative;">
+					<div class="editor_tip_show"><div class="editor_banned_tip_info">本吧发贴，请先 <a href="#">登录</a> | <a href="#">注册</a>&nbsp;</div></div>
+					<textarea class="editor-textarea" name="content" style="height:250px;" ></textarea>
+						<span class="desc"></span>
+					</dd>
+				</dl>
+				<dl class="sub_form" >
+				<dt style="width: 75px;"></dt>
+				<dd>
+					<input type="submit" class="form_sub mogu-editor-post" value="发表" />
+				</dd>
+				</dl>
+            </div>
+			
+		</div>
 </div>
 <?php
 echo $this->render('common/footer.phtml');

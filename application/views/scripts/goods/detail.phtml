@@ -4,6 +4,10 @@ echo $this->render('common/header.phtml');
 <?php
 echo $this->render('common/menu.phtml');
 ?>
+<?php 
+$table = Zend_Registry::get('dbtable')->goods;
+$details = $this->details;
+?>
 	<div id="body" class="fm960 clearfix">
 		<div id="content_top">
 		</div>
@@ -16,8 +20,8 @@ echo $this->render('common/menu.phtml');
 						<input type="hidden" value="1epg4pg" class="tid_view">  
 						<input type="hidden" value="1" class="show_history_btn">
 						<div tid="1epg4pg" class="img_show " type="goods" iid="18jayy0">
-							<a rel="nofollow" target="_blank" href="http://t.mogujie.cn/tgo/?to=aHR0cDovL2l0ZW0udGFvYmFvLmNvbS9pdGVtLmh0bT9pZD0yNTExODY1MjA4MQ&amp;id=519717616c63f&amp;tid=1epg4pg&amp;iid=18jayy0&amp;uid=122nqg&amp;cfav=1zi&amp;creply=11m&amp;ff=%2Fshopping%2F&amp;sfrom=user.qzone.qq.com%5E201305172000YYGJtxkj&amp;ma=%3D%3DwM1MzMxIDN&amp;uuid=1bb73a24-b4ec-76f4-967e-c1a13cc005f9&amp;bwp=&amp;from_cate=&amp;itemId=1198ww8&amp;lady=0&amp;from=noteimg" class="show_big qplus_link">
-							<img title="【虫虫家】甜美链条包复古包信封包手提包糖果包斜跨包单肩包小包" alt="【虫虫家】甜美链条包复古包信封包手提包糖果包斜跨包单肩包小包" src="http://s6.mogujie.cn/b7/bao/130515/q116h_kqyumy27njbegwtwgfjeg5sckzsew_400x540.jpg_468x468.jpg">
+							<a rel="nofollow" target="_blank" href="<?php echo $details[$table->url];?>" class="show_big qplus_link">
+							<img title="<?php echo $details[$table->name];?>" alt="<?php echo $details[$table->name];?>" src="<?php echo $details[$table->picUrl];?>">
 							</a>
 							<a href="javascript:;" class="add_to_album_btn" style="display: none;"></a>
 						</div>
@@ -33,7 +37,7 @@ echo $this->render('common/menu.phtml');
 						<div class="favorite ">
 							<a tid="1epg4pg" fc="shopping" valid="4u4bde1363197602st8a1ba7a991c0cc0652a7e4" validcode="9236c4d0f447ca7bce139f52b83bb4da" class="favaImg" href="javascript:;">喜欢</a>
 							<div class="favDiv fl">
-								<a target="_blank" class="favCount">617</a>
+								<a target="_blank" class="favCount"><?php echo $details[$table->like];?></a>
 								<i></i>
 							</div>
 						</div>    
@@ -42,10 +46,10 @@ echo $this->render('common/menu.phtml');
 					<div class="body_info" tuanid="1178gs" tid="1epg4pg" gid="18jayy0">
 						<div class="goods_link">
 							<div class="shop_link_box">
-								<a href="http://t.mogujie.cn/tgo/?to=aHR0cDovL2l0ZW0udGFvYmFvLmNvbS9pdGVtLmh0bT9pZD0yNTExODY1MjA4MQ&amp;id=519717616c63f&amp;tid=1epg4pg&amp;iid=18jayy0&amp;uid=122nqg&amp;cfav=1zi&amp;creply=11m&amp;ff=%2Fshopping%2F&amp;sfrom=user.qzone.qq.com%5E201305172000YYGJtxkj&amp;ma=%3D%3DwM1MzMxIDN&amp;uuid=1bb73a24-b4ec-76f4-967e-c1a13cc005f9&amp;bwp=&amp;from_cate=&amp;itemId=1198ww8&amp;lady=0&amp;ntk=1&amp;from=notelink" title="【虫虫家】甜美链条包复古包信封包手提包糖果包斜跨包单肩包小包" target="_blank" class="shop_link" rel="nofollow">【虫虫家】甜美链条包复古包信封包手...</a>
+								<a href="<?php echo $details[$table->url];?>" title="<?php echo $details[$table->name];?>" target="_blank" class="shop_link" rel="nofollow"><?php echo $details[$table->name];?></a>
 							</div>
-							<p class="price"><a href="http://t.mogujie.cn/tgo/?to=aHR0cDovL2l0ZW0udGFvYmFvLmNvbS9pdGVtLmh0bT9pZD0yNTExODY1MjA4MQ&amp;id=519717616c63f&amp;tid=1epg4pg&amp;iid=18jayy0&amp;uid=122nqg&amp;cfav=1zi&amp;creply=11m&amp;ff=%2Fshopping%2F&amp;sfrom=user.qzone.qq.com%5E201305172000YYGJtxkj&amp;ma=%3D%3DwM1MzMxIDN&amp;uuid=1bb73a24-b4ec-76f4-967e-c1a13cc005f9&amp;bwp=&amp;from_cate=&amp;itemId=1198ww8&amp;lady=0&amp;ntk=1&amp;from=noteprice" target="_blank">¥85.00</a></p>
-							<a target="_blank" href="http://t.mogujie.cn/tgo/?to=aHR0cDovL2l0ZW0udGFvYmFvLmNvbS9pdGVtLmh0bT9pZD0yNTExODY1MjA4MQ&amp;id=519717616c63f&amp;tid=1epg4pg&amp;iid=18jayy0&amp;uid=122nqg&amp;cfav=1zi&amp;creply=11m&amp;ff=%2Fshopping%2F&amp;sfrom=user.qzone.qq.com%5E201305172000YYGJtxkj&amp;ma=%3D%3DwM1MzMxIDN&amp;uuid=1bb73a24-b4ec-76f4-967e-c1a13cc005f9&amp;bwp=&amp;from_cate=&amp;itemId=1198ww8&amp;lady=0&amp;ntk=1&amp;from=notebutton" class="buy_link" rel="nofollow">去购买</a>
+							<p class="price"><a href="<?php echo $details[$table->url];?>" target="_blank">¥<?php echo $details[$table->price];?></a></p>
+							<a target="_blank" href="<?php echo $details[$table->url];?>" class="buy_link" rel="nofollow">去购买</a>
 						</div>				
 					</div>	
 					<!-- 纯图片时显示用户信息 begin-->

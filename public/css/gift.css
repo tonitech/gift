@@ -798,7 +798,7 @@ a:link {
 }
 
 122
-nqgmedia   ="all  " .r5 {
+nqgmedia     ="all    " .r5 {
 	border-radius: 5px;
 }
 
@@ -1298,7 +1298,7 @@ nqgmedia   ="all  " .r5 {
 
 .setting_avartar .tfile {
 	position: absolute;
-	filter: alpha(opacity =     0);
+	filter: alpha(opacity =         0);
 	opacity: 0;
 	left: 255px;
 	left: 250px 9;
@@ -1610,8 +1610,8 @@ nqgmedia   ="all  " .r5 {
 	width: 100%;
 	height: 2300px;
 	background-color: #dddddd;
-	_filter: alpha(opacity =     60);
-	filter: alpha(opacity =     60);
+	_filter: alpha(opacity =         60);
+	filter: alpha(opacity =         60);
 	-moz-opacity: 0.6;
 	-khtml-opacity: 0.6;
 	opacity: 0.6;
@@ -1796,18 +1796,14 @@ nqgmedia   ="all  " .r5 {
 }
 
 .piece_note .piece_hd {
-	background:
-		url(/public/images/note-piece-bg.png)
-		no-repeat;
+	background: url(/public/images/note-piece-bg.png) no-repeat;
 	width: 960px;
 	height: 5px;
 	margin: 0 9;
 }
 
 .piece_note .piece_bd {
-	background:
-		url(/public/images/note-piece-bd-bg.png)
-		repeat-y;
+	background: url(/public/images/note-piece-bd-bg.png) repeat-y;
 	width: 960px;
 }
 
@@ -1876,9 +1872,7 @@ nqgmedia   ="all  " .r5 {
 
 .fav_wrap_content .favorite .favaImg,.fav_wrap_content .favorite .favCount,.fav_wrap_content .favorite i
 	{
-	background:
-		url(/public/images/icon-big-v4.png)
-		no-repeat;
+	background: url(/public/images/icon-big-v4.png) no-repeat;
 }
 
 .fav_wrap_content .favorite .favCount {
@@ -1961,9 +1955,7 @@ nqgmedia   ="all  " .r5 {
 
 .buy_link,.get_tuan_btn,.get_tuan_btn .s,.tuan_div .tuan_account,.tuan_div i,.same_tip_box .same_tip,.same_tip_box i
 	{
-	background:
-		url(/public/images/icon-note-v5.png)
-		no-repeat;
+	background: url(/public/images/icon-note-v5.png) no-repeat;
 }
 
 .clearfix {
@@ -2037,9 +2029,7 @@ nqgmedia   ="all  " .r5 {
 }
 
 .gray_btn {
-	background:
-		url(/public/images/icon-button-bg-v4.png)
-		no-repeat right 0;
+	background: url(/public/images/icon-button-bg-v4.png) no-repeat right 0;
 	display: block;
 	width: 46px;
 	height: 24px;
@@ -2048,9 +2038,7 @@ nqgmedia   ="all  " .r5 {
 }
 
 .gray_btn .s {
-	background:
-		url(/public/images/icon-button-bg-v4.png)
-		no-repeat;
+	background: url(/public/images/icon-button-bg-v4.png) no-repeat;
 	line-height: 24px;
 	font-weight: 600;
 	display: block;
@@ -2124,3 +2112,266 @@ nqgmedia   ="all  " .r5 {
 	margin-top: 25px !important;
 }
 /* 查看商品详细信息 结束 */
+
+/* 注册模块 开始  */
+#registration {
+	width: 645px;
+	padding: 60px 0 0;
+	margin: auto;
+}
+
+#register h1 {
+	margin-top: 18px;
+	color: #000;
+	display: block;
+	margin-bottom: 10px;
+	text-align: center;
+	font-size: 48px;
+	color: #21759b;
+}
+
+.blank15 {
+	clear: both;
+	height: 15px;
+	overflow: hidden;
+	display: block;
+}
+
+#register span {
+	color: #999;
+	font-size: 12px;
+	display: block;
+	text-align: center;
+}
+
+#register_center {
+	width: 644px;
+	border: 1px solid #e5e5e5;
+	height: 380px;
+	margin-top: 20px;
+}
+
+#register_form {
+	width: 360px;
+	float: left;
+	_overflow: hidden;
+}
+
+.ipt_ulike {
+	margin-left: 48px;
+	margin-top: 20px;
+	overflow: hidden;
+	room: 1;
+	_width: 334px;
+	line-height: 30px;
+}
+
+#register_form span {
+	color: #000;
+	font-size: 14px;
+	float: left;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#register_form .text {
+	float: left;
+	width: 244px;
+	height: 30px;
+	margin-left: 5px;
+	line-height: 30px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border: 1px solid #e5e5e5;
+	background: #fbfbfb;
+	outline: 0;
+	-webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+	box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.ipt_password {
+	margin-left: 48px;
+	margin-top: 20px;
+	overflow: hidden;
+	room: 1;
+	_width: 334px;
+	line-height: 30px;
+}
+
+.ipt_respassword {
+	margin-left: 20px;
+	margin-top: 20px;
+	overflow: hidden;
+	room: 1;
+	_width: 334px;
+	line-height: 30px;
+}
+
+.ipt_check {
+	margin-left: 34px;
+	margin-top: 20px;
+	overflow: hidden;
+	room: 1;
+	_width: 334px;
+	line-height: 30px;
+}
+
+#register_form .check {
+	float: left;
+	width: 114px;
+	height: 30px;
+	margin-left: 5px;
+	line-height: 30px;
+	border: 1px solid #e5e5e5;
+	background: #fbfbfb;
+	outline: 0;
+	-webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+	box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.ipt_check #img_checkcode {
+	width: 78px;
+	height: 32px;
+	margin-top: 2px;
+	float: left;
+	margin-left: 4px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.ipt_check a {
+	color: #09e;
+	float: left;
+	margin-left: 6px;
+	text-decoration: none;
+}
+
+.ipt_box {
+	margin-left: 91px;
+	margin-top: 20px;
+	overflow: hidden;
+	room: 1;
+	_width: 290px;
+}
+
+.ipt_box .box {
+	margin-right: 2px;
+}
+
+.fl {
+	float: left;
+	display: inline;
+}
+
+#register_form .ipt_box span {
+	font-size: 12px;
+	margin-top: 8px;
+	display: inline;
+	line-height: 12px;
+}
+
+.ipt_sub {
+	margin-left: 92px;
+	margin-top: 20px;
+	overflow: hidden;
+	room: 1;
+	width: 430px;
+}
+
+.ipt_sub .sub {
+	border: 0;
+	background-color: #278ab7;
+	background-image: -webkit-linear-gradient(top, #2e9fd2, #21759b);
+	border-color: #1b607f;
+	-webkit-box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.6);
+	box-shadow: inset 0 1px 0 rgba(120, 200, 230, 0.6);
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	border-style: solid;
+	-webkit-border-radius: 3px;
+	-webkit-appearance: none;
+	border-radius: 3px;
+	white-space: nowrap;
+	width: 154px;
+	height: 40px;
+	display: block;
+	cursor: pointer;
+	float: left;
+	font-size: 20px;
+}
+
+.lg_reg_loading {
+	float: left;
+	line-height: 26px;
+	background: url(/tpl/pink2/images/loading_blue1.gif) no-repeat left
+		center;
+	padding: 0 0 0 20px;
+	margin: 8px 0 0 20px;
+	display: none;
+}
+
+.lg_reg_check {
+	float: left;
+	line-height: 26px;
+	background: url(/tpl/pink2/images/error_02.png) no-repeat left center;
+	padding: 0 0 0 20px;
+	margin: 8px 0 0 20px;
+	display: none;
+}
+
+#register_error {
+	float: left;
+	width: 280px;
+}
+
+.err_ulike {
+	font-size: 12px;
+	color: #999;
+	margin-top: 20px;
+	line-height: 36px;
+	height: 36px;
+}
+
+.err_password {
+	font-size: 12px;
+	color: #999;
+	margin-top: 20px;
+	line-height: 36px;
+	height: 36px;
+}
+
+.err_rstpassword {
+	font-size: 12px;
+	color: #999;
+	margin-top: 20px;
+	line-height: 36px;
+	height: 36px;
+}
+
+.err_captcha {
+	font-size: 12px;
+	color: #999;
+	margin-top: 20px;
+	line-height: 36px;
+	height: 36px;
+}
+
+.err_rstpassword div {
+	float: left;
+}
+
+#register_left span {
+	color: #999;
+	font-size: 12px;
+	display: block;
+}
+/* 注册模块 结束 */

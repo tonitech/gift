@@ -42,12 +42,13 @@ function getProductList()
 	var cate = $('#cateValue').val();
 	var page = $('#pageValue').val();
 	var userid = $('#useridValue').val();
+	var usertype = $('#usertypeValue').val();
 	var order = $('#orderValue').val();
 	
 	$.ajax({
 		url : '/goods/get-product-list',
 		dataType : 'json',
-		data : {'cate' : cate, 'page' : page, 'userid' : userid, 'order' : order},
+		data : {'cate' : cate, 'page' : page, 'userid' : userid, 'order' : order, 'usertype' : usertype},
 		success : function (data) {
 			var len = data.length;
 			console.log(len);
@@ -101,6 +102,14 @@ $(function() {
 		$(this).removeClass().addClass('current');
 		var order = $(this).attr('order');
 		$('#orderValue').val(order);
+		initColumns();
+	});
+	
+	$('.usertype').click(function(){
+		$(this).parent('li').siblings().removeClass();
+		$(this).parent('li').addClass('c');
+		var usertype = $(this).attr('type');
+		$('#usertypeValue').val(usertype);
 		initColumns();
 	});
 });

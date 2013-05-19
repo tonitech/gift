@@ -10,6 +10,10 @@ var shareLinkGoods;
 
 $(function() {
 	$('#shareLink').click(function(){
+		if (!isLogin()) {
+			$('#loginBox').popup();
+			return false;
+		}
 		$('#preShareLink').popup();
 	});
 	
@@ -17,7 +21,7 @@ $(function() {
 		$('#preShareLink').pophide();
 	});
 	
-	$('.shareLinkClose1').click(function(){
+	$('.shareLinkClose2').click(function(){
 		$('#afterShareLink').pophide();
 	});
 	
@@ -36,7 +40,7 @@ $(function() {
 					TOP.api('rest', 'get', {
 						method : 'taobao.taobaoke.widget.items.convert',
 						num_iids : data.result,
-						fields : 'title,click_url,pic_url,price,commission_rate'
+						fields : 'num_iid,title,click_url,pic_url,price,commission_rate'
 					}, function(resp) {
 						if(resp.error_response) {
 							alert('taobao.taobaoke.widget.items.convert接口获取商品信息品失败!' + resp.error_response.msg);
@@ -59,12 +63,18 @@ $(function() {
 	});
 	
 	$('#shareLinkSubmit').click(function(){
+		var desc = $('#shareLinkDesc').val();
 		$.ajax({
 			url : '/goods/share',
 			dataType : 'json',
-			data : {'goods' : shareLinkGoods},
+			data : {'goods' : shareLinkGoods, 'desc' : desc},
 			success : function (data) {
-				
+				if (data.errorcode == 0) {
+					alert('分享成功！');
+					$('#afterShareLink').pophide();
+				} else {
+					alert(data.errormsg);
+				}
 			}
 		});
 	});

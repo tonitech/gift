@@ -34,4 +34,12 @@ class View_Helper extends Zend_Controller_Action
 		}
 		$this->view->userinfo = $info;
 	}
+	
+	public function rediretToLogin()
+	{
+		$authObj = new Business_User_Auth();
+		if (!$authObj->isLogin()) {
+			$this->_redirect('/user/login');
+		}
+	}
 }

@@ -15,6 +15,9 @@ class GoodsController extends View_Helper
     {
     	$this->view->title = 'Gift-查看礼物';
     	$this->getLoginUserInfoView();
+    	$id = $this->_request->getParam('id');
+    	$goodsOperationObj = new Business_Goods_Operation();
+    	$this->view->details = $goodsOperationObj->getGoodsDetailsById($id);
     }
     
     public function getProductIdAction()
@@ -33,6 +36,7 @@ class GoodsController extends View_Helper
     	$cate = $this->_request->getParam('cate');
     	$page = $this->_request->getParam('page');
     	$userid = $this->_request->getParam('userid');
+    	$usertype = $this->_request->getParam('usertype');
     	$order = $this->_request->getParam('order');
     	
     	$table = Zend_Registry::get('dbtable')->goods;
@@ -40,14 +44,14 @@ class GoodsController extends View_Helper
     	if (empty($page)) {
     		$page = 1;
     	}
-    	$list = $operationObj->getGoodsList($page, 12, $order, $cate, $userid);
+    	$list = $operationObj->getGoodsList($page, 12, $order, $cate, $userid, $usertype);
     	$blocks = array();
     	foreach ($list as $item) {
     		$blocks[] = '<div class="book_item hide1 masonry-brick" shareid="' . $item[$table->id] . '" id="' . $item[$table->keyid] . '" style="visibility: hidden; position: absolute;">
 	        	<div class="bi_body">
 	        		<ul class="pic">
 	        			<li>
-	        				<a style="width:200px;" href="/note/5258" target="_blank">
+	        				<a style="width:200px;" href="/goods/detail/id/' . $item[$table->id] . '" target="_blank">
 	        					<img class="book_img lazyload" width="' . $item[$table->picWidth] . '" height="' . $item[$table->picHeight] . '" src="' . $item[$table->picUrl] . '" alt="" style="display: block;" ">
 	        				</a>
 	        				<p>' . $item[$table->price] . '
@@ -57,13 +61,13 @@ class GoodsController extends View_Helper
 	        		<div class="content">' . $item[$table->description] . '
 	        		</div>
 	        		<div class="favorite">
-	        			<a href="javascript:;" class="favaImg" onclick="$.Fav_Share(5258,this,32,\'#share_item_5258\');">
+	        			<a href="###" class="favaImg">
 	        			</a>
 	        			<div class="favDiv">
-	        				<a target="_blank" class="favCount SHARE_FAV_COUNT" href="/note/5258">' . $item[$table->like] . '
+	        				<a target="_blank" class="favCount SHARE_FAV_COUNT" href="/goods/detail/id/' . $item[$table->id] . '">' . $item[$table->like] . '
 	        				</a>
 	        			</div>
-	        			<a target="_blank" href="/note/5258" class="creply">
+	        			<a target="_blank" href="/goods/detail/id/' . $item[$table->id] . '" class="creply">
 	        				<b>' . $item[$table->comment] . '</b>评论
 	        			</a>
 	        		</div>
@@ -91,5 +95,11 @@ class GoodsController extends View_Helper
 	public function shareAction()
 	{
 		$goods = $this->_request->getParam('goods');
+		$description = $this->_request->getParam('desc');
+		$tmp = array('description' => $description);
+		$goodsDetails = array_merge($goods, $tmp);
+		$goodsOperationObj = new Business_Goods_Operation();
+		$rtn = $goodsOperationObj->addGoods($goodsDetails);
+		$this->_helper->getHelper('Json')->sendJson($rtn);
 	}
 }

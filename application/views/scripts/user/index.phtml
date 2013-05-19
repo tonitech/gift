@@ -9,7 +9,7 @@ echo $this->render('common/menu.phtml');
 		<div class="home_top_box mb20 r5">
             <div class="home_top_bg rt5"  style="background-image:url(http://s6.mogujie.cn/b7/pic/120831/93nyl_kqyvq4lcl5bfqv2ugfjeg5sckzsew_960x170.jpg_960x400.jpg);">
 				<div class="home_top_all"><span class="h_t_bg"></span>
-					<div class="top_avatar"><img alt="点点0123" src="http://s5.mogujie.cn/b1/avatar/111029/11bug_kqyweyk7krbegzdwgfjeg5sckzsew_720x420.jpg_185x185.jpg" class="r5 u_i">
+					<div class="top_avatar"><img alt="<?php echo $this->userinfo['username']?>" src="<?php echo APPLICATION_PUBLIC_PATH . '/avatar/' . $this->userinfo['avatar']?>" class="r5 u_i">
 						<ul class="record">
 							<li class="fans">
 							<a title="关注" href="/u/122nqg/follow"><span class="ft18">14</span><span>关注</span></a>
@@ -26,7 +26,7 @@ echo $this->render('common/menu.phtml');
 					</div> 
 					<div class="home_top_user">
 						<div class="name_fav">
-                            <h1 class="fl"><a href="<?php echo APPLICATION_ACTION_PATH; ?>/user/info" title="点点0123" >点点0123</a></h1>
+                            <h1 class="fl"><a href="<?php echo APPLICATION_ACTION_PATH; ?>/user/info" title="<?php echo $this->userinfo['username']?>" ><?php echo $this->userinfo['username']?></a></h1>
                             <div type="all" uid="122nqg" class="followdiv fl"></div>
                         </div>
                         <p class="home_top_p">
@@ -41,13 +41,21 @@ echo $this->render('common/menu.phtml');
             </div>
             <div class="home_top_nav rb5">
                 <ul class="home_nav">
-                    <li class="c"><a href="/cover/u/122nqg" title="封面" >喜欢</a></li>
-					<li><a href="/u/122nqg/fav" title="喜欢" >分享</a></li>
+                    <li class="c"><a class="usertype" href="###" title="喜欢" type="like" >喜欢</a></li>
+					<li><a class="usertype" href="###" title="分享" type="share" >分享</a></li>
                 </ul>
             </div>
         </div>                
 	</div>
-
+    <?php
+    echo $this->render('common/block.phtml');
+    ?>
+    <script type="text/javascript">
+    var userid = <?php echo $this->userinfo['id']; ?>;
+    var usertype = 'like';
+    $('#useridValue').val(userid);
+    $('#usertypeValue').val(usertype);
+    </script>
 </div>
 <?php
 echo $this->render('common/footer.phtml');
