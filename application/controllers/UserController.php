@@ -4,28 +4,8 @@
  * @abstract This is the controller used to deal with user actions.
  * @create 2013-03-10 22:14:02
  */
-class UserController extends Zend_Controller_Action
+class UserController extends View_Helper
 {
-	/**
-	 * 进入控制器的时候查看客户端是否存在cookie
-	 * 如果存在验证通过直接分配session
-	 * 否则走到客户端指定的控制器
-	 * @see Zend_Controller_Action::init()
-	 */
-	public function init()
-	{
-		$cookieName = Zend_Registry::get('dbtable')->admin->cookie;
-		if (isset($_COOKIE[$cookieName])) {
-			$authObj = new Business_Auth();
-			$cookieResult = $authObj->validateAuthSignature(
-				$_COOKIE[$cookieName]
-			);
-			if ($cookieResult['errorcode'] == 0) {
-				$authObj->setUserLogin($cookieResult['result']);
-			}
-		}
-	}
-	
 	/**
 	 * 用户登陆验证action
 	 * 如果用户名密码正确直接分配session
@@ -40,11 +20,11 @@ class UserController extends Zend_Controller_Action
 		$rememberme = $this->_request->getParam('rememberme');
 		if (isset($username) && isset($password) && $username != "" &&
 		$password != "") {
-			$authObj = new Business_Auth();
+			$authObj = new Business_User_Auth();
 			$authResult = $authObj->checkLogin($username, $password);
 			if ($authResult['errorcode'] == 0) {
 				if (isset($rememberme)) {
-					$cookieName = Zend_Registry::get('dbtable')->admin->cookie;
+					$cookieName = Zend_Registry::get('config')->user->cookie;
 					$cookie = $authObj->generateAuthSignature(
 						$authResult['result'],
 						$authObj->getCookieExpireTime()
@@ -67,6 +47,50 @@ class UserController extends Zend_Controller_Action
 		}
 	}
 	
+	/**
+	 * 用户AJAX登陆验证action
+	 * 如果用户名密码正确直接分配session和cookie
+	 */
+	public function ajaxLoginAction()
+	{
+		$username = $this->_request->getParam('username');
+		$password = $this->_request->getParam('password');
+		if (!empty($username) && !empty($password)) {
+			$authObj = new Business_User_Auth();
+			$authResult = $authObj->checkLogin($username, $password);
+			if ($authResult['errorcode'] == 0) {
+				$cookieName = Zend_Registry::get('config')->user->cookie;
+				$cookie = $authObj->generateAuthSignature(
+					$authResult['result'],
+					$authObj->getCookieExpireTime()
+				);
+				setcookie(
+					$cookieName,
+					$cookie,
+					$authObj->getCookieExpireTime()
+				);
+				$authObj->setUserLogin($authResult['result']);
+				$rtn['errorcode'] = 0;
+				$rtn['errormsg'] = 'succes';
+				$rtn['result'] = array(
+					'id' => $authResult['result']['id'],
+					'username' => $authResult['result']['username'],
+					'avatar' => $authResult['result']['avatar']
+				);
+				$rtn['cookieName'] = $cookieName;
+				$rtn['cookieValue'] = $cookie;
+				$rtn['expire'] = $authObj->getCookieExpireTime();
+			} else {
+				$rtn['errorcode'] = -1;
+				$rtn['errormsg'] = '用户名和密码错误！';
+			}
+		} else {
+			$rtn['errorcode'] = -2;
+			$rtn['errormsg'] = '请输入用户名和密码！';
+		}
+		$this->_helper->getHelper('Json')->sendJson($rtn);
+	}
+	
 	public function registrationAction()
 	{
 		$this->view->title = 'Gift注册';
@@ -75,7 +99,7 @@ class UserController extends Zend_Controller_Action
     public function loginAction()
     {
     	$this->view->title = 'Gift登录';
-    	$authObj = new Business_Auth();
+    	$authObj = new Business_User_Auth();
     	if ($authObj->isLogin()) {
     		$this->_redirect('/user');
     	}

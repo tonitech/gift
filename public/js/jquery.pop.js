@@ -22,10 +22,10 @@
             $(options.filter).show();
         }
         var str = $(this);
-
+        var top;
         var pos = str.css('position');
         if(pos == 'fixed') {
-            var top = ($(window).height() - str.height()) / 2;
+            top = ($(window).height() - str.height()) / 2;
             //fix兼容ie6
             if($.browser.msie && $.browser.version == "6.0") {
                 str.css('position', 'absolute');
@@ -37,7 +37,7 @@
                 dom.style.setExpression('top', 'eval((document.documentElement.scrollTop)+' + top + ')');
             }
         } else {
-            var top = $(window).scrollTop() + ($(window).height() - str.height()) / 2;
+            top = $(window).scrollTop() + ($(window).height() - str.height()) / 2;
         }
         if(top > 0) {
             str.css('top', top);

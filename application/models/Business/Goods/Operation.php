@@ -6,12 +6,13 @@
  */
 class Business_Goods_Operation extends Business_Goods_Abstract
 {
-	public function getGoodsList($page, $rowcount, $userid = null, $cates = null)
+	public function getGoodsList($page, $rowcount, $order = null, $cates = null, $userid = null)
 	{
 		$stmt = Utility_Db::getInstance()
 			->conn()
 			->select()
 			->from($this->_table->tablename)
+			->order('price DESC')
 			->limitPage($page, $rowcount);
 		
 		if ($userid != null) {
@@ -19,6 +20,9 @@ class Business_Goods_Operation extends Business_Goods_Abstract
 		}
 		if ($cates != null) {
 			$stmt->where($this->_table->cates . '=?', $cates);
+		}
+		if ($order != null) {
+			$stmt->order('`' . $order . '` DESC');
 		}
 		return $stmt->query()->fetchAll();
 	}

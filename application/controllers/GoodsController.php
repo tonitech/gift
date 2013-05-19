@@ -3,15 +3,16 @@
  * @abstract This is the controller used to deal with goods actions.
  * @create 2013-03-15 00:15:18
  */
-class GoodsController extends Zend_Controller_Action
+class GoodsController extends View_Helper
 {
-    public function init()
-    {
-    }
-    
     public function indexAction()
     {
         $this->view->title = 'Gift-选礼物';
+        $this->getLoginUserInfoView();
+        $this->view->cate = $this->_request->getParam('cate');
+        $this->view->userid = $this->_request->getParam('userid');
+        $this->view->order = $this->_request->getParam('order');
+        
     }
     
     public function getProductIdAction()
@@ -27,9 +28,17 @@ class GoodsController extends Zend_Controller_Action
      */
     public function getProductListAction()
     {
+    	$cate = $this->_request->getParam('cate');
+    	$page = $this->_request->getParam('page');
+    	$userid = $this->_request->getParam('userid');
+    	$order = $this->_request->getParam('order');
+    	
     	$table = Zend_Registry::get('dbtable')->goods;
     	$operationObj = new Business_Goods_Operation();
-    	$list = $operationObj->getGoodsList(1, 12);
+    	if (empty($page)) {
+    		$page = 1;
+    	}
+    	$list = $operationObj->getGoodsList($page, 12, $order, $cate, $userid);
     	$blocks = array();
     	foreach ($list as $item) {
     		$blocks[] = '<div class="book_item hide1 masonry-brick" shareid="' . $item[$table->id] . '" id="' . $item[$table->keyid] . '" style="visibility: hidden; position: absolute;">

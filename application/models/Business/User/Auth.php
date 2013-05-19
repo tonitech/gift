@@ -6,6 +6,16 @@
  */
 class Business_User_Auth extends Business_User_Abstract
 {
+	private static $_instance;
+	
+	public static function getInstance()
+	{
+		if (empty(self::$_instance)) {
+			self::$_instance = new Business_User_Auth();
+		}
+		return self::$_instance;
+	}
+	
     /**
      * 获取cookie的生命周期
      * @return 返回截止日期的时间戳
@@ -217,7 +227,7 @@ class Business_User_Auth extends Business_User_Abstract
      */
     public function deleteCookie()
     {
-        $cookieName = Zend_Registry::get('dbtable')->user->cookie;
+        $cookieName = Zend_Registry::get('config')->user->cookie;
         setcookie($cookieName, '', time());
     }
     
