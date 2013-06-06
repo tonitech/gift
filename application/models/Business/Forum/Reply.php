@@ -4,7 +4,7 @@
  * 楼/回复 的格式
  * @author Pengchi<pengchi@myhexin.com>
  */
-class Reply
+class Business_Forum_Reply
 {
 	private $_replys;
 

@@ -52,7 +52,7 @@ class BbsController extends View_Helper
 		$articleId = $this->getRequest()->getParam('aid');
 		$articleTable = new DbTable_Article();
 		$article = $articleTable->fetchRow(array('id = ?' => $articleId));
-		$reply = new Reply($articleId);
+		$reply = new Business_Forum_Reply($articleId);
 		$this->view->article = $article;
 		$this->view->replys = $reply->format();
 	}
