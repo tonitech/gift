@@ -2,183 +2,219 @@
 echo $this->render('common/header.phtml');
 ?>
 <?php
+
 echo $this->render('common/menu.phtml');
 ?>
-<div id="container"><!--content-->
+<div id="container">
+	<!--content-->
 	<div id="talk_content">
-		<div id="talk_title" >
+		<div id="talk_title">
 			<div class="gr_info r5">
-				<h2>Gift 讨论吧</h2>无主题的主题吧，欢迎扎堆唠嗑。      
+				<h2>Gift 讨论吧</h2>
+				无主题的主题吧，欢迎扎堆唠嗑。
 			</div>
 		</div>
 	</div>
-		<div class="core">
-			<div class="core_title_wrap" id="j_core_title_wrap" style="">
-				<div class="core_title core_title_theme2">
-				<a id="j_core_title_go_top" class="core_title_go_top" href="###"><h1 class="core_title_txt" title="<?php $this->article->title?>"><?php echo $this->article->title; ?></h1></a>
+	<div class="core">
+		<div class="core_title_wrap" id="j_core_title_wrap" style="">
+			<div class="core_title core_title_theme2">
+				<a id="j_core_title_go_top" class="core_title_go_top" href="###"><h1
+						class="core_title_txt" title="<?php $this->article->title?>"><?php echo $this->article->title; ?></h1></a>
 			</div>
-			</div>
+		</div>
 
-			<div class="p_postlist" id="j_p_postlist">
-				<div class="l_post noborder">
-					<a class="l_post_anchor" name="32914033419"></a>
-					<div class="d_author">
-						<div class="louzhubiaoshi_wrap">
-								<div class="louzhubiaoshi j_louzhubiaoshi" author="xxxjkloiqwe">
+		<div class="p_postlist" id="j_p_postlist">
+			<div class="l_post noborder">
+				<a class="l_post_anchor" name="32914033419"></a>
+				<div class="d_author">
+					<div class="louzhubiaoshi_wrap">
+						<div class="louzhubiaoshi j_louzhubiaoshi" author="xxxjkloiqwe">
 							<a href="/p/2336142763?pid=32914033419&amp;see_lz=1#32914033419"></a>
 						</div>
-								</div>
-						<ul class="p_author post_icon">
-							 <li class="d_name">
-							 <a class="p_author_name" href="###" target="_blank"><?php echo $this->article->author ?></a>			 </li>
-						</ul>
 					</div>
-					
-					<div class="d_post_content_main ">	
-					<div class="p_content"><?php echo $this->article->content; ?> </div>	
-								
-											<div class="core_reply j_lzl_wrapper">
-								<a class="l_post_anchor" name="32914033419l"></a>
-												<div class="core_reply_tail">
-																					<ul class="p_reply">
-										<li><a href="#" class="p_reply_first">回复</a></li>
-									</ul>
-								   
-									<ul class="p_tail"><li><span class="">1楼</span></li><li><span><?php echo $this->article->ctime; ?></span></li></ul>
-								</div>
-								<div class="j_lzl_container core_reply_wrapper " style="display:none">
-								  <div class="core_reply_border_top"></div>
-								  <div class="j_lzl_c_b_a core_reply_content">
-									  <ul class="j_lzl_m_w" style="display:none">
-																<li class="lzl_li_pager j_lzl_l_p lzl_li_pager_s" data-field="{&quot;total_num&quot;:&quot;&quot;,&quot;total_page&quot;:&quot;&quot;}">
-											<p class="j_lzl_p"><a href="##">我也说一句</a></p>
-																		  <p>&nbsp;</p>
-											  
-										</li>
-									  </ul>
-									  <div class="lzl_editor_container j_lzl_e_c lzl_editor_container_s" style="display:none;"></div>
-									  <input type="text" class="j_lzl_e_f_h" style="display:none;">
-								  </div>
-								  <div class="core_reply_border_bottom"></div>
-								</div>
-							</div>
-											
-												</div>
-					<div class="clear"></div>
+					<ul class="p_author post_icon">
+						<li class="d_name"><a class="p_author_name" href="###"
+							target="_blank"><?php echo $this->article->author ?></a></li>
+					</ul>
 				</div>
+
+				<div class="d_post_content_main ">
+					<div class="p_content"><?php echo $this->article->content; ?> </div>
+
+					<div class="core_reply j_lzl_wrapper">
+						<a class="l_post_anchor" name="32914033419l"></a>
+						<div class="core_reply_tail">
+							<ul class="p_reply">
+								<li><a href="#" class="p_reply_first">回复</a></li>
+							</ul>
+
+							<ul class="p_tail">
+								<li><span class="">1楼</span></li>
+								<li><span><?php echo $this->article->ctime; ?></span></li>
+							</ul>
+						</div>
+						<div class="j_lzl_container core_reply_wrapper "
+							style="display: none">
+							<div class="core_reply_border_top"></div>
+							<div class="j_lzl_c_b_a core_reply_content">
+								<ul class="j_lzl_m_w" style="display: none">
+									<li class="lzl_li_pager j_lzl_l_p lzl_li_pager_s"
+										data-field="{&quot;total_num&quot;:&quot;&quot;,&quot;total_page&quot;:&quot;&quot;}">
+										<p class="j_lzl_p">
+											<a href="##">我也说一句</a>
+										</p>
+										<p>&nbsp;</p>
+
+									</li>
+								</ul>
+								<div
+									class="lzl_editor_container j_lzl_e_c lzl_editor_container_s"
+									style="display: none;"></div>
+								<input type="text" class="j_lzl_e_f_h" style="display: none;">
+							</div>
+							<div class="core_reply_border_bottom"></div>
+						</div>
+					</div>
+
+				</div>
+				<div class="clear"></div>
+			</div>
 <?php foreach ($this->replys as $key => $reply) : ?>
 <?php $floor = $reply['floor']; $subFloors = $reply['subFloors'];?>
 		<div class="l_post ">
-			<a class="l_post_anchor" name="32914296642"></a>
-			<div class="d_author">
-				<div class="louzhubiaoshi_wrap"> </div>
-				<ul class="p_author post_icon">
-					<li class="icon">
-							<div class="icon_relative" style="padding:4px;margin-top:2px;">
-					 </li>
-					 <li class="d_name">
-					 <a class="p_author_name" href="###" target="_blank"><?php echo $floor['author'] ?></a>			 </li>
-					 <li class="l_badge">
-						<div class="p_badge"></div>
-					 </li>
-				</ul>
-			</div>
-			
-			<div class="d_post_content_main ">	
-			<div class="p_content"><?php echo $floor['content'];?> </div>	
-<div class="core_reply j_lzl_wrapper">
+				<a class="l_post_anchor" name="32914296642"></a>
+				<div class="d_author">
+					<ul class="p_author post_icon">
+						<li class="icon">
+							<div class="icon_relative" style="padding: 4px; margin-top: 2px;">
+								<a class="p_author_face"
+									href="/i/315242756?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
+									target="_blank"><img class="icon"
+									username="<?php echo $floor['author'] ?>" src=""
+									data-passive="loaded" style="width: 80px; height: 80px"></a>
+							</div>
+						</li>
+						<li class="d_name"><a class="p_author_name sign_highlight"><?php echo $floor['author'] ?></a></li>
+					</ul>
+				</div>
+				
+				<div class="d_post_content_main ">
+					<div class="p_content"><?php echo $floor['content'];?> </div>
+					<div class="core_reply j_lzl_wrapper">
 <?php if (!empty($subFloors)) : ?>
 						<a class="l_post_anchor" name="32914296642l"></a>
-										<div class="core_reply_tail">
-																			<div class="j_lzl_r p_reply">
-							  <a href="#" class="lzl_link_unfold" style="display:none;">回复(1)</a>
-							  <span class="lzl_link_fold" style="display:;">收起回复</span>
-							</div>                                        
-						   
-							<ul class="p_tail"><li><span class=""><?php echo $key + 2; ?>楼</span></li><li><span><?php echo $floor['ctime']?></span></li></ul>
+						<div class="core_reply_tail">
+							<div class="j_lzl_r p_reply">
+								<a href="#" class="lzl_link_unfold" style="display: none;">回复(1)</a>
+								<span class="lzl_link_fold" style="display:;">收起回复</span>
+							</div>
+
+							<ul class="p_tail">
+								<li><span class=""><?php echo $key + 2; ?>楼</span></li>
+								<li><span><?php echo $floor['ctime']?></span></li>
+							</ul>
 						</div>
 						<div class="j_lzl_container core_reply_wrapper " style="display:">
-						  <div class="core_reply_border_top"></div>
-						  <div class="j_lzl_c_b_a core_reply_content">
-							  <ul class="j_lzl_m_w" style="display:">
+							<div class="core_reply_border_top"></div>
+							<div class="j_lzl_c_b_a core_reply_content">
+								<ul class="j_lzl_m_w" style="display:">
 <?php foreach ($subFloors as $subFloor) : ?>
-														  <li class="lzl_single_post j_lzl_s_p first_no_border">
-									<a class="l_post_anchor" name="32919792193"></a>
-<div class="lzl_cnt">    
-									<a class="at" href="###" username="xxxjkloiqwe"><?php echo $subFloor['author']; ?></a>:
-									<span class="lzl_content_main"><?php echo $subFloor['content']?> </span>  
-									  <div class="lzl_content_reply">
-										<span class="lzl_jb" delete-data="" style="display: none;"><a href="#" class="lzl_jb_in" data-checkun="un">举报</a>&nbsp;|&nbsp;</span>
-										<span class="lzl_op_list j_lzl_o_l" style="display:none;"></span>
-										<span class="lzl_time">2013-5-19 09:37</span>
-										<a href="#" class="lzl_s_r">回复</a>
-									  </div>
-									</div>
-								  </li>
+														  <li class="lzl_single_post j_lzl_s_p first_no_border"><a
+										class="l_post_anchor" name="32919792193"></a>
+										<div class="lzl_cnt">
+											<a class="at" href="###" username="xxxjkloiqwe"><?php echo $subFloor['author']; ?></a>:
+											<span class="lzl_content_main"><?php echo $subFloor['content']?> </span>
+											<div class="lzl_content_reply">
+												<span class="lzl_jb" delete-data="" style="display: none;"><a
+													href="#" class="lzl_jb_in" data-checkun="un">举报</a>&nbsp;|&nbsp;</span>
+												<span class="lzl_op_list j_lzl_o_l" style="display: none;"></span>
+												<span class="lzl_time">2013-5-19 09:37</span> <a href="#"
+													class="lzl_s_r">回复</a>
+											</div>
+										</div></li>
 <?php endforeach;?>
 														<li class="lzl_li_pager j_lzl_l_p lzl_li_pager_s">
-									<p class="j_lzl_p"><a href="##">我也说一句</a></p>
-																  <p>&nbsp;</p>
-									  
-								</li>
-							  </ul>
-							  <div class="lzl_editor_container j_lzl_e_c lzl_editor_container_s" style="display:none;"></div>
-							  <input type="text" class="j_lzl_e_f_h" style="display:none;">
-						  </div>
-						  <div class="core_reply_border_bottom"></div>
+										<p class="j_lzl_p">
+											<a href="##">我也说一句</a>
+										</p>
+										<p>&nbsp;</p>
+
+									</li>
+								</ul>
+								<div
+									class="lzl_editor_container j_lzl_e_c lzl_editor_container_s"
+									style="display: none;"></div>
+								<input type="text" class="j_lzl_e_f_h" style="display: none;">
+							</div>
+							<div class="core_reply_border_bottom"></div>
 						</div>
 <?php else : ?>
 <div class="core_reply_tail">
-                		    		              	                <div class="j_lzl_r p_reply" data-field=">
-	                  <a href="#" class="lzl_link_unfold" style="display:;">回复</a>
-	                </div>                                        
-	               
-					<ul class="p_tail"><li><span class=""><?php echo ($key + 2); ?>楼</span></li><li><span><?php echo $floor['ctime'];?></span></li></ul>
-			    </div>
+							<div class="j_lzl_r p_reply"
+								data-field=">
+	                  <a      href="#"
+								class="lzl_link_unfold" style="display:;">
+								回复</a>
+							</div>
+
+							<ul class="p_tail">
+								<li><span class=""><?php echo ($key + 2); ?>楼</span></li>
+								<li><span><?php echo $floor['ctime'];?></span></li>
+							</ul>
+						</div>
 <?php endif; ?>
 </div>
-									
-										</div>
-			<div class="clear"></div>
-		</div>
+
+				</div>
+				<div class="clear"></div>
 			</div>
 <?php endforeach; ?>
+</div>
 		<div class="p_thread thread_theme_4" id="thread_theme_4">
 			<div class="l_thread_info">
 				<ul class="l_posts_num">
 					<li class="l_pager pager_theme_3"></li>
-					<li class="l_reply_num" style="margin-left:2px; margin-right:10px">共有<span class="red">1</span>页</li>
+					<li class="l_reply_num"
+						style="margin-left: 2px; margin-right: 10px">共有<span class="red">1</span>页
+					</li>
 					<li class="l_reply_num"></li>
-					<li class="l_reply_num">回复贴:<span class="red" style="margin-right:3px">35</span></li>
+					<li class="l_reply_num">回复贴:<span class="red"
+						style="margin-right: 3px">35</span></li>
 				</ul>
 			</div>
 		</div>
 
-		</div>
+	</div>
 	<div id="write_content">
-			<div id="gr_set_top">
-				<h2 id="new_topic" >发表主题</h2>
-			</div>
-			<div id="topic_con" class="gr_set_form ">
-				<dl>
-					<dt>正文：</dt>
-					<dd style="position:relative;">
-					<div class="editor_tip_show"><div class="editor_banned_tip_info">本吧发贴，请先 <a href="#">登录</a> | <a href="#">注册</a>&nbsp;</div></div>
-					<textarea class="editor-textarea" name="content" style="height:250px;" ></textarea>
-						<span class="desc"></span>
-					</dd>
-				</dl>
-				<dl class="sub_form" >
+		<div id="gr_set_top">
+			<h2 id="new_topic">发表主题</h2>
+		</div>
+		<div id="topic_con" class="gr_set_form ">
+			<dl>
+				<dt>正文：</dt>
+				<dd style="position: relative;">
+					<div class="editor_tip_show">
+						<div class="editor_banned_tip_info">
+							本吧发贴，请先 <a href="#">登录</a> | <a href="#">注册</a>&nbsp;
+						</div>
+					</div>
+					<textarea class="editor-textarea" name="content"
+						style="height: 250px;"></textarea>
+					<span class="desc"></span>
+				</dd>
+			</dl>
+			<dl class="sub_form">
 				<dt style="width: 75px;"></dt>
 				<dd>
 					<input type="submit" class="form_sub mogu-editor-post" value="发表" />
 				</dd>
-				</dl>
-            </div>
-			
+			</dl>
 		</div>
+
+	</div>
 </div>
 <?php
 echo $this->render('common/footer.phtml');
 ?>
-<script data-main="/public/js/bbs.js" src="/public/js/lib/require-min.js"></script>
+<script data-main="/public/js/bbs.js"
+	src="/public/js/lib/require-min.js"></script>

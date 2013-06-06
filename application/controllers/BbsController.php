@@ -20,21 +20,21 @@ class BbsController extends View_Helper
 	
 	public function postAction()
 	{
-		$title = $this->getRequest()->getParam('title');
-		$content = $this->getRequest()->getParam('content');
-		$articleTable = new DbTable_Article();
-		$row = $articleTable->createRow(
-		    array(
-    			'title' => $title,
-    			'content' => $content,
-    			'author' => 111,
-    			'ctime' => date('c'),
-    			'mtime' => date('c'),
-    			'liked_times' => 0
-    		)
-		);
-		$row->save();
-		$this->_redirect('/bbs/index');
+// 		$title = $this->getRequest()->getParam('title');
+// 		$content = $this->getRequest()->getParam('content');
+// 		$articleTable = new DbTable_Article();
+// 		$row = $articleTable->createRow(
+// 		    array(
+//     			'title' => $title,
+//     			'content' => $content,
+//     			'author' => 111,
+//     			'ctime' => date('c'),
+//     			'mtime' => date('c'),
+//     			'liked_times' => 0
+//     		)
+// 		);
+// 		$row->save();
+// 		$this->_redirect('/bbs/index');
 	}
 
 	public function likeAction()
