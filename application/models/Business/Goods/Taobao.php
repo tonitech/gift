@@ -21,19 +21,16 @@ class Business_Goods_Taobao
         $idRtn = $this->_getProductionIdByUrl($url);
         if ($idRtn['errorcode'] == 0) {
             $id = $idRtn['result'];
-            if ($this->_isFanliProduct($id)) {
-                $result = $idRtn;
-            } else {
+//             if ($this->_isFanliProduct($id)) {
+//                 $result = $idRtn;
+//             } else {
                 $productInfo = $this->_getProductInfo($id);
                 $result = array(
                 	'errorcode' => -3,
                 	'errormsg' => 'no fl',
-                	'result' => array(
-                		'picurl' => $productInfo->pic_url, 
-                		'title' => $productInfo->title
-                    )
+                	'result' => $productInfo
                 );
-            }
+//             }
         } else {
             $result = $idRtn;
         }
@@ -85,7 +82,7 @@ class Business_Goods_Taobao
         $c = $this->_getTaobaoTopClient();
         include 'taobao/top/request/ItemsListGetRequest.php';
         $req = new ItemsListGetRequest();
-        $req->setFields("pic_url,title");
+        $req->setFields("detail_url,num_iid,title,pic_url,price");
         $req->setNumIids($id);
         $resp = $c->execute($req);
         $rtn = $resp->items->item[0];

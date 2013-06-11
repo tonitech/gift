@@ -109,12 +109,15 @@ class Business_Goods_Operation extends Business_Goods_Abstract
 			$this->_table->mtime => $time,
 			$this->_table->type => 'taobao',
 			$this->_table->keyid => 'taobao_' . $goodsDetails['num_iid'],
-			$this->_table->cates => serialize($this->jundgeGoodsCates($goodsDetails['title'] . ' ' . $goodsDetails['description'])),
+			$this->_table->cates => serialize(
+			    $this->jundgeGoodsCates($goodsDetails['title'] . ' ' . $goodsDetails['description'])
+			),
 			$this->_table->name => $goodsDetails['title'],
-			$this->_table->url => $goodsDetails['click_url'],
+// 			$this->_table->url => $goodsDetails['click_url'],
+		    $this->_table->url => $goodsDetails['detail_url'],
 			$this->_table->picUrl => $goodsDetails['pic_url'],
 			$this->_table->price => $goodsDetails['price'],
-			$this->_table->commission => $goodsDetails['commission_rate'] / 100,
+// 			$this->_table->commission => $goodsDetails['commission_rate'] / 100,
 			$this->_table->description => $goodsDetails['description'],
 			$this->_table->like => 0,
 			$this->_table->comment => 0,

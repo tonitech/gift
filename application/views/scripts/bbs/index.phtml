@@ -53,7 +53,7 @@ echo $this->render('common/menu.phtml');
 							<span class="tb_icon_author_rely" title="最后回复人"><a
 								href="/i/sys/jump?un=%CF%FB%CA%C5%CC%EC%B1%DF%B5%C4%BB%D8%D2%E4"
 								target="_blank">消逝天边的回忆</a></span> <span
-								class="threadlist_reply_date" title="最后回复时间">22:16</span>
+								class="threadlist_reply_date" title="最后回复时间"><?php echo date('H:i', strtotime($article->mtime)); ?></span>
 						</div>
 					</div>
 				</div>

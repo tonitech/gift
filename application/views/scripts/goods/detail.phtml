@@ -2,115 +2,144 @@
 echo $this->render('common/header.phtml');
 ?>
 <?php
+
 echo $this->render('common/menu.phtml');
 ?>
-<?php 
+<?php
+
 $table = Zend_Registry::get('dbtable')->goods;
 $details = $this->details;
 ?>
-	<div id="body" class="fm960 clearfix">
-		<div id="content_top">
-		</div>
-		<div class="piece piece_w960 piece_note">
-			<div class="piece_hd"></div>
-			<div class="piece_bd clearfix">
-				<div class="fl" id="content_body">
-					<!-- 显示图片 begin  -->
-					<div class="show_body ">
-						<input type="hidden" value="1epg4pg" class="tid_view">  
-						<input type="hidden" value="1" class="show_history_btn">
-						<div tid="1epg4pg" class="img_show " type="goods" iid="18jayy0">
-							<a rel="nofollow" target="_blank" href="<?php echo $details[$table->url];?>" class="show_big qplus_link">
-							<img title="<?php echo $details[$table->name];?>" alt="<?php echo $details[$table->name];?>" src="<?php echo $details[$table->picUrl];?>">
-							</a>
-							<a href="javascript:;" class="add_to_album_btn" style="display: none;"></a>
-						</div>
-							<!-- 下方小图(兼容老的推) begin  -->		
+<script type="text/javascript" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery.imgresize.js"></script>
+<div id="body" class="fm960 clearfix">
+	<div id="content_top"></div>
+	<div class="piece piece_w960 piece_note">
+		<div class="piece_hd"></div>
+		<div class="piece_bd clearfix">
+			<div class="fl" id="content_body">
+				<!-- 显示图片 begin  -->
+				<div class="show_body ">
+					<input type="hidden" value="1epg4pg" class="tid_view"> <input
+						type="hidden" value="1" class="show_history_btn">
+					<div tid="1epg4pg" class="img_show " type="goods" iid="18jayy0">
+						<a rel="nofollow" target="_blank"
+							href="<?php echo $details[$table->url];?>"
+							class="show_big qplus_link"> <img
+							title="<?php echo $details[$table->name];?>"
+							alt="<?php echo $details[$table->name];?>"
+							src="<?php echo $details[$table->picUrl];?>">
+						</a> <a href="javascript:;" class="add_to_album_btn"
+							style="display: none;"></a>
 					</div>
-<!--    <a href="#test" class="anchor">测试锚点</a>
-<a name="test" ></a>-->
-<!-- 显示图片 end  -->
-<!-- 同类产品 end  -->
+					<!-- 下方小图(兼容老的推) begin  -->
 				</div>
-				<div class="fr" id="right_side">						
-					<div class="fav_wrap_content clearfix">
-						<div class="favorite ">
-							<a tid="1epg4pg" fc="shopping" valid="4u4bde1363197602st8a1ba7a991c0cc0652a7e4" validcode="9236c4d0f447ca7bce139f52b83bb4da" class="favaImg" href="javascript:;">喜欢</a>
-							<div class="favDiv fl">
-								<a target="_blank" class="favCount"><?php echo $details[$table->like];?></a>
-								<i></i>
-							</div>
-						</div>    
-					</div>
-					<img style="display:none" src="/mbs.htm?timestamp=1368856417&amp;from=note_no_tongkuan">
-					<div class="body_info" tuanid="1178gs" tid="1epg4pg" gid="18jayy0">
-						<div class="goods_link">
-							<div class="shop_link_box">
-								<a href="<?php echo $details[$table->url];?>" title="<?php echo $details[$table->name];?>" target="_blank" class="shop_link" rel="nofollow"><?php echo $details[$table->name];?></a>
-							</div>
-							<p class="price"><a href="<?php echo $details[$table->url];?>" target="_blank">¥<?php echo $details[$table->price];?></a></p>
-							<a target="_blank" href="<?php echo $details[$table->url];?>" class="buy_link" rel="nofollow">去购买</a>
-						</div>				
-					</div>	
-					<!-- 纯图片时显示用户信息 begin-->
-					<div class="first_share">
-						<h2 class="title">第一个分享的可爱会员</h2> 
-						<div class="share_user_info clearfix">
-							<div class="pic fl">
-								<a target="_blank" href="/u/11g22ei">
-								<img src="http://s6.mogujie.cn/b7/avatar/130418/q116h_kqyuovs2njbewysugfjeg5sckzsew_120x120.jpg_48x48.jpg" alt="WangShangHai" class="icard avt fl r3">
-								</a>
-							</div>
-							<div class="content">
-								<a target="_blank" href="/u/11g22ei" class="icard avt uname">WangShangHai</a>
-								<span class="get_fav">获得其中3个喜欢</span>
-								<p class="tweet_from">
-									<span></span>
-								</p>
-								<p class="share_content"><span class="t">05月15日 21:56</span></p>
-							</div>
+				<!--    <a href="#test" class="anchor">测试锚点</a>
+<a name="test" ></a>-->
+				<!-- 显示图片 end  -->
+				<!-- 同类产品 end  -->
+			</div>
+			<div class="fr" id="right_side">
+				<div class="fav_wrap_content clearfix">
+					<div class="favorite ">
+						<a tid="1epg4pg" fc="shopping"
+							valid="4u4bde1363197602st8a1ba7a991c0cc0652a7e4"
+							validcode="9236c4d0f447ca7bce139f52b83bb4da" class="favaImg"
+							href="javascript:;">喜欢</a>
+						<div class="favDiv fl">
+							<a target="_blank" class="favCount"><?php echo $details[$table->like];?></a>
+							<i></i>
 						</div>
 					</div>
+				</div>
+				<img style="display: none"
+					src="/mbs.htm?timestamp=1368856417&amp;from=note_no_tongkuan">
+				<div class="body_info" tuanid="1178gs" tid="1epg4pg" gid="18jayy0">
+					<div class="goods_link">
+						<div class="shop_link_box">
+							<a href="<?php echo $details[$table->url];?>"
+								title="<?php echo $details[$table->name];?>" target="_blank"
+								class="shop_link" rel="nofollow"><?php echo $details[$table->name];?></a>
+						</div>
+						<p class="price">
+							<a href="<?php echo $details[$table->url];?>" target="_blank">¥<?php echo $details[$table->price];?></a>
+						</p>
+						<a target="_blank" href="<?php echo $details[$table->url];?>"
+							class="buy_link" rel="nofollow">去购买</a>
+					</div>
+				</div>
+				<!-- 纯图片时显示用户信息 begin-->
+				<div class="first_share">
+					<h2 class="title">第一个分享的可爱会员</h2>
+					<div class="share_user_info clearfix">
+						<div class="pic fl">
+							<a target="_blank" href="/u/11g22ei"> <img
+								src="http://s6.mogujie.cn/b7/avatar/130418/q116h_kqyuovs2njbewysugfjeg5sckzsew_120x120.jpg_48x48.jpg"
+								alt="WangShangHai" class="icard avt fl r3">
+							</a>
+						</div>
+						<div class="content">
+							<a target="_blank" href="/u/11g22ei" class="icard avt uname">WangShangHai</a>
+							<span class="get_fav">获得其中3个喜欢</span>
+							<p class="tweet_from">
+								<span></span>
+							</p>
+							<p class="share_content">
+								<span class="t">05月15日 21:56</span>
+							</p>
+						</div>
+					</div>
+				</div>
 				<!-- 第一个分享的人 end -->
 
-<!-- 评论框 begin -->
-					<div class="note_comment_wrap note_content" id="note_1epg4pg" data="{&quot;is_public&quot;:&quot;p&quot;,&quot;type&quot;: &quot;goods&quot;, &quot;itemInfoId&quot;: &quot;1198ww8&quot;,&quot;ff&quot;:&quot;%2Fshopping%2F&quot;}">
-						<div class="pub_area">
-							<div class="pub_area_bd">
-								<textarea id="pub_content" class="pub_txt" def-v="你也可以顺便说点什么 O(∩_∩)O">你也可以顺便说点什么 O(∩_∩)O</textarea>
-							</div>
-							<div class="pub_area_ft">
-								<a href="javascript:;" class="gray_btn submit r3 fr" id="pub_submit"><span class="s">确定</span></a>
-							</div>
+				<!-- 评论框 begin -->
+				<div class="note_comment_wrap note_content" id="note_1epg4pg"
+					data="{&quot;is_public&quot;:&quot;p&quot;,&quot;type&quot;: &quot;goods&quot;, &quot;itemInfoId&quot;: &quot;1198ww8&quot;,&quot;ff&quot;:&quot;%2Fshopping%2F&quot;}">
+					<div class="pub_area">
+						<div class="pub_area_bd">
+							<textarea id="pub_content" class="pub_txt"
+								def-v="你也可以顺便说点什么 O(∩_∩)O">你也可以顺便说点什么 O(∩_∩)O</textarea>
 						</div>
-			<!-- 评论框 end -->
-			<!-- 评论列表 begin -->
-						<div class="note_comment">
-							<ul id="note_comment_list" class="c_l rb5">  
-								<li class="c_f" uid="" tid="1eq7pq8">
-									<a href="/u/1lxx68" target="_blank"><img src="http://s9.mogujie.cn/b7/avatar/130507/ayykc_kqyxa327njbhmrlwgfjeg5sckzsew_689x328.jpg_48x48.jpg" class="avt icard" alt="小鸟包袋"></a>
-									<p class="sms"><a href="/u/1lxx68" target="_blank" class="n icard">小鸟包袋</a></p>
-									<p class="sms">好看<span>&nbsp;&nbsp;&nbsp;今天 09:51</span></p>
-									<div>
-										<a href="javascript:;" w="f" class="rpl">回复</a>
-									</div>
-								</li>
-							</ul>
+						<div class="pub_area_ft">
+							<a href="javascript:;" class="gray_btn submit r3 fr"
+								id="pub_submit"><span class="s">确定</span></a>
 						</div>
-			<!-- 评论列表 end -->
 					</div>
+					<!-- 评论框 end -->
+					<!-- 评论列表 begin -->
+					<div class="note_comment">
+						<ul id="note_comment_list" class="c_l rb5">
+							<li class="c_f" uid="" tid="1eq7pq8"><a href="/u/1lxx68"
+								target="_blank"><img
+									src="http://s9.mogujie.cn/b7/avatar/130507/ayykc_kqyxa327njbhmrlwgfjeg5sckzsew_689x328.jpg_48x48.jpg"
+									class="avt icard" alt="小鸟包袋"></a>
+								<p class="sms">
+									<a href="/u/1lxx68" target="_blank" class="n icard">小鸟包袋</a>
+								</p>
+								<p class="sms">
+									好看<span>&nbsp;&nbsp;&nbsp;今天 09:51</span>
+								</p>
+								<div>
+									<a href="javascript:;" w="f" class="rpl">回复</a>
+								</div></li>
+						</ul>
+					</div>
+					<!-- 评论列表 end -->
 				</div>
 			</div>
-			<div class="piece_ft"></div>
 		</div>
-		<div id="content_bottom">
-			<div class="mt25 fm960" style="font-size:30px; color:#690;font-weight:bold;">你可能还喜欢</div>
+		<div class="piece_ft"></div>
+	</div>
+	<div id="content_bottom">
+		<div class="mt25 fm960"
+			style="font-size: 30px; color: #690; font-weight: bold;">你可能还喜欢</div>
 			<?php
-			echo $this->render('common/block.phtml');
-			?>
-			<div>
-			</div>
-		</div>
+echo $this->render('common/block.phtml');
+?>
+			<div></div>
+	</div>
+	<script type="text/javascript">
+    $('.img_show').find('img').imgresize({width:400});
+    </script>
 <?php
 echo $this->render('common/footer.phtml');
 ?>

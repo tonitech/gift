@@ -24,6 +24,9 @@ echo $this->render('common/menu.phtml');
 		</div>
 
 		<div class="p_postlist" id="j_p_postlist">
+		<?php 
+		$userinfo = $this->getUserInfo($this->article->author);
+		?>
 			<div class="l_post noborder">
 				<a class="l_post_anchor" name="32914033419"></a>
 				<div class="d_author">
@@ -33,8 +36,17 @@ echo $this->render('common/menu.phtml');
 						</div>
 					</div>
 					<ul class="p_author post_icon">
+					   <li>
+							<div class="icon_relative" style="padding: 4px; margin-top: 2px;">
+								<a class="p_author_face"
+									href="/i/315242756?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
+									target="_blank"><img class="avatar"
+									username="<?php echo $userinfo['username'] ?>" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $userinfo['avatar'] ?>"
+									data-passive="loaded" style="width: 80px; height: 80px"></a>
+							</div>
+						</li>
 						<li class="d_name"><a class="p_author_name" href="###"
-							target="_blank"><?php echo $this->article->author ?></a></li>
+							target="_blank"><?php echo $userinfo['username'] ?></a></li>
 					</ul>
 				</div>
 
@@ -79,22 +91,26 @@ echo $this->render('common/menu.phtml');
 				</div>
 				<div class="clear"></div>
 			</div>
-<?php foreach ($this->replys as $key => $reply) : ?>
-<?php $floor = $reply['floor']; $subFloors = $reply['subFloors'];?>
+<?php 
+foreach ($this->replys as $key => $reply) :
+    $floor = $reply['floor']; 
+    $subFloors = $reply['subFloors'];
+    $userinfo = $this->getUserInfo($floor['author']);
+?>
 		<div class="l_post ">
 				<a class="l_post_anchor" name="32914296642"></a>
 				<div class="d_author">
 					<ul class="p_author post_icon">
-						<li class="icon">
+						<li>
 							<div class="icon_relative" style="padding: 4px; margin-top: 2px;">
 								<a class="p_author_face"
 									href="/i/315242756?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
-									target="_blank"><img class="icon"
-									username="<?php echo $floor['author'] ?>" src=""
+									target="_blank"><img class="avatar"
+									username="<?php echo $userinfo['username'] ?>" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $userinfo['avatar'] ?>"
 									data-passive="loaded" style="width: 80px; height: 80px"></a>
 							</div>
 						</li>
-						<li class="d_name"><a class="p_author_name sign_highlight"><?php echo $floor['author'] ?></a></li>
+						<li class="d_name"><a class="p_author_name sign_highlight"><?php echo $userinfo['username'] ?></a></li>
 					</ul>
 				</div>
 				
@@ -210,7 +226,6 @@ echo $this->render('common/menu.phtml');
 				</dd>
 			</dl>
 		</div>
-
 	</div>
 </div>
 <?php

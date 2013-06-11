@@ -203,6 +203,13 @@ li {
 	padding: 15px 0;
 }
 
+.d_author img.avatar {
+	width: auto;
+	border: 1px solid #ccc;
+	padding: 3px;
+	background-color: #fff;
+}
+
 .louzhubiaoshi_wrap {
 	position: relative;
 	border: 0 solid #f00;
@@ -216,8 +223,7 @@ li {
 	height: 36px;
 	top: -15px;
 	right: 0;
-	background: url(/public/images/pb_css_pic.png)
-		no-repeat -172px -120px;
+	background: url(/public/images/pb_css_pic.png) no-repeat -172px -120px;
 	border: 0 solid #f00;
 }
 
@@ -254,9 +260,9 @@ li {
 }
 
 .l_post {
-border-top: 1px solid #d9d9d9;
-background: url(/public/images/main_bg_left.png) repeat-y;
-width: 980px;
+	border-top: 1px solid #d9d9d9;
+	background: url(/public/images/main_bg_left.png) repeat-y;
+	width: 980px;
 }
 
 .l_post_anchor {

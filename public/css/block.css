@@ -64,7 +64,7 @@ a {
 	line-height: 1.5em;
 	color: #414141;
 	float: left;
-	width: 224px;
+	width: 200px;
 	word-wrap: break-word;
 	word-break: break-all;
 }
@@ -73,7 +73,7 @@ a {
 	height: 22px;
 	position: relative;
 	float: left;
-	width: 215px;
+	width: 191px;
 }
 .book_item .favorite a.favaImg {
 	background: url(http://www.ibudian.com/tpl/pink2/images/lbg.gif) no-repeat 0 0;
@@ -111,7 +111,7 @@ a {
 	border-top: solid 1px #e6e6e6;
 	background: #f8f8f8;
 	float: left;
-	width: 222px;
+	width: 200px;
 }
 .book_item .user * {
 	float: left;

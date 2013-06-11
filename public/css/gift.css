@@ -1531,7 +1531,7 @@ nqgmedia     ="all    " .r5 {
 .login_box {
 	display: none;
 	background: #fff;
-	border: 2px solid #ba2327;
+	border: 2px solid #ff6ea7;
 	width: 446px;
 	position: fixed;
 	left: 50%;
@@ -1554,7 +1554,7 @@ nqgmedia     ="all    " .r5 {
 
 .login_title {
 	text-align: center;
-	color: #c9243b;
+	color: #ff6ea7;
 	font-size: 22px;
 	font-family: 'Microsoft YaHei';
 	margin: 8px 0 34px;
@@ -1573,7 +1573,7 @@ nqgmedia     ="all    " .r5 {
 .login_p label {
 	color: #444;
 	font-weight: 700;
-	width: 52px;
+	width: 53px;
 }
 
 .login_p input {
@@ -1594,7 +1594,7 @@ nqgmedia     ="all    " .r5 {
 }
 
 .login_btn {
-	background: url(http://i.thsi.cn/images/zbds/pop_icons.png) no-repeat
+	background: url(/public/images/pop_icons.png) no-repeat
 		-999em -999em;
 	display: inline-block;
 	background-position: 0 -31px;
@@ -1620,7 +1620,7 @@ nqgmedia     ="all    " .r5 {
 
 /* 分享模块 开始 */
 .share-lb {
-	background-color: #f8f8f8;
+	background-color: #ff6ea7;
 	border-radius: 5px;
 	margin-top: 5px;
 }

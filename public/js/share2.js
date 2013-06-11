@@ -32,13 +32,31 @@ $(function() {
 			url : '/goods/get-product-id',
 			data : {url:url}, 
 			success : function(data){
-				if (data.errorcode == -3) {
-					var respItem = data.result;
-					shareLinkGoods = respItem;
-					$('#shareLinkPrice').html('<span class="p">¥' + respItem.price + '</span>' + respItem.title + '');
-					$('#shareLinkImage').html('<img src="' + respItem.pic_url + '" alt="' + respItem.title + '" style="width: 142px; height: 142px;">');
-					$('#preShareLink').pophide();
-					$('#afterShareLink').popup();
+				if (data.errorcode == -1) {
+					noBack(url, data.result);
+				} else if (data.errorcode == -2) {
+					alert('请输入合法的淘宝商品链接!');
+				} else {
+					TOP.api('rest', 'get', {
+						method : 'taobao.taobaoke.widget.items.convert',
+						num_iids : data.result,
+						fields : 'num_iid,title,click_url,pic_url,price,commission_rate'
+					}, function(resp) {
+						if(resp.error_response) {
+							alert('taobao.taobaoke.widget.items.convert接口获取商品信息品失败!' + resp.error_response.msg);
+							return false;
+						}
+						if (resp.total_results > 0) {
+							var respItem = resp.taobaoke_items.taobaoke_item;
+							shareLinkGoods = respItem[0];
+							$('#shareLinkPrice').html('<span class="p">¥' + respItem[0].price + '</span>' + respItem[0].title + '');
+							$('#shareLinkImage').html('<img src="' + respItem[0].pic_url + '" alt="' + respItem[0].title + '" style="width: 142px; height: 142px;">');
+							$('#preShareLink').pophide();
+							$('#afterShareLink').popup();
+						} else {
+							noBack(url, data.result);
+						}
+					});
 				}
 			}
 		});

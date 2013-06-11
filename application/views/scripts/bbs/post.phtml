@@ -8,22 +8,21 @@
 				<dl>
 					<dt>标题：</dt>
 					<dd>
-                        <input class="form_text form_text_title" type="text" name="title"  />
+                        <input class="form_text form_text_title" type="text" id="title" />
 						<span class="desc"><b>最多25个字</b></span>
 					</dd>
 				</dl>
 				<dl>
 					<dt>正文：</dt>
 					<dd>
-					<textarea class="editor-textarea" name="content" style="height:250px;" ></textarea>
+					<textarea class="editor-textarea" id="article-content" style="height:250px;"></textarea>
 						<span class="desc"></span>
 					</dd>
 				</dl>
 				<dl class="sub_form" >
 				<dt style="width: 75px;"></dt>
 				<dd>
-					<input type="submit" class="form_sub mogu-editor-post" value="发表" />
-					<a href="#" class="form_yulan" >预览主题</a>
+					<input type="button" class="form_sub mogu-editor-post" id="postArticle" value="发表" />
 				</dd>
 				</dl>
             </div>
