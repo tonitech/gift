@@ -9,6 +9,9 @@ $(function() {
 			success : function (data) {
 				if (data.errorcode == 0) {
 					alert('发帖成功！');
+					setTimeout(function(){
+						window.location.reload();
+					}, 1000); //指定1秒刷新一次 
 				} else if (data.errorcode == -1) {
 					$('#loginBox').popup();
 				}

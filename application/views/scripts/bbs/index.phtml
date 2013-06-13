@@ -28,8 +28,10 @@ echo $this->render('common/menu.phtml');
 	</div>
 	<div id="content_list">
 		<ul class="threadlist">
-		<?php foreach ($this->articles as $key => $article) : ?> 
-		<?php $title = $article->title; $likeTimes = $article->liked_times; ?>
+		<?php foreach ($this->articles as $key => $article) :  
+		          $title = $article->title; $likeTimes = $article->liked_times;
+		          $table = Zend_Registry::get('dbtable')->user;
+		?>
 		<li class="<?php if ($key % 2 == 1) echo "threadlist_li_gray"; ?>">
 				<div class="threadlist_li_left">
 					<div title="<?php echo $likeTimes; ?>个赞" class="threadlist_rep_num"><?php echo $likeTimes; ?></div>
@@ -42,7 +44,7 @@ echo $this->render('common/menu.phtml');
 						</div>
 						<div class="threadlist_author" title="主题作者">
 							<span class="tb_icon_author "><a class="sign_highlight"
-								href="###"><?php echo $article->author ?></a></span>
+								href="###"><?php echo $this->getUserInfo($article->author)[$table->username]; ?></a></span>
 						</div>
 					</div>
 					<div class="threadlist_detail clearfix">
@@ -52,7 +54,7 @@ echo $this->render('common/menu.phtml');
 						<div class="threadlist_author">
 							<span class="tb_icon_author_rely" title="最后回复人"><a
 								href="/i/sys/jump?un=%CF%FB%CA%C5%CC%EC%B1%DF%B5%C4%BB%D8%D2%E4"
-								target="_blank">消逝天边的回忆</a></span> <span
+								target="_blank"><?php echo $this->getUserInfo($article->last_reply_id)[$table->username]; ?></a></span> <span
 								class="threadlist_reply_date" title="最后回复时间"><?php echo date('H:i', strtotime($article->mtime)); ?></span>
 						</div>
 					</div>

@@ -24,24 +24,25 @@ echo $this->render('common/menu.phtml');
 		</div>
 
 		<div class="p_postlist" id="j_p_postlist">
-		<?php 
-		$userinfo = $this->getUserInfo($this->article->author);
-		?>
+		<?php
+$userinfo = $this->getUserInfo($this->article->author);
+?>
 			<div class="l_post noborder">
 				<a class="l_post_anchor" name="32914033419"></a>
 				<div class="d_author">
 					<div class="louzhubiaoshi_wrap">
-						<div class="louzhubiaoshi j_louzhubiaoshi" author="xxxjkloiqwe">
+						<div class="louzhubiaoshi" author="xxxjkloiqwe">
 							<a href="/p/2336142763?pid=32914033419&amp;see_lz=1#32914033419"></a>
 						</div>
 					</div>
 					<ul class="p_author post_icon">
-					   <li>
+						<li>
 							<div class="icon_relative" style="padding: 4px; margin-top: 2px;">
 								<a class="p_author_face"
 									href="/i/315242756?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
 									target="_blank"><img class="avatar"
-									username="<?php echo $userinfo['username'] ?>" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $userinfo['avatar'] ?>"
+									username="<?php echo $userinfo['username'] ?>"
+									src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $userinfo['avatar'] ?>"
 									data-passive="loaded" style="width: 80px; height: 80px"></a>
 							</div>
 						</li>
@@ -91,29 +92,42 @@ echo $this->render('common/menu.phtml');
 				</div>
 				<div class="clear"></div>
 			</div>
-<?php 
+<?php
 foreach ($this->replys as $key => $reply) :
-    $floor = $reply['floor']; 
+    $floor = $reply['floor'];
     $subFloors = $reply['subFloors'];
     $userinfo = $this->getUserInfo($floor['author']);
-?>
+    ?>
 		<div class="l_post ">
 				<a class="l_post_anchor" name="32914296642"></a>
 				<div class="d_author">
+				<?php
+                if ($this->article->author == $userinfo['id']) {
+                    ;
+                ?>
+				    <div class="louzhubiaoshi_wrap">
+						<div class="louzhubiaoshi" author="xxxjkloiqwe">
+							<a href="/p/2336142763?pid=32914033419&amp;see_lz=1#32914033419"></a>
+						</div>
+					</div>
+				<?php
+                }
+                ?>
 					<ul class="p_author post_icon">
 						<li>
 							<div class="icon_relative" style="padding: 4px; margin-top: 2px;">
 								<a class="p_author_face"
 									href="/i/315242756?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
 									target="_blank"><img class="avatar"
-									username="<?php echo $userinfo['username'] ?>" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $userinfo['avatar'] ?>"
+									username="<?php echo $userinfo['username'] ?>"
+									src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $userinfo['avatar'] ?>"
 									data-passive="loaded" style="width: 80px; height: 80px"></a>
 							</div>
 						</li>
 						<li class="d_name"><a class="p_author_name sign_highlight"><?php echo $userinfo['username'] ?></a></li>
 					</ul>
 				</div>
-				
+
 				<div class="d_post_content_main ">
 					<div class="p_content"><?php echo $floor['content'];?> </div>
 					<div class="core_reply j_lzl_wrapper">
@@ -138,7 +152,9 @@ foreach ($this->replys as $key => $reply) :
 														  <li class="lzl_single_post j_lzl_s_p first_no_border"><a
 										class="l_post_anchor" name="32919792193"></a>
 										<div class="lzl_cnt">
-											<a class="at" href="###" username="xxxjkloiqwe"><?php echo $subFloor['author']; ?></a>:
+											<a class="at" href="###" username="xxxjkloiqwe"><?php echo $this->getUserInfo($subFloor['author'])['username']; ?></a>
+											回复
+											<a class="at" href="###" username="xxxjkloiqwe"><?php echo $this->getUserInfo($subFloor['reply_to_author'])['username']; ?></a>
 											<span class="lzl_content_main"><?php echo $subFloor['content']?> </span>
 											<div class="lzl_content_reply">
 												<span class="lzl_jb" delete-data="" style="display: none;"><a
@@ -168,7 +184,7 @@ foreach ($this->replys as $key => $reply) :
 <div class="core_reply_tail">
 							<div class="j_lzl_r p_reply"
 								data-field=">
-	                  <a      href="#"
+	                  <a       href="#"
 								class="lzl_link_unfold" style="display:;">
 								回复</a>
 							</div>
@@ -201,32 +217,9 @@ foreach ($this->replys as $key => $reply) :
 		</div>
 
 	</div>
-	<div id="write_content">
-		<div id="gr_set_top">
-			<h2 id="new_topic">发表主题</h2>
-		</div>
-		<div id="topic_con" class="gr_set_form ">
-			<dl>
-				<dt>正文：</dt>
-				<dd style="position: relative;">
-					<div class="editor_tip_show">
-						<div class="editor_banned_tip_info">
-							本吧发贴，请先 <a href="#">登录</a> | <a href="#">注册</a>&nbsp;
-						</div>
-					</div>
-					<textarea class="editor-textarea" name="content"
-						style="height: 250px;"></textarea>
-					<span class="desc"></span>
-				</dd>
-			</dl>
-			<dl class="sub_form">
-				<dt style="width: 75px;"></dt>
-				<dd>
-					<input type="submit" class="form_sub mogu-editor-post" value="发表" />
-				</dd>
-			</dl>
-		</div>
-	</div>
+	<?php
+echo $this->render('bbs/post.phtml');
+?>
 </div>
 <?php
 echo $this->render('common/footer.phtml');

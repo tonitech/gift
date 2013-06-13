@@ -798,7 +798,7 @@ a:link {
 }
 
 122
-nqgmedia     ="all    " .r5 {
+nqgmedia      ="all     " .r5 {
 	border-radius: 5px;
 }
 
@@ -1298,7 +1298,7 @@ nqgmedia     ="all    " .r5 {
 
 .setting_avartar .tfile {
 	position: absolute;
-	filter: alpha(opacity =         0);
+	filter: alpha(opacity =           0);
 	opacity: 0;
 	left: 255px;
 	left: 250px 9;
@@ -1594,8 +1594,7 @@ nqgmedia     ="all    " .r5 {
 }
 
 .login_btn {
-	background: url(/public/images/pop_icons.png) no-repeat
-		-999em -999em;
+	background: url(/public/images/pop_icons.png) no-repeat -999em -999em;
 	display: inline-block;
 	background-position: 0 -31px;
 	width: 117px;
@@ -1610,8 +1609,8 @@ nqgmedia     ="all    " .r5 {
 	width: 100%;
 	height: 2300px;
 	background-color: #dddddd;
-	_filter: alpha(opacity =         60);
-	filter: alpha(opacity =         60);
+	_filter: alpha(opacity =           60);
+	filter: alpha(opacity =           60);
 	-moz-opacity: 0.6;
 	-khtml-opacity: 0.6;
 	opacity: 0.6;
@@ -2375,3 +2374,11 @@ nqgmedia     ="all    " .r5 {
 	display: block;
 }
 /* ×¢²áÄ£¿é ½áÊø */
+.username {
+	width: auto;
+	height: 42px;
+	line-height: 42px;
+	text-align: right;
+	display: inline-block;
+	position: relative;
+}

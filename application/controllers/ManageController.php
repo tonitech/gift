@@ -51,7 +51,7 @@ class ManageController extends Zend_Controller_Action
             $authResult = $authObj->checkLogin($username, $password);
             if ($authResult['errorcode'] == 0) {
                 if (isset($rememberme)) {
-                    $cookieName = Zend_Registry::get('dbtable')->admin->cookie;
+                    $cookieName = Zend_Registry::get('config')->admin->cookie;
                     $cookie = $authObj->generateAuthSignature(
                         $authResult['result'], 
                         $authObj->getCookieExpireTime()

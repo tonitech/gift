@@ -12,13 +12,15 @@ echo $this->render('common/menu.phtml');
 					<div id="content" style="width:960px;">
 <?php
 echo $this->render('common/navi.phtml');
+$userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
+$avatar = $userinfo['result']['avatar'];
 ?>
 						<div id="setting_box" class="fl">
 							<div id="setting_form" class="setting_avartar">
 								<form id="avartarForm" enctype="multipart/form-data" method="POST" action="/upload/addpic">
 									<input type="hidden" name="type" value="avatar" />
 									<dl>
-										<dd>当前头像：</dd><dt><img class="head_bd r3" src="http://s5.mogujie.cn/b1/avatar/111029/11bug_kqyweyk7krbegzdwgfjeg5sckzsew_720x420.jpg_100x100.jpg" alt=""></dt>
+										<dd>当前头像：</dd><dt><img class="head_bd r3" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $avatar;?>" width="38px" height="38px"></dt>
 										<dd>上传新头像：</dd><dt style="position:relative;"><input type="text" id="viewAvartar" readonly="readonly" class="gray_text" onmouseout="document.getElementById('uploadAvartar').style.display='none';"/><input type="button" class="gray_button" onmouseover="document.getElementById('uploadAvartar').style.display='block';"  value="浏览..."/><input type="file" onchange="document.getElementById('viewAvartar').value=this.value;this.style.display='none';" class="tfile" id="uploadAvartar" name="avatar"/></dt>
 										<dd class="msg">&nbsp;</dd><dt class="msg">建议使用正方形的图片，支持JPG、GIF、JPG格式，100K以内。</dt>
 										<dd class="preview">预览：</dd><dt class="preview"></dt>

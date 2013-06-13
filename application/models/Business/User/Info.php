@@ -95,4 +95,54 @@ class Business_User_Info extends Business_User_Abstract
         }
         return $rtn;
     }
+    
+    /**
+     * 修改密码的时候判断是否为当前密码
+     * @param string $oldpwd
+     */
+    public function checkOldPwd($oldpwd)
+    {
+        $usertable = Zend_Registry::get('dbtable')->user;
+        $username = Business_User_Auth::getInstance()->getUserInfoBySession()['result'][$usertable->username];
+        $result = Utility_Db::getInstance()
+            ->conn()
+            ->select()
+            ->from($usertable->tablename, '*')
+            ->where($usertable->username . '=?', $username)
+            ->query()
+            ->fetch();
+        
+        if (md5($oldpwd) === $result[$usertable->password]) {
+            return array(
+                'errorcode' => 0,
+                'errormsg' => 'success'
+            );
+        } else {
+            return array(
+                'errorcode' => -1,
+                'errormsg' => 'fail'
+            );
+        }
+    }
+    
+    /**
+     * 修改密码
+     * @param string $pwd1
+     */
+    public function changePwd($pwd)
+    {
+        $userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
+        $usertable = Zend_Registry::get('dbtable')->user;
+        $bind = array($usertable->password => md5($pwd));
+        $where = $usertable->id . "='" . $userinfo['result'][$usertable->id] . "'";
+        Utility_Db::getInstance()
+            ->conn()
+            ->update($usertable->tablename, $bind, $where);
+        Business_User_Auth::getInstance()
+            ->logout()
+            ->userLogin(
+                $userinfo['result'][$usertable->username],
+                $pwd
+            );
+    }
 }

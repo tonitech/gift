@@ -4,7 +4,6 @@ class View_Helper extends Zend_Controller_Action
 	public function init()
 	{
 		parent::init();
-		
 		$cookieName = Zend_Registry::get('config')->user->cookie;
 		if (isset($_COOKIE[$cookieName])) {
 			$cookieResult = Business_User_Auth::getInstance()->validateAuthSignature(

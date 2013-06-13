@@ -16,6 +16,7 @@ class BbsController extends View_Helper
 		$articleTable = new DbTable_Article();
 		$articles = $articleTable->fetchAll(array('isvalid = ?' => 1));		
 		$this->view->articles = $articles;
+		$this->getLoginUserInfoView();
 	}
 	
 	public function postArticleAction()
@@ -65,5 +66,6 @@ class BbsController extends View_Helper
 		$reply = new Business_Forum_Reply($articleId);
 		$this->view->article = $article;
 		$this->view->replys = $reply->format();
+		$this->getLoginUserInfoView();
 	}
 }

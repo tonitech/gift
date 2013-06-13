@@ -54,34 +54,7 @@ class UserController extends View_Helper
 		$username = $this->_request->getParam('username');
 		$password = $this->_request->getParam('password');
 		if (!empty($username) && !empty($password)) {
-			$authObj = new Business_User_Auth();
-			$authResult = $authObj->checkLogin($username, $password);
-			if ($authResult['errorcode'] == 0) {
-				$cookieName = Zend_Registry::get('config')->user->cookie;
-				$cookie = $authObj->generateAuthSignature(
-					$authResult['result'],
-					$authObj->getCookieExpireTime()
-				);
-				setcookie(
-					$cookieName,
-					$cookie,
-					$authObj->getCookieExpireTime()
-				);
-				$authObj->setUserLogin($authResult['result']);
-				$rtn['errorcode'] = 0;
-				$rtn['errormsg'] = 'succes';
-				$rtn['result'] = array(
-					'id' => $authResult['result']['id'],
-					'username' => $authResult['result']['username'],
-					'avatar' => $authResult['result']['avatar']
-				);
-				$rtn['cookieName'] = $cookieName;
-				$rtn['cookieValue'] = $cookie;
-				$rtn['expire'] = $authObj->getCookieExpireTime();
-			} else {
-				$rtn['errorcode'] = -1;
-				$rtn['errormsg'] = '用户名和密码错误！';
-			}
+			$rtn = Business_User_Auth::getInstance()->userLogin($username, $password);
 		} else {
 			$rtn['errorcode'] = -2;
 			$rtn['errormsg'] = '请输入用户名和密码！';
@@ -238,12 +211,12 @@ class UserController extends View_Helper
     
     public function avatarAction()
     {
-    
+        $this->getLoginUserInfoView();
     }
     
     public function passwdAction()
     {
-    
+        $this->getLoginUserInfoView();
     }
     
     /**
@@ -252,9 +225,7 @@ class UserController extends View_Helper
      */
     public function logoutAction()
     {
-    	$authObj = new Business_User_Auth();
-    	$authObj->logout();
-    	$authObj->deleteCookie();
+    	Business_User_Auth::getInstance()->logout()->deleteCookie();
     	$this->_redirect('/');
     }
     
@@ -317,7 +288,7 @@ class UserController extends View_Helper
             	
             $userInfo['province'] = $this->_request->getQuery("province");
             $userInfo['city'] = $this->_request->getQuery("city");
-           $userInfo['district'] = $this->_request->getQuery("district");
+            $userInfo['district'] = $this->_request->getQuery("district");
             
             $userInfo['gender'] = $this->_request->getQuery("gender");
             
@@ -356,6 +327,53 @@ class UserController extends View_Helper
                 );
             }
             $this->_helper->getHelper('Json')->sendJson($result);
+        }
+    }
+    
+    public function changePasswordAction()
+    {
+        $userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
+        if ($userinfo['errorcode'] !== 0) {
+            $this->_redirect('/user');
+        } else {
+            $rtn = array();
+            if ($this->_request->isPost()) {
+                $oldpwd = $this->_request->getPost("oldpwd");
+                $pwd1 = $this->_request->getPost("pwd1");
+                $pwd2 = $this->_request->getPost("pwd2");
+                
+                $isOldpwd = Business_User_Info::getInstance()->checkOldPwd($oldpwd);
+                if ($isOldpwd['errorcode'] == -1) {
+                    $rtn = array(
+                        'errorcode' => -1,
+                        'errormsg' => "当前密码输入错误！"
+                    );
+                    $isValid = false;
+                } elseif (mb_strlen($pwd1) < 6 || mb_strlen($pwd1) > 16) {
+                    $rtn = array(
+                        'errorcode' => -2,
+                        'errormsg' => "密码长度应为6~16个字符！"
+                    );
+                    $isValid = false;
+                } elseif ($pwd1 != $pwd2) {
+                    $rtn = array(
+                        'errorcode' => -3,
+                        'errormsg' => "两次输入的密码不同！"
+                    );
+                    $isValid = false;
+                } else {
+                    $isValid = true;
+                }
+    
+                if ($isValid) {
+                    Business_User_Info::getInstance()->changePwd($pwd1);
+                    $rtn = array(
+                        'errorcode' => 0,
+                        'errormsg' => "success"
+                    );
+                }
+            }
+            $this->_helper->getHelper('Json')->sendJson($rtn);
         }
     }
 }

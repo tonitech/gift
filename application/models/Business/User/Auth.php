@@ -79,7 +79,7 @@ class Business_User_Auth extends Business_User_Abstract
      */
     public function validateAuthSignature($signature = '')
     {
-        $cookieName = Zend_Registry::get('dbtable')->user->cookie;
+        $cookieName = Zend_Registry::get('config')->user->cookie;
         if (empty($signature)) {
             if (!isset($_COOKIE[$cookieName])) {
                 return array(
@@ -219,6 +219,7 @@ class Business_User_Auth extends Business_User_Abstract
 			$user->__unset('user');
 			$user->__unset('userinfo');
 		}
+		return $this;
     }
     
     /**
@@ -228,7 +229,7 @@ class Business_User_Auth extends Business_User_Abstract
     public function deleteCookie()
     {
         $cookieName = Zend_Registry::get('config')->user->cookie;
-        setcookie($cookieName, '', time());
+        setcookie($cookieName, '', 0, '/');
     }
     
     /**
@@ -256,5 +257,38 @@ class Business_User_Auth extends Business_User_Abstract
                 'errormsg' => 'failed',
             );
         }
+    }
+    
+    public function userLogin($username, $password)
+    {
+        $authResult = $this->checkLogin($username, $password);
+        if ($authResult['errorcode'] == 0) {
+            $cookieName = Zend_Registry::get('config')->user->cookie;
+            $cookie = $this->generateAuthSignature(
+                $authResult['result'],
+                $this->getCookieExpireTime()
+            );
+            setcookie(
+                $cookieName,
+                $cookie,
+                $this->getCookieExpireTime(),
+                '/'
+            );
+            $this->setUserLogin($authResult['result']);
+            $rtn['errorcode'] = 0;
+            $rtn['errormsg'] = 'succes';
+            $rtn['result'] = array(
+                'id' => $authResult['result']['id'],
+                'username' => $authResult['result']['username'],
+                'avatar' => $authResult['result']['avatar']
+            );
+            $rtn['cookieName'] = $cookieName;
+            $rtn['cookieValue'] = $cookie;
+            $rtn['expire'] = $this->getCookieExpireTime();
+        } else {
+            $rtn['errorcode'] = -1;
+            $rtn['errormsg'] = '用户名和密码错误！';
+        }
+        return $rtn;
     }
 }
