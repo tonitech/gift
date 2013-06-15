@@ -2,6 +2,7 @@
 echo $this->render('common/header.phtml');
 ?>
 <?php
+
 echo $this->render('common/menu.phtml');
 ?>
 <div id="container">
@@ -17,8 +18,55 @@ echo $this->render('common/menu.phtml');
 			<div class="topic_filter">
 				<div class="fl">
 					<div class="filter_module">
-						<b class="title">排序方式</b> <a href="#" class="selector">最新回应</a> <a
-							href="#" class="selector ">最新创建</a> <a href="#" class="selector ">回复最多</a>
+						<b class="title">排序方式</b>
+						<?php
+    if ($this->order == 'ctime') {
+        ?>
+                        <a
+							href="<?php echo APPLICATION_ACTION_PATH; ?>/bbs/index/order/ctime"
+							class="current">最新创建</a>
+                        <?php
+    } else {
+        ?>
+						<a
+							href="<?php echo APPLICATION_ACTION_PATH; ?>/bbs/index/order/ctime"
+							class="selector">最新创建</a>
+						<?php
+    }
+    ?>
+						
+						<?php
+    if ($this->order == 'mtime') {
+        ?>
+                        <a
+							href="<?php echo APPLICATION_ACTION_PATH; ?>/bbs/index/order/mtime"
+							class="current">最新回应</a>
+                        <?php
+    } else {
+        ?>
+						<a
+							href="<?php echo APPLICATION_ACTION_PATH; ?>/bbs/index/order/mtime"
+							class="selector">最新回应</a>
+						<?php
+    }
+    ?>
+						
+						<?php
+    if ($this->order == 'liked_times') {
+        ?>
+                        <a
+							href="<?php echo APPLICATION_ACTION_PATH; ?>/bbs/index/order/liked_times"
+							class="current">回复最多</a>
+                        <?php
+    } else {
+        ?>
+						<a
+							href="<?php echo APPLICATION_ACTION_PATH; ?>/bbs/index/order/liked_times"
+							class="selector">回复最多</a>
+						<?php
+    }
+    ?>
+						
 					</div>
 				</div>
 				<a href="#new_topic" class="newtopic_btn"></a>
@@ -27,10 +75,13 @@ echo $this->render('common/menu.phtml');
 	</div>
 	<div id="content_list">
 		<ul class="threadlist">
-		<?php foreach ($this->articles as $key => $article) :  
-		          $title = $article->title; $likeTimes = $article->liked_times;
-		          $table = Zend_Registry::get('dbtable')->user;
-		?>
+		<?php
+
+foreach ($this->articles as $key => $article) :
+    $title = $article->title;
+    $likeTimes = $article->liked_times;
+    $table = Zend_Registry::get('dbtable')->user;
+    ?>
 		<li class="<?php if ($key % 2 == 1) echo "threadlist_li_gray"; ?>">
 				<div class="threadlist_li_left">
 					<div title="<?php echo $likeTimes; ?>个赞" class="threadlist_rep_num"><?php echo $likeTimes; ?></div>
@@ -43,9 +94,12 @@ echo $this->render('common/menu.phtml');
 						</div>
 						<div class="threadlist_author" title="主题作者">
 							<span class="tb_icon_author "><a class="sign_highlight"
-								href="###"><?php 
-								$authorInfo = $this->getUserInfo($article->author);
-                                echo $authorInfo[$table->username]; ?></a></span>
+								href="<?php
+    $authorInfo = $this->getUserInfo($article->author);
+    echo APPLICATION_ACTION_PATH;
+    ?>/user/profile/uid/<?php echo $authorInfo[$table->id]; ?>"><?php
+    echo $authorInfo[$table->username];
+    ?></a></span>
 						</div>
 					</div>
 					<div class="threadlist_detail clearfix">
@@ -54,11 +108,13 @@ echo $this->render('common/menu.phtml');
 						</div>
 						<div class="threadlist_author">
 							<span class="tb_icon_author_rely" title="最后回复人"><a
-								href="/i/sys/jump?un=%CF%FB%CA%C5%CC%EC%B1%DF%B5%C4%BB%D8%D2%E4"
-								target="_blank"><?php 
-								$replyAuthorInfo = $this->getUserInfo($article->last_reply_id);
-                                echo $replyAuthorInfo[$table->username]; ?></a></span> <span
-								class="threadlist_reply_date" title="最后回复时间"><?php echo date('H:i', strtotime($article->mtime)); ?></span>
+								href="<?php
+    $replyAuthorInfo = $this->getUserInfo($article->last_reply_id);
+    echo APPLICATION_ACTION_PATH;
+    ?>/user/profile/uid/<?php echo $replyAuthorInfo[$table->id]?>"><?php
+    echo $replyAuthorInfo[$table->username];
+    ?></a></span>
+							<span class="threadlist_reply_date" title="最后回复时间"><?php echo date('H:i', strtotime($article->mtime)); ?></span>
 						</div>
 					</div>
 				</div>
@@ -68,8 +124,8 @@ echo $this->render('common/menu.phtml');
 	</ul>
 	</div>
 	<?php
-    echo $this->render('bbs/post.phtml');
-    ?>
+echo $this->render('bbs/post.phtml');
+?>
 </div>
 <?php
 echo $this->render('common/footer.phtml');

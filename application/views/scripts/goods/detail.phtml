@@ -44,10 +44,7 @@ $details = $this->details;
 			<div class="fr" id="right_side">
 				<div class="fav_wrap_content clearfix">
 					<div class="favorite ">
-						<a tid="1epg4pg" fc="shopping"
-							valid="4u4bde1363197602st8a1ba7a991c0cc0652a7e4"
-							validcode="9236c4d0f447ca7bce139f52b83bb4da" class="favaImg"
-							href="javascript:;">喜欢</a>
+						<a id="likeButton" class="favaImg" href="javascript:;">喜欢</a>
 						<div class="favDiv fl">
 							<a target="_blank" class="favCount"><?php echo $details[$table->like];?></a>
 							<i></i>
@@ -76,7 +73,7 @@ $details = $this->details;
 					<h2 class="title">分享的可爱会员</h2>
 					<div class="share_user_info clearfix">
 						<div class="pic fl">
-							<a target="_blank" href="/u/11g22ei"> <img width="49px"
+							<a target="_blank" href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $userinfo['id']?>"> <img width="49px"
 								height="49px"
 								src="<?php echo APPLICATION_PUBLIC_PATH . $userinfo['avatar'];?>"
 								alt="<?php echo $userinfo['username'];?>"
@@ -84,7 +81,7 @@ $details = $this->details;
 							</a>
 						</div>
 						<div class="content">
-							<a target="_blank" href="/u/11g22ei" class="icard avt uname"><?php echo $userinfo['username'];?></a>
+							<a target="_blank" href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $userinfo['id']?>" class="icard avt uname"><?php echo $userinfo['username'];?></a>
 							<span class="get_fav">获得<?php echo $details[$table->like]; ?>个喜欢</span>
 							<p class="tweet_from">
 								<span></span>
@@ -118,25 +115,25 @@ $details = $this->details;
 					<!-- 评论列表 begin -->
 					<div class="note_comment">
 						<ul id="note_comment_list" class="c_l rb5">
-						<?php 
-						$comments = $this->comments;
-						foreach ($comments as $comment) {
-                            $commentUserInfo = $this->getUserInfo($comment['author']);
-						?>
-							<li class="c_f" uid="" tid="1eq7pq8"><a href="/u/1lxx68"
+						<?php
+    $comments = $this->comments;
+    foreach ($comments as $comment) {
+        $commentUserInfo = $this->getUserInfo($comment['author']);
+        ?>
+							<li class="c_f" uid="" tid="1eq7pq8"><a href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $commentUserInfo['id']?>"
 								target="_blank"><img
 									src="<?php echo APPLICATION_PUBLIC_PATH . $commentUserInfo['avatar']; ?>"
-									class="avt icard" alt="<?php echo $commentUserInfo['username']?>"></a>
+									class="avt icard"
+									alt="<?php echo $commentUserInfo['username']?>"></a>
 								<p class="sms">
-									<a href="/u/1lxx68" target="_blank" class="n icard"><?php echo $commentUserInfo['username']?></a>
+									<a href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $commentUserInfo['id']?>" target="_blank" class="n icard"><?php echo $commentUserInfo['username']?></a>
 								</p>
 								<p class="sms">
 									<?php echo $comment['content']?><span>&nbsp;&nbsp;&nbsp;<?php echo date('Y-m-d H:i:s', strtotime($comment['ctime'])); ?></span>
-								</p>
-							</li>
-						<?php 
-                        }
-                        ?>
+								</p></li>
+						<?php
+    }
+    ?>
 						</ul>
 					</div>
 					<!-- 评论列表 end -->

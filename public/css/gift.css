@@ -1901,6 +1901,7 @@ nqgmedia      ="all     " .r5 {
 	border: 1px solid #fff1cd;
 	border-radius: 5px;
 	background-color: #fffdf7;
+	padding:10px 0;
 }
 
 .goods_link,.goods_tuan_link {
@@ -1926,7 +1927,7 @@ nqgmedia      ="all     " .r5 {
 
 .goods_link .price {
 	color: #444;
-	font-size: 24px;
+	font-size: 16px;
 	font-weight: bold;
 	font-family: 'MicroSoft Yahei';
 	line-height: 28px;
@@ -1938,23 +1939,22 @@ nqgmedia      ="all     " .r5 {
 }
 
 .goods_link .buy_link,.tuan_info .buy_link {
-	height: 41px;
-	line-height: 41px;
-	background-position: 0 -200px;
-	width: 101px;
+	height: 30px;
+	line-height:30px;
+	background-position: 0 0px;
+	width: 70px;
 	font-size: 14px;
 	font-weight: bold;
 	color: #fff;
 	text-align: center;
 	position: absolute;
-	top: 20px;
-	left: 280px;
-	_left: 270px;
+	top: 35px;
+	right:15px;
 }
 
 .buy_link,.get_tuan_btn,.get_tuan_btn .s,.tuan_div .tuan_account,.tuan_div i,.same_tip_box .same_tip,.same_tip_box i
 	{
-	background: url(/public/images/icon-note-v5.png) no-repeat;
+	background: url(/public/images/2r6z_kqyta2lym5begrdwgfjeg5sckzsew_70x30.png) no-repeat;
 }
 
 .clearfix {
@@ -2032,7 +2032,8 @@ nqgmedia      ="all     " .r5 {
 	display: block;
 	width: 46px;
 	height: 24px;
-	margin: 0 0 0 5px;
+	margin-right:60px;
+	margin-top:10px;
 	padding-right: 2px;
 }
 

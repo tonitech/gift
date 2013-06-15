@@ -16,7 +16,7 @@ class Business_Goods_Operation extends Business_Goods_Abstract
         return self::$_instance;
     }
     
-	public function getGoodsList($page, $rowcount, $order = null, $cates = null, $userid = null, $usertype = null)
+	public function getGoodsList($page, $rowcount, $order = null, $cates = null, $userid = null, $usertype = null, $where = null)
 	{
 		$stmt = Utility_Db::getInstance()
 			->conn()
@@ -53,6 +53,10 @@ class Business_Goods_Operation extends Business_Goods_Abstract
 			$stmt->order($order . ' DESC');
 		} else {
 			$stmt->order('price DESC');
+		}
+		
+		if ($where != null) {
+		    $stmt->where('`name` like \'%' . $where . '%\'');
 		}
 		
 		if ($cates != null) {
@@ -228,6 +232,48 @@ class Business_Goods_Operation extends Business_Goods_Abstract
 	            'errorcode' => -2,
 	            'errormsg' => $e->getMessage()
 	        );
+	    }
+	    return $rtn;
+	}
+	
+	public function setGoodsLike($id)
+	{
+	    $updateBind = array(
+	        'mtime' => date('c'),
+	        'like' => new Zend_Db_Expr('`like`+1')
+	    );
+	    $where = array('id=?' => $id);
+	    $rtn = $this->updateGoods($updateBind, $where);
+	    
+	    $userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
+	    if ($userinfo['errorcode'] == -1) {
+	        $rtn = $userinfo;
+	    } else {
+    	    $bind = array(
+    	        'ctime' => date('c'),
+    	        'mtime' => date('c'),
+    	        'userid' => $userinfo['result']['id'],
+    	        'productid' => $id
+    	    );
+    	    try {
+    	       $result = Utility_Db::getInstance()->conn()->insert('userlike', $bind);
+    	       if ($result) {
+    	           $rtn = array(
+    	               'errorcode' => 0,
+    	               'errormsg' => 'success'
+    	           );
+    	       } else {
+    	           $rtn = array(
+    	               'errorcode' => -2,
+    	               'errormsg' => 'failed'
+    	           );
+    	       }
+    	    } catch (Exception $e) {
+    	        $rtn = array(
+    	            'errorcode' => -3,
+    	            'errormsg' => $e->getMessage()
+    	        );
+    	    }
 	    }
 	    return $rtn;
 	}

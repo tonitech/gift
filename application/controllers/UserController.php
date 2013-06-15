@@ -55,7 +55,7 @@ class UserController extends View_Helper
 		$username = $this->_request->getParam('username');
 		$password = $this->_request->getParam('password');
 		if (!empty($username) && !empty($password)) {
-		    $authResult = $this->checkLogin($username, $password);
+		    $authResult = Business_User_Auth::getInstance()->checkLogin($username, $password);
 		    if ($authResult['errorcode'] == 0) {
     			$rtn = Business_User_Auth::getInstance()->userLogin($authResult['result']['id'], $password);
 		    } else {
@@ -78,12 +78,11 @@ class UserController extends View_Helper
 		    if ($this->_request->isPost()) {
 		        //用户名判断
 		        $username = $this->_request->getPost("username");
-		        if (mb_strlen($username) < 2 || mb_strlen($username) > 20) {
-		            $this->view->username = $username;
-		            $this->view->usernameHint = "用户名长度必须为2-20个字符！";
+		        $this->view->username = $username;
+		        if (mb_strlen($username) < 6 || mb_strlen($username) > 20) {
+		            $this->view->usernameHint = "用户名长度必须为6-20个字符！";
 		            $usernameJudge = false;
 		        } elseif (!$signupObj->isNotExist($username)) {
-		            $this->view->username = $username;
 		            $this->view->usernameHint = "用户名已被注册！";
 		            $usernameJudge = false;
 		        } else {
@@ -496,5 +495,14 @@ class UserController extends View_Helper
             );
         }
         $this->_helper->getHelper('Json')->sendJson($rtn);
+    }
+    
+    public function profileAction()
+    {
+        $this->view->title = '自家乐园';
+        $userid = $this->_request->getParam('uid');
+        $userinfo = Business_User_Auth::getInstance()->getUserInfoById($userid);
+        $this->view->userinfo = $userinfo;
+        $this->render('index');
     }
 }

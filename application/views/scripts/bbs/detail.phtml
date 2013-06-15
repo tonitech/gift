@@ -42,13 +42,14 @@ $userinfo = $this->getUserInfo($this->article->author);
 						<li>
 							<div class="icon_relative" style="padding: 4px; margin-top: 2px;">
 								<a class="p_author_face"
-									href="/i/315242756?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
+									href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $userinfo['id']?>"
 									target="_blank"><img class="avatar"
 									src="<?php echo APPLICATION_PUBLIC_PATH . $userinfo['avatar'] ?>"
 									data-passive="loaded" style="width: 80px; height: 80px"></a>
 							</div>
 						</li>
-						<li class="d_name"><a class="p_author_name" href="###"
+						<li class="d_name"><a class="p_author_name"
+							href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $userinfo['id']?>"
 							target="_blank"><?php echo $userinfo['username'] ?></a></li>
 					</ul>
 				</div>
@@ -118,13 +119,14 @@ foreach ($this->replys as $key => $reply) :
 						<li>
 							<div class="icon_relative" style="padding: 4px; margin-top: 2px;">
 								<a class="p_author_face"
-									href="/i/315242756?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
+									href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $userinfo['id']?>"
 									target="_blank"><img class="avatar"
 									src="<?php echo APPLICATION_PUBLIC_PATH . $userinfo['avatar'] ?>"
 									data-passive="loaded" style="width: 80px; height: 80px"></a>
 							</div>
 						</li>
-						<li class="d_name"><a class="p_author_name sign_highlight"><?php echo $userinfo['username'] ?></a></li>
+						<li class="d_name"><a class="p_author_name sign_highlight"
+							href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $userinfo['id']?>"><?php echo $userinfo['username'] ?></a></li>
 					</ul>
 				</div>
 
@@ -156,23 +158,26 @@ foreach ($this->replys as $key => $reply) :
             ?>
                 <li class="lzl_single_post first_no_border"><a
 										class="l_post_anchor"></a> <a class="lzl_p_p"
-										href="/i/103280686?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
+										href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $authorInfo['id']?>"
 										target="_blank"> <img class="forscrollasync"
 											src="<?php echo APPLICATION_PUBLIC_PATH . $authorInfo['avatar']; ?>"
 											style="width: 32px; height: 32px">
 									</a>
 										<div class="lzl_cnt">
-											<a class="at" href="###"><?php
+											<a class="at"
+												href="<?php echo APPLICATION_ACTION_PATH; ?>/user/profile/uid/<?php echo $authorInfo['id']?>"><?php
             echo $authorInfo['username'];
             ?></a>
-            <?php 
+            <?php
             if ($subFloor['reply_to'] != $floor['id']) {
-            ?>
-                                回复 <a class="at" href="###"><?php
-            $replyAuthorInfo = $this->getUserInfo($subFloor['reply_to_author']);
-            echo $replyAuthorInfo['username'];
-            ?></a>
-            <?php    
+                ?>
+                                回复 <a class="at" href="<?php
+                $replyAuthorInfo = $this->getUserInfo($subFloor['reply_to_author']);
+                echo APPLICATION_ACTION_PATH;
+                ?>/user/profile/uid/<?php echo $replyAuthorInfo['id']?>"><?php
+                echo $replyAuthorInfo['username'];
+                ?></a>
+            <?php
             }
             ?>
                                 ：<span class="lzl_content_main"><?php echo $subFloor['content']; ?> </span>
@@ -185,10 +190,10 @@ foreach ($this->replys as $key => $reply) :
 													type="hidden" class="replyTo"
 													value="<?php echo $subFloor['id'];?>" /> <input
 													type="hidden" class="replyToUsername"
-													value="<?php 
-													$replyToUserinfo = $this->getUserInfo($subFloor['author']);
-													echo $replyToUserinfo['username'];
-													?>" />
+													value="<?php
+            $replyToUserinfo = $this->getUserInfo($subFloor['author']);
+            echo $replyToUserinfo['username'];
+            ?>" />
 											</div>
 										</div></li>
 <?php endforeach;?>

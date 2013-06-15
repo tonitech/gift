@@ -9,6 +9,8 @@ class GoodsController extends View_Helper
     {
         $this->view->title = 'Gift-选礼物';
         $this->getLoginUserInfoView();
+        $keyword = $this->_request->getParam('keyword');
+        $this->view->keyword = $keyword;
     }
     
     public function detailAction()
@@ -39,13 +41,14 @@ class GoodsController extends View_Helper
     	$userid = $this->_request->getParam('userid');
     	$usertype = $this->_request->getParam('usertype');
     	$order = $this->_request->getParam('order');
+    	$keyword = $this->_request->getParam('keyword');
     	
     	$table = Zend_Registry::get('dbtable')->goods;
     	$operationObj = new Business_Goods_Operation();
     	if (empty($page)) {
     		$page = 1;
     	}
-    	$list = $operationObj->getGoodsList($page, 12, $order, $cate, $userid, $usertype);
+    	$list = $operationObj->getGoodsList($page, 12, $order, $cate, $userid, $usertype, $keyword);
     	$blocks = array();
     	foreach ($list as $item) {
     	    $userinfo = Business_User_Auth::getInstance()->getUserInfoById($item[$table->userid]);
@@ -74,12 +77,12 @@ class GoodsController extends View_Helper
 	        			</a>
 	        		</div>
 	        		<div class="user">
-	        			<a title="amy" href="/u/9" target="_blank">
+	        			<a title="amy" href="' . APPLICATION_ACTION_PATH . '/user/profile/uid/' . $userinfo['id'] . '" target="_blank">
 	        				<img class="GUID lazyload" uid="9" src="' . APPLICATION_PUBLIC_PATH . $userinfo['avatar'] . '" width="30" alt="' . $userinfo['username'] . '" style="display: block;">
 	        			</a>
 	        			<p>
 	        				<span class="u">
-	        					<a class="GUID " uid="9" title="' . $userinfo['username'] . '" href="/u/9" target="_blank">' . $userinfo['username'] . '
+	        					<a class="GUID " uid="9" title="' . $userinfo['username'] . '" href="' . APPLICATION_ACTION_PATH . '/user/profile/uid/' . $userinfo['id'] . '" target="_blank">' . $userinfo['username'] . '
 	        					</a>
 	        				</span>
 	        				<span class="t">' . date('Y年m月d日 H:i', strtotime($item[$table->ctime])) . '
@@ -125,5 +128,25 @@ class GoodsController extends View_Helper
     	    $rtn = Business_Goods_Comment::getInstance()->setComment($bind);
 	    }
 	    $this->_helper->getHelper('Json')->sendJson($rtn);
+	}
+	
+	public function likeAction()
+	{
+	    $goodsid = $this->getRequest()->getParam('goodsid');
+	    $rtn = Business_Goods_Operation::getInstance()->setGoodsLike($goodsid);
+	    $this->_helper->getHelper('Json')->sendJson($rtn);
+	}
+	
+	public function searchAction()
+	{
+	    $keyword = $this->getRequest()->getParam('keyword');
+	    $result = Utility_Db::getInstance()
+	       ->conn()
+	       ->select()
+	       ->from('goods', '*')
+	       ->where('`name` like \'%' . $keyword . '%\'')
+	       ->query()
+	       ->fetchAll();
+	    var_dump($result);exit;
 	}
 }

@@ -12,10 +12,11 @@ class BbsController extends View_Helper
 	 */
 	public function indexAction()
 	{
-		//$this->getLoginUserInfoView();
+	    $order = $this->getRequest()->getParam('order', 'ctime');
 		$articleTable = new DbTable_Article();
-		$articles = $articleTable->fetchAll(array('isvalid = ?' => 1), 'ctime DESC');		
+		$articles = $articleTable->fetchAll(array('isvalid = ?' => 1), $order . ' DESC');
 		$this->view->articles = $articles;
+		$this->view->order = $order;
 		$this->getLoginUserInfoView();
 	}
 	

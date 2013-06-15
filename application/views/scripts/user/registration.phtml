@@ -11,7 +11,6 @@ echo $this->render('common/menu.phtml');
 		<div class="blank15"></div>
 		<span>加入gift，发现最美好的礼物，分享选购礼品乐趣。</span>
 		<div id="register_center">
-			<div><?php echo $this->errormsg; ?></div>
 			<div id="register_form">
 				<form action="/user/registration" method="post" id="registerForm">
 					<div class="ipt_ulike">
@@ -51,10 +50,10 @@ echo $this->render('common/menu.phtml');
                 if (isset($this->usernameHint)) {
                     echo $this->usernameHint;
                 } else {
-                ?>支持中文，由2~20个字符组成，中文算两个字符。<?php } ?></div>
+                ?>支持中文，由6~20个字符组成，中文算两个字符。<?php } ?></div>
 				<div class="err_password"><?php
                 if (isset($this->pwd1Hint)) {
-                    echo $this->usernameHint;
+                    echo $this->pwd1Hint;
                 } else {
                 ?>6-20个字母、数字或者符号<?php } ?></div>
 				<div class="err_rstpassword"><?php
