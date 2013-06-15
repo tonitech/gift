@@ -90,21 +90,15 @@ class Business_Manage_Homepage
      * return array(
             $slider, 
             $sliderTable, 
-            $modules, 
-            $modulesTable
         );
      */
     public function getSliderAndModules()
     {
         $slider = $this->getHomepageSlider();
-        $modules = $this->getHomepageModules();
         $sliderTable = $this->getHomepageSliderTableInfo();
-        $modulesTable = $this->getHomepageModulesTableInfo();
         return array(
             $slider, 
             $sliderTable, 
-            $modules, 
-            $modulesTable
         );
     }
 }

@@ -134,11 +134,9 @@ class ManageController extends Zend_Controller_Action
         } else {
             $this->view->errormsg = 'Nothing submitted!';
         }
-        list($slider, $sliderTable, $modules, $modulesTable) = $homepageObj->getSliderAndModules();
+        list($slider, $sliderTable) = $homepageObj->getSliderAndModules();
         $this->view->slider = $slider;
         $this->view->sliderTable = $sliderTable;
-        $this->view->modules = $modules;
-        $this->view->modulesTable = $modulesTable;
         $this->render('homepage');
     }
 }

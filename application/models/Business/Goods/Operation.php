@@ -238,13 +238,6 @@ class Business_Goods_Operation extends Business_Goods_Abstract
 	
 	public function setGoodsLike($id)
 	{
-	    $updateBind = array(
-	        'mtime' => date('c'),
-	        'like' => new Zend_Db_Expr('`like`+1')
-	    );
-	    $where = array('id=?' => $id);
-	    $rtn = $this->updateGoods($updateBind, $where);
-	    
 	    $userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
 	    if ($userinfo['errorcode'] == -1) {
 	        $rtn = $userinfo;
@@ -258,10 +251,12 @@ class Business_Goods_Operation extends Business_Goods_Abstract
     	    try {
     	       $result = Utility_Db::getInstance()->conn()->insert('userlike', $bind);
     	       if ($result) {
-    	           $rtn = array(
-    	               'errorcode' => 0,
-    	               'errormsg' => 'success'
+    	           $updateBind = array(
+    	               'mtime' => date('c'),
+    	               'like' => new Zend_Db_Expr('`like`+1')
     	           );
+    	           $where = array('id=?' => $id);
+    	           $rtn = $this->updateGoods($updateBind, $where);
     	       } else {
     	           $rtn = array(
     	               'errorcode' => -2,
@@ -269,10 +264,17 @@ class Business_Goods_Operation extends Business_Goods_Abstract
     	           );
     	       }
     	    } catch (Exception $e) {
-    	        $rtn = array(
-    	            'errorcode' => -3,
-    	            'errormsg' => $e->getMessage()
-    	        );
+    	        if ($e->getCode() == 1062) {
+    	            $rtn = array(
+    	                'errorcode' => -3,
+    	                'errormsg' => '你已经喜欢过了！'
+    	            );
+    	        } else {
+        	        $rtn = array(
+        	            'errorcode' => -4,
+        	            'errormsg' => $e->getMessage()
+        	        );
+    	        }
     	    }
 	    }
 	    return $rtn;
