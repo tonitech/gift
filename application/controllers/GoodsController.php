@@ -136,17 +136,4 @@ class GoodsController extends View_Helper
 	    $rtn = Business_Goods_Operation::getInstance()->setGoodsLike($goodsid);
 	    $this->_helper->getHelper('Json')->sendJson($rtn);
 	}
-	
-	public function searchAction()
-	{
-	    $keyword = $this->getRequest()->getParam('keyword');
-	    $result = Utility_Db::getInstance()
-	       ->conn()
-	       ->select()
-	       ->from('goods', '*')
-	       ->where('`name` like \'%' . $keyword . '%\'')
-	       ->query()
-	       ->fetchAll();
-	    var_dump($result);exit;
-	}
 }
