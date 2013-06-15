@@ -19,11 +19,13 @@ echo $this->render('common/menu.phtml');
 		<div class="core_title_wrap" style="">
 			<div class="core_title core_title_theme2">
 				<a class="core_title_go_top" href="###">
-					<h1 class="core_title_txt" title="<?php $this->article->title?>"><?php echo $this->article->title; ?></h1>
+					<h1 class="core_title_txt"
+						title="<?php echo $this->article->title;?>"><?php echo $this->article->title; ?></h1>
 				</a>
 			</div>
 		</div>
-
+		<input type="hidden" value="<?php echo $this->article->id; ?>"
+			id="articleId" />
 		<div class="p_postlist">
 		<?php
 $userinfo = $this->getUserInfo($this->article->author);
@@ -162,28 +164,47 @@ foreach ($this->replys as $key => $reply) :
 										<div class="lzl_cnt">
 											<a class="at" href="###"><?php
             echo $authorInfo['username'];
-            ?></a> 回复 <a class="at" href="###"><?php
+            ?></a>
+            <?php 
+            if ($subFloor['reply_to'] != $floor['id']) {
+            ?>
+                                回复 <a class="at" href="###"><?php
             $replyAuthorInfo = $this->getUserInfo($subFloor['reply_to_author']);
             echo $replyAuthorInfo['username'];
-            ?></a>：<span class="lzl_content_main"><?php echo $subFloor['content']; ?> </span>
+            ?></a>
+            <?php    
+            }
+            ?>
+                                ：<span class="lzl_content_main"><?php echo $subFloor['content']; ?> </span>
 											<div class="lzl_content_reply">
 												<span class="lzl_op_list" style="display: none;"></span> <span
 													class="lzl_time"><?php echo $subFloor['ctime']; ?></span> <a
-													href="###" class="lzl_s_r">回复</a>
+													href="###" class="lzl_s_r">回复</a> <input type="hidden"
+													class="replyToAuthor"
+													value="<?php echo $subFloor['author'];?>" /> <input
+													type="hidden" class="replyTo"
+													value="<?php echo $subFloor['id'];?>" /> <input
+													type="hidden" class="replyToUsername"
+													value="<?php 
+													$replyToUserinfo = $this->getUserInfo($subFloor['author']);
+													echo $replyToUserinfo['username'];
+													?>" />
 											</div>
 										</div></li>
 <?php endforeach;?>
 										<li class="lzl_li_pager lzl_li_pager_s">
 										<p class="j_lzl_p">
 											<a href="###">我也说一句</a>
-										</p>
+										</p> <input type="hidden" class="replyToAuthor"
+										value="<?php echo $floor['author'];?>" /> <input type="hidden"
+										class="replyTo" value="<?php echo $floor['id'];?>" />
 										<p>&nbsp;</p>
 
 									</li>
 								</ul>
 
 								<div class="lzl_editor_container lzl_editor_container_s"
-									style="display: block;">
+									style="display: none;">
 									<div class="editor_for_container">
 										<div class="lzl_simple_wrapper" style="width: 773px;">
 											<textarea style="width: 767px;"></textarea>
@@ -195,7 +216,9 @@ foreach ($this->replys as $key => $reply) :
 												<td style="width: 75%;"></td>
 												<td style="width: 25%;">
 													<div class="lzl_panel_btn">
-														<span class="lzl_panel_submit">发表</span>
+														<span class="lzl_panel_submit">发表</span> <input
+															type="hidden" class="replyToAuthor" value="" /> <input
+															type="hidden" class="replyTo" value="" />
 													</div>
 												</td>
 											</tr>
@@ -238,7 +261,11 @@ foreach ($this->replys as $key => $reply) :
 												<td style="width: 75%;"></td>
 												<td style="width: 25%;">
 													<div class="lzl_panel_btn">
-														<span class="lzl_panel_submit">发表</span>
+														<span class="lzl_panel_submit">发表</span> <input
+															type="hidden" class="replyToAuthor"
+															value="<?php echo $floor['author'];?>" /> <input
+															type="hidden" class="replyTo"
+															value="<?php echo $floor['id'];?>" />
 													</div>
 												</td>
 											</tr>

@@ -29,7 +29,7 @@ $(function() {
 	});
 	
 	$('#postReply').click(function(){
-		var articleid = $('#articleid').val();
+		var articleid = $('#articleId').val();
 		var articleauthor = $('#articleauthor').val();
 		var replyto = $('#replyto').val();
 		var content = $('#article-content').val();
@@ -61,14 +61,46 @@ $(function() {
 	});
 	
 	$('.lzl_s_r').click(function(){
-		if ($(this).parents('ul').siblings('.lzl_editor_container').css('display') == 'block') {
-			
-		} else {
+		if ($(this).parents('ul').siblings('.lzl_editor_container').css('display') == 'none') {
 			$(this).parents('ul').siblings('.lzl_editor_container').slideToggle();
 		}
+		var replyToAuthor = $(this).siblings('.replyToAuthor').val();
+		var replyTo = $(this).siblings('.replyTo').val();
+		var replyToUsername = $(this).siblings('.replyToUsername').val();
+		$(this).parents('ul').siblings('.lzl_editor_container').find('.replyToAuthor').val(replyToAuthor);
+		$(this).parents('ul').siblings('.lzl_editor_container').find('.replyTo').val(replyTo);
+		$(this).parents('ul').siblings('.lzl_editor_container').find('textarea').attr('placeholder', '回复' + replyToUsername);
 	});
 	
 	$('.j_lzl_p').click(function(){
 		$(this).parents('ul').siblings('.lzl_editor_container').slideToggle();
+		var replyToAuthor = $(this).siblings('.replyToAuthor').val();
+		var replyTo = $(this).siblings('.replyTo').val();
+		$(this).parents('ul').siblings('.lzl_editor_container').find('.replyToAuthor').val(replyToAuthor);
+		$(this).parents('ul').siblings('.lzl_editor_container').find('.replyTo').val(replyTo);
+		$(this).parents('ul').siblings('.lzl_editor_container').find('textarea').attr('placeholder', '回复本楼');
+	});
+	
+	$('.lzl_panel_submit').click(function(){
+		var replyToAuthor = $(this).siblings('.replyToAuthor').val();
+		var replyTo = $(this).siblings('.replyTo').val();
+		var articleId = $('#articleId').val();
+		var content = $(this).parents('.lzl_panel_wrapper').siblings('.editor_for_container').find('textarea').val();
+		$.ajax({
+			url : '/bbs/reply-article',
+			type : 'post',
+			dataType : 'json',
+			data : {'articleid':articleId, 'articleauthor':replyToAuthor, 'replyto':replyTo, 'content':content},
+			success : function (data) {
+				if (data.errorcode == 0) {
+					alert('发帖成功！');
+					setTimeout(function(){
+						window.location.reload();
+					}, 1000); // 指定1秒刷新一次
+				} else if (data.errorcode == -1) {
+					$('#loginBox').popup();
+				}
+			}
+		});
 	});
 });

@@ -14,7 +14,7 @@ class BbsController extends View_Helper
 	{
 		//$this->getLoginUserInfoView();
 		$articleTable = new DbTable_Article();
-		$articles = $articleTable->fetchAll(array('isvalid = ?' => 1));		
+		$articles = $articleTable->fetchAll(array('isvalid = ?' => 1), 'ctime DESC');		
 		$this->view->articles = $articles;
 		$this->getLoginUserInfoView();
 	}
@@ -67,12 +67,22 @@ class BbsController extends View_Helper
 	                'mtime' => $time,
 	                'article_id' => $articleid,
 	                'reply_to_author' => $articleauthor,
-	                'reply_to' => 0,
+	                'reply_to' => $replyto,
 	                'content' => htmlspecialchars($content),
 	                'author' => $userinfo['result'][$usertable->id],
 	            )
 	        );
 	        $row->save();
+	        
+	        $bind = array(
+	            'mtime' => date('c'),
+	            'last_reply_id' => $userinfo['result'][$usertable->id],
+	            'liked_times' => new Zend_Db_Expr('`liked_times`+1')
+	        );
+	        
+	        $where = Utility_Db::getInstance()->conn()->quoteInto('id=?', $articleid);
+	        Utility_Db::getInstance()->conn()->update('articles', $bind, $where);
+	        
 	        $rtn['errorcode'] = 0;
 	        $rtn['errormsg'] = 'succes';
 	    }
