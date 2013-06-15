@@ -10,7 +10,10 @@ echo $this->render('common/menu.phtml');
 $table = Zend_Registry::get('dbtable')->goods;
 $details = $this->details;
 ?>
-<script type="text/javascript" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery.imgresize.js"></script>
+<script type="text/javascript"
+	src="<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery.imgresize.js"></script>
+<script type="text/javascript"
+	src="<?php echo APPLICATION_PUBLIC_PATH; ?>/js/goods.js"></script>
 <div id="body" class="fm960 clearfix">
 	<div id="content_top"></div>
 	<div class="piece piece_w960 piece_note">
@@ -69,22 +72,25 @@ $details = $this->details;
 				</div>
 				<!-- 纯图片时显示用户信息 begin-->
 				<div class="first_share">
-					<h2 class="title">第一个分享的可爱会员</h2>
+				<?php $userinfo = $this->getUserInfo($details[$table->userid]);?>
+					<h2 class="title">分享的可爱会员</h2>
 					<div class="share_user_info clearfix">
 						<div class="pic fl">
-							<a target="_blank" href="/u/11g22ei"> <img
-								src="http://s6.mogujie.cn/b7/avatar/130418/q116h_kqyuovs2njbewysugfjeg5sckzsew_120x120.jpg_48x48.jpg"
-								alt="WangShangHai" class="icard avt fl r3">
+							<a target="_blank" href="/u/11g22ei"> <img width="49px"
+								height="49px"
+								src="<?php echo APPLICATION_PUBLIC_PATH . $userinfo['avatar'];?>"
+								alt="<?php echo $userinfo['username'];?>"
+								class="icard avt fl r3">
 							</a>
 						</div>
 						<div class="content">
-							<a target="_blank" href="/u/11g22ei" class="icard avt uname">WangShangHai</a>
-							<span class="get_fav">获得其中3个喜欢</span>
+							<a target="_blank" href="/u/11g22ei" class="icard avt uname"><?php echo $userinfo['username'];?></a>
+							<span class="get_fav">获得<?php echo $details[$table->like]; ?>个喜欢</span>
 							<p class="tweet_from">
 								<span></span>
 							</p>
 							<p class="share_content">
-								<span class="t">05月15日 21:56</span>
+								<span class="t"><?php echo date('Y年m月d日 H:i:s', strtotime($details[$table->ctime])); ?></span>
 							</p>
 						</div>
 					</div>
@@ -97,30 +103,40 @@ $details = $this->details;
 					<div class="pub_area">
 						<div class="pub_area_bd">
 							<textarea id="pub_content" class="pub_txt"
-								def-v="你也可以顺便说点什么 O(∩_∩)O">你也可以顺便说点什么 O(∩_∩)O</textarea>
+								placeholder="你也可以顺便说点什么 O(∩_∩)O"></textarea>
 						</div>
 						<div class="pub_area_ft">
 							<a href="javascript:;" class="gray_btn submit r3 fr"
-								id="pub_submit"><span class="s">确定</span></a>
+								id="pub_submit"><span class="s">确定</span></a> <input
+								type="hidden" id="goodsId"
+								value="<?php echo $details[$table->id]; ?>" /> <input
+								type="hidden" id="goodsAuthor"
+								value="<?php echo $details[$table->userid]; ?>" />
 						</div>
 					</div>
 					<!-- 评论框 end -->
 					<!-- 评论列表 begin -->
 					<div class="note_comment">
 						<ul id="note_comment_list" class="c_l rb5">
+						<?php 
+						$comments = $this->comments;
+						foreach ($comments as $comment) {
+                            $commentUserInfo = $this->getUserInfo($comment['author']);
+						?>
 							<li class="c_f" uid="" tid="1eq7pq8"><a href="/u/1lxx68"
 								target="_blank"><img
-									src="http://s9.mogujie.cn/b7/avatar/130507/ayykc_kqyxa327njbhmrlwgfjeg5sckzsew_689x328.jpg_48x48.jpg"
-									class="avt icard" alt="小鸟包袋"></a>
+									src="<?php echo APPLICATION_PUBLIC_PATH . $commentUserInfo['avatar']; ?>"
+									class="avt icard" alt="<?php echo $commentUserInfo['username']?>"></a>
 								<p class="sms">
-									<a href="/u/1lxx68" target="_blank" class="n icard">小鸟包袋</a>
+									<a href="/u/1lxx68" target="_blank" class="n icard"><?php echo $commentUserInfo['username']?></a>
 								</p>
 								<p class="sms">
-									好看<span>&nbsp;&nbsp;&nbsp;今天 09:51</span>
+									<?php echo $comment['content']?><span>&nbsp;&nbsp;&nbsp;<?php echo date('Y-m-d H:i:s', strtotime($comment['ctime'])); ?></span>
 								</p>
-								<div>
-									<a href="javascript:;" w="f" class="rpl">回复</a>
-								</div></li>
+							</li>
+						<?php 
+                        }
+                        ?>
 						</ul>
 					</div>
 					<!-- 评论列表 end -->

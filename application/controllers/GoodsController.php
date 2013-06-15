@@ -18,6 +18,7 @@ class GoodsController extends View_Helper
     	$id = $this->_request->getParam('id');
     	$goodsOperationObj = new Business_Goods_Operation();
     	$this->view->details = $goodsOperationObj->getGoodsDetailsById($id);
+    	$this->view->comments = Business_Goods_Comment::getInstance()->getComment($id);
     }
     
     public function getProductIdAction()
@@ -47,6 +48,7 @@ class GoodsController extends View_Helper
     	$list = $operationObj->getGoodsList($page, 12, $order, $cate, $userid, $usertype);
     	$blocks = array();
     	foreach ($list as $item) {
+    	    $userinfo = Business_User_Auth::getInstance()->getUserInfoById($item[$table->userid]);
     		$blocks[] = '<div class="book_item hide1 masonry-brick" shareid="' . $item[$table->id] . '" id="' . $item[$table->keyid] . '" style="visibility: hidden; position: absolute;">
 	        	<div class="bi_body">
 	        		<ul class="pic">
@@ -73,11 +75,11 @@ class GoodsController extends View_Helper
 	        		</div>
 	        		<div class="user">
 	        			<a title="amy" href="/u/9" target="_blank">
-	        				<img class="GUID lazyload" uid="9" original="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" src="http://www.ibudian.com/public/upload/avatar/noavatar_small.jpg" width="30" alt="amy" style="display: block;">
+	        				<img class="GUID lazyload" uid="9" src="' . APPLICATION_PUBLIC_PATH . $userinfo['avatar'] . '" width="30" alt="' . $userinfo['username'] . '" style="display: block;">
 	        			</a>
 	        			<p>
 	        				<span class="u">
-	        					<a class="GUID " uid="9" title="amy" href="/u/9" target="_blank">amy
+	        					<a class="GUID " uid="9" title="' . $userinfo['username'] . '" href="/u/9" target="_blank">' . $userinfo['username'] . '
 	        					</a>
 	        				</span>
 	        				<span class="t">' . date('Y年m月d日 H:i', strtotime($item[$table->ctime])) . '
@@ -101,5 +103,27 @@ class GoodsController extends View_Helper
 		$goodsOperationObj = new Business_Goods_Operation();
 		$rtn = $goodsOperationObj->addGoods($goodsDetails);
 		$this->_helper->getHelper('Json')->sendJson($rtn);
+	}
+	
+	public function commentGoodsAction()
+	{
+	    $goodsid = $this->getRequest()->getParam('goodsid');
+	    $goodsauthor = $this->getRequest()->getParam('goodsauthor');
+	    $content = $this->getRequest()->getParam('content');
+	    $userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
+	    if ($userinfo['errorcode'] == -1) {
+	        $rtn = $userinfo;
+	    } else {
+    	    $bind = array(
+    	        'ctime' => date('c'),
+    	        'mtime' => date('c'),
+    	        'goods_id' => $goodsid,
+    	        'reply_to_author' => $goodsauthor,
+    	        'content' => $content,
+    	        'author' => $userinfo['result']['id']
+    	    );
+    	    $rtn = Business_Goods_Comment::getInstance()->setComment($bind);
+	    }
+	    $this->_helper->getHelper('Json')->sendJson($rtn);
 	}
 }

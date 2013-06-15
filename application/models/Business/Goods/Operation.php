@@ -6,6 +6,16 @@
  */
 class Business_Goods_Operation extends Business_Goods_Abstract
 {
+    private static $_instance;
+    
+    public static function getInstance()
+    {
+        if (empty(self::$_instance)) {
+            self::$_instance = new Business_Goods_Operation();
+        }
+        return self::$_instance;
+    }
+    
 	public function getGoodsList($page, $rowcount, $order = null, $cates = null, $userid = null, $usertype = null)
 	{
 		$stmt = Utility_Db::getInstance()
@@ -196,5 +206,29 @@ class Business_Goods_Operation extends Business_Goods_Abstract
 			}
 		}
 		return $cateArr;
+	}
+	
+	public function updateGoods($bind, $where)
+	{
+	    try {
+	       $result = Utility_Db::getInstance()->conn()->update('goods', $bind, $where);
+	       if ($result) {
+	           $rtn = array(
+	               'errorcode' => 0,
+	               'errormsg' => 'success'
+	           );
+	       } else {
+	           $rtn = array(
+	               'errorcode' => -1,
+	               'errormsg' => 'failed'
+	           );
+	       }
+	    } catch (Exception $e) {
+	        $rtn = array(
+	            'errorcode' => -2,
+	            'errormsg' => $e->getMessage()
+	        );
+	    }
+	    return $rtn;
 	}
 }

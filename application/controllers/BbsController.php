@@ -89,16 +89,6 @@ class BbsController extends View_Helper
 	    $this->_helper->getHelper('Json')->sendJson($rtn);
 	}
 
-	public function likeAction()
-	{
-		$aid = $this->getRequest()->getParam('aid');
-		$articleTable = new DbTable_Article();
-		$article = $articleTable->fetchRow(array('id = ?' => $aid));
-		$article->liked_times = $article->liked_times + 1;
-		$article->save();
-		$this->_redirect('/bbs/index');
-	}
-
 	public function detailAction()
 	{
 		$articleId = $this->getRequest()->getParam('aid');
