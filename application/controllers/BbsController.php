@@ -36,8 +36,8 @@ class BbsController extends View_Helper
         			'mtime' => $time,
         			'author' => $userinfo['result'][$usertable->id],
         			'liked_times' => 0,
-        			'content' => $content,
-        			'title' => $title,
+        			'content' => htmlspecialchars($content),
+        			'title' => htmlspecialchars($title),
     		        'last_reply_id' => $userinfo['result'][$usertable->id]
         		)
     		);
@@ -46,6 +46,37 @@ class BbsController extends View_Helper
     		$rtn['errormsg'] = 'succes';
 		}
 		$this->_helper->getHelper('Json')->sendJson($rtn);
+	}
+	
+	public function replyArticleAction()
+	{
+	    $articleid = $this->getRequest()->getParam('articleid');
+	    $articleauthor = $this->getRequest()->getParam('articleauthor');
+	    $replyto = $this->getRequest()->getParam('replyto');
+	    $content = $this->getRequest()->getParam('content');
+	    $replyTable = new DbTable_Reply();
+	    $time = date('c');
+	    $usertable = Zend_Registry::get('dbtable')->user;
+	    $userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
+	    if ($userinfo['errorcode'] == -1) {
+	        $rtn = $userinfo;
+	    } else {
+	        $row = $replyTable->createRow(
+	            array(
+	                'ctime' => $time,
+	                'mtime' => $time,
+	                'article_id' => $articleid,
+	                'reply_to_author' => $articleauthor,
+	                'reply_to' => 0,
+	                'content' => htmlspecialchars($content),
+	                'author' => $userinfo['result'][$usertable->id],
+	            )
+	        );
+	        $row->save();
+	        $rtn['errorcode'] = 0;
+	        $rtn['errormsg'] = 'succes';
+	    }
+	    $this->_helper->getHelper('Json')->sendJson($rtn);
 	}
 
 	public function likeAction()

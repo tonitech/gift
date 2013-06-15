@@ -1,3 +1,10 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
+	{
+	margin: auto;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+}
+
 body,button,input,select,textare,td,th {
 	font: 12px/18px 宋体;
 }
@@ -293,3 +300,151 @@ li {
 	margin: 0 0 8px 15px;
 	background: #fafafa;
 }
+
+.p_tail li,.p_mtail li {
+	display: inline;
+	margin-left: 6px;
+	color: #999;
+}
+/* 小回复框开始 */
+.core_reply_wrapper {
+	margin: 0 0 8px 15px;
+	background: #fafafa;
+}
+
+.core_reply_border_top {
+	background: url(../images/pb_css_pic.png) no-repeat -8px -224px;
+	height: 2px;
+	overflow: hidden;
+}
+
+.core_reply_content {
+	border-left: 1px solid #f4f4f4;
+	border-right: 1px solid #f4f4f4;
+	padding: 4px 15px 14px 15px;
+}
+
+.lzl_editor_container_s {
+	padding-top: 13px;
+}
+
+.lzl_simple_wrapper {
+	border: 2px solid #d6dffa;
+	background-color: #fff;
+	position: relative;
+}
+
+.lzl_editor_container .lzl_panel_wrapper {
+	width: 777px;
+	margin-top: 11px;
+	zoom: 1;
+}
+
+.lzl_panel_wrapper td {
+	vertical-align: bottom;
+}
+
+.lzl_panel_btn {
+	line-height: 24px;
+	zoom: 1;
+}
+
+.lzl_panel_submit {
+	cursor: pointer;
+	float: right;
+	width: 51px;
+	height: 24px;
+	color: #fff;
+	text-align: center;
+	background: url(../images/pb_css_pic.png) no-repeat -344px -7px;
+}
+
+.core_reply_border_bottom {
+	background: url(../images/pb_css_pic.png) no-repeat -8px -226px;
+	height: 2px;
+	overflow: hidden;
+}
+
+.core_reply_content li.first_no_border {
+	margin-top: 0;
+	border-top: 0;
+}
+
+.core_reply_content li {
+	margin-top: 6px;
+	padding-top: 10px;
+	border-top: 1px #d7d7d7 dotted;
+}
+
+.lzl_li_pager_s {
+	text-align: left;
+	overflow: hidden;
+}
+
+.l_post_anchor {
+	position: relative;
+	top: -43px;
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 0;
+}
+
+.lzl_p_p {
+	float: left;
+	width: 32px;
+	height: 32px;
+	border: 1px #ccc solid;
+	padding: 1px;
+}
+
+.lzl_cnt {
+	margin-left: 45px;
+	zoom: 1;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.lzl_cnt .at {
+	position: static;
+}
+
+.lzl_content_main {
+	color: #333;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.lzl_content_reply {
+	text-align: right;
+}
+
+.lzl_cnt .lzl_op_list {
+	color: #999;
+}
+
+.lzl_time {
+	color: #999;
+}
+
+.lzl_s_r {
+	color: #666;
+}
+
+.j_lzl_p {
+	cursor: pointer;
+	float: right;
+	width: 95px;
+}
+
+.j_lzl_p a {
+	background: url(../images/pb_css_pic.png) no-repeat -510px -7px;
+	display: block;
+	padding-left: 20px;
+	width: 75px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	text-decoration: none;
+}
+/* 小回复框结束 */

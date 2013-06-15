@@ -77,6 +77,7 @@ class Business_User_Info extends Business_User_Abstract
             $where = array('id=?' => $user['result']['id']);
             $rtn = $this->_db->update($this->_config->tablename, $userInfo, $where);
             if ($rtn) {
+                Business_User_Auth::getInstance()->refreshUserInfo();
                 return array(
                     'errorcode' => 0,
                     'errormsg' => '修改成功'
@@ -103,7 +104,8 @@ class Business_User_Info extends Business_User_Abstract
     public function checkOldPwd($oldpwd)
     {
         $usertable = Zend_Registry::get('dbtable')->user;
-        $username = Business_User_Auth::getInstance()->getUserInfoBySession()['result'][$usertable->username];
+        $userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
+        $username = $userinfo['result'][$usertable->username];
         $result = Utility_Db::getInstance()
             ->conn()
             ->select()
@@ -138,11 +140,6 @@ class Business_User_Info extends Business_User_Abstract
         Utility_Db::getInstance()
             ->conn()
             ->update($usertable->tablename, $bind, $where);
-        Business_User_Auth::getInstance()
-            ->logout()
-            ->userLogin(
-                $userinfo['result'][$usertable->username],
-                $pwd
-            );
+        Business_User_Auth::getInstance()->refreshUserInfo();
     }
 }

@@ -31,7 +31,8 @@ class UserController extends View_Helper
 				setcookie(
 					$cookieName,
 					$cookie,
-					$authObj->getCookieExpireTime()
+					$authObj->getCookieExpireTime(),
+					'/'
 				);
 				$authObj->setUserLogin($authResult['result']);
 				$this->_redirect('/user');
@@ -54,7 +55,13 @@ class UserController extends View_Helper
 		$username = $this->_request->getParam('username');
 		$password = $this->_request->getParam('password');
 		if (!empty($username) && !empty($password)) {
-			$rtn = Business_User_Auth::getInstance()->userLogin($username, $password);
+		    $authResult = $this->checkLogin($username, $password);
+		    if ($authResult['errorcode'] == 0) {
+    			$rtn = Business_User_Auth::getInstance()->userLogin($authResult['result']['id'], $password);
+		    } else {
+                $rtn['errorcode'] = -1;
+                $rtn['errormsg'] = '用户名和密码错误！';
+            }
 		} else {
 			$rtn['errorcode'] = -2;
 			$rtn['errormsg'] = '请输入用户名和密码！';
@@ -211,11 +218,43 @@ class UserController extends View_Helper
     
     public function avatarAction()
     {
+        $this->rediretToLogin();
         $this->getLoginUserInfoView();
+        
+        // 上传图片后，把图片复制到upload文件夹下面
+        if ($_POST) {
+            $photo = $_FILES['img']['name'];
+            $tmpAddr = $_FILES['img']['tmp_name'];
+            $path = 'public/avatar/';
+            $type = array(
+                "jpg",
+                "gif",
+                "jpeg",
+                "png"
+            );
+            $tool = substr(strrchr($photo, '.'), 1);
+            if (!in_array(strtolower($tool), $type)) {
+                echo "您只能上传以下类型文件: jpg, gif, jpeg, png！";
+            } else {
+                $filename = explode(".", $photo); // 把上传的文件名以"."好为准做一个数组。
+                $filename[0] = time(); // 取文件名，用时间戳
+                $name = implode(".", $filename); // 上传后的文件名
+                $uploadfile = $path . $name;
+                $uploadFileSession = new Zend_Session_Namespace('uploadfile');
+                $uploadFileSession->upfile = '/' . $uploadfile; // 上传后的文件名地址
+                $uploadFileSession->upfile2 = $uploadfile; // 上传后的文件名地址
+                move_uploaded_file($tmpAddr, $uploadfile);
+                list ($width, $height) = getimagesize($uploadfile);
+            }
+            $this->view->width = $width;
+            $this->view->height = $height;
+            $this->render('avatar');
+        }
     }
     
     public function passwdAction()
     {
+        $this->rediretToLogin();
         $this->getLoginUserInfoView();
     }
     
@@ -375,5 +414,87 @@ class UserController extends View_Helper
             }
             $this->_helper->getHelper('Json')->sendJson($rtn);
         }
+    }
+
+    public function uploadAvatarAction()
+    {
+        error_reporting(E_ALL);
+        
+        $x = $this->_request->getParam('x');
+        $y = $this->_request->getParam('y');
+        $w = $this->_request->getParam('w');
+        $h = $this->_request->getParam('h');
+        
+        $uploadFileSession = new Zend_Session_Namespace('uploadfile');
+        list($width, $height, $type) = getimagesize($uploadFileSession->upfile2);
+        $imageFileElements = explode('/', $uploadFileSession->upfile2);
+        $imageFileName = end($imageFileElements);
+        $supportType = array(
+            IMAGETYPE_JPEG,
+            IMAGETYPE_PNG,
+            IMAGETYPE_GIF
+        );
+        if (! in_array($type, $supportType, true)) {
+            echo "this type of image does not support! only support jpg , gif or png";
+            exit();
+        }
+        // Load image
+        switch ($type) {
+            case IMAGETYPE_JPEG:
+                $srcImg = imagecreatefromjpeg($uploadFileSession->upfile2);
+                break;
+            case IMAGETYPE_PNG:
+                $srcImg = imagecreatefrompng($uploadFileSession->upfile2);
+                break;
+            case IMAGETYPE_GIF:
+                $srcImg = imagecreatefromgif($uploadFileSession->upfile2);
+                break;
+            default:
+                echo "Load image error!";
+                exit();
+        }
+        $thumb = imagecreatetruecolor($w, $h);
+        imagecopyresampled($thumb, $srcImg, 0, 0, $x, $y, $w, $h, $w, $h);
+        switch ($type) {
+            case IMAGETYPE_JPEG:
+                $result = imagejpeg($thumb, $uploadFileSession->upfile2);
+                break;
+            case IMAGETYPE_PNG:
+                $result = imagepng($thumb, $uploadFileSession->upfile2);
+                break;
+            case IMAGETYPE_GIF:
+                $result = imagegif($thumb, $uploadFileSession->upfile2);
+                break;
+            default:
+                echo "Load image error!";
+                $result = false;
+                exit();
+        }
+        if ($result) {
+            $usertable = Zend_Registry::get('dbtable')->user;
+            $uploadFileElements = explode('/', $uploadFileSession->upfile2);
+            unset($uploadFileElements[0]);
+            $uploadFile = implode('/', $uploadFileElements);
+            $rtn = Business_User_Info::getInstance()->setBaseInfo(
+                array(
+                    $usertable->mtime => date('c'),
+                    $usertable->avatar => '/' . $uploadFile
+                )
+            );
+            
+            if ($result['errorcode'] == 0) {
+                $tmp = array('result' => $uploadFileSession->upfile);
+                $rtn = array_merge($rtn, $tmp);
+                $uploadFileSession->__unset('upfile');
+                $uploadFileSession->__unset('upfile2');
+                Business_User_Auth::getInstance()->refreshUserInfo();
+            }
+        } else {
+            $rtn = array(
+                'errorcode' => -1,
+                'errormsg' => 'failed'
+            );
+        }
+        $this->_helper->getHelper('Json')->sendJson($rtn);
     }
 }

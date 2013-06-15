@@ -2,7 +2,6 @@
 echo $this->render('common/header.phtml');
 ?>
 <?php
-
 echo $this->render('common/menu.phtml');
 ?>
 <div id="container">
@@ -44,17 +43,21 @@ echo $this->render('common/menu.phtml');
 						</div>
 						<div class="threadlist_author" title="主题作者">
 							<span class="tb_icon_author "><a class="sign_highlight"
-								href="###"><?php echo $this->getUserInfo($article->author)[$table->username]; ?></a></span>
+								href="###"><?php 
+								$authorInfo = $this->getUserInfo($article->author);
+                                echo $authorInfo[$table->username]; ?></a></span>
 						</div>
 					</div>
 					<div class="threadlist_detail clearfix">
 						<div class="threadlist_text">
-							<div class="threadlist_abs threadlist_abs_onlyline"><?php echo $article->content; ?></div>
+							<div class="threadlist_abs threadlist_abs_onlyline"><?php echo mb_substr($article->content, 0, 100,'utf-8'); ?></div>
 						</div>
 						<div class="threadlist_author">
 							<span class="tb_icon_author_rely" title="最后回复人"><a
 								href="/i/sys/jump?un=%CF%FB%CA%C5%CC%EC%B1%DF%B5%C4%BB%D8%D2%E4"
-								target="_blank"><?php echo $this->getUserInfo($article->last_reply_id)[$table->username]; ?></a></span> <span
+								target="_blank"><?php 
+								$replyAuthorInfo = $this->getUserInfo($article->last_reply_id);
+                                echo $replyAuthorInfo[$table->username]; ?></a></span> <span
 								class="threadlist_reply_date" title="最后回复时间"><?php echo date('H:i', strtotime($article->mtime)); ?></span>
 						</div>
 					</div>

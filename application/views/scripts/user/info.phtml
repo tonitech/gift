@@ -13,6 +13,11 @@ echo $this->render('common/menu.phtml');
 <?php
 echo $this->render('common/navi.phtml');
 ?>
+<script type='text/javascript'>
+$(function(){
+	$('.base_info').find('a').eq(0).removeClass().addClass('c');
+});
+</script>
 <script type='text/javascript' src='<?php echo APPLICATION_PUBLIC_PATH; ?>/js/info.js'></script>
 <?php 
 $info = $this->userinfo;

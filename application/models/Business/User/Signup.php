@@ -31,7 +31,7 @@ class Business_User_Signup extends Business_User_Abstract
         $base = array(
             $userTable->ctime => $time,
             $userTable->mtime => $time,
-            $userTable->avatar => 'avatar.png'
+            $userTable->avatar => '/avatar/avatar.png'
         );
         $bind = array_merge($base, $info);
         try {

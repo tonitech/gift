@@ -16,22 +16,23 @@ echo $this->render('common/menu.phtml');
 		</div>
 	</div>
 	<div class="core">
-		<div class="core_title_wrap" id="j_core_title_wrap" style="">
+		<div class="core_title_wrap" style="">
 			<div class="core_title core_title_theme2">
-				<a id="j_core_title_go_top" class="core_title_go_top" href="###"><h1
-						class="core_title_txt" title="<?php $this->article->title?>"><?php echo $this->article->title; ?></h1></a>
+				<a class="core_title_go_top" href="###">
+					<h1 class="core_title_txt" title="<?php $this->article->title?>"><?php echo $this->article->title; ?></h1>
+				</a>
 			</div>
 		</div>
 
-		<div class="p_postlist" id="j_p_postlist">
+		<div class="p_postlist">
 		<?php
 $userinfo = $this->getUserInfo($this->article->author);
 ?>
 			<div class="l_post noborder">
-				<a class="l_post_anchor" name="32914033419"></a>
+				<a class="l_post_anchor"></a>
 				<div class="d_author">
 					<div class="louzhubiaoshi_wrap">
-						<div class="louzhubiaoshi" author="xxxjkloiqwe">
+						<div class="louzhubiaoshi">
 							<a href="/p/2336142763?pid=32914033419&amp;see_lz=1#32914033419"></a>
 						</div>
 					</div>
@@ -41,8 +42,7 @@ $userinfo = $this->getUserInfo($this->article->author);
 								<a class="p_author_face"
 									href="/i/315242756?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
 									target="_blank"><img class="avatar"
-									username="<?php echo $userinfo['username'] ?>"
-									src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $userinfo['avatar'] ?>"
+									src="<?php echo APPLICATION_PUBLIC_PATH . $userinfo['avatar'] ?>"
 									data-passive="loaded" style="width: 80px; height: 80px"></a>
 							</div>
 						</li>
@@ -54,11 +54,12 @@ $userinfo = $this->getUserInfo($this->article->author);
 				<div class="d_post_content_main ">
 					<div class="p_content"><?php echo $this->article->content; ?> </div>
 
-					<div class="core_reply j_lzl_wrapper">
-						<a class="l_post_anchor" name="32914033419l"></a>
+					<div class="core_reply">
+						<a class="l_post_anchor"></a>
 						<div class="core_reply_tail">
 							<ul class="p_reply">
-								<li><a href="#" class="p_reply_first">回复</a></li>
+								<li><a href="#new_topic" class="p_reply_first"
+									style="cursor: pointer">回复</a></li>
 							</ul>
 
 							<ul class="p_tail">
@@ -66,24 +67,22 @@ $userinfo = $this->getUserInfo($this->article->author);
 								<li><span><?php echo $this->article->ctime; ?></span></li>
 							</ul>
 						</div>
-						<div class="j_lzl_container core_reply_wrapper "
-							style="display: none">
+						<div class="core_reply_wrapper " style="display: none">
 							<div class="core_reply_border_top"></div>
-							<div class="j_lzl_c_b_a core_reply_content">
-								<ul class="j_lzl_m_w" style="display: none">
-									<li class="lzl_li_pager j_lzl_l_p lzl_li_pager_s"
+							<div class="core_reply_content">
+								<ul style="display: none">
+									<li class="lzl_li_pager lzl_li_pager_s"
 										data-field="{&quot;total_num&quot;:&quot;&quot;,&quot;total_page&quot;:&quot;&quot;}">
-										<p class="j_lzl_p">
+										<p>
 											<a href="##">我也说一句</a>
 										</p>
 										<p>&nbsp;</p>
 
 									</li>
 								</ul>
-								<div
-									class="lzl_editor_container j_lzl_e_c lzl_editor_container_s"
+								<div class="lzl_editor_container lzl_editor_container_s"
 									style="display: none;"></div>
-								<input type="text" class="j_lzl_e_f_h" style="display: none;">
+								<input type="text" style="display: none;">
 							</div>
 							<div class="core_reply_border_bottom"></div>
 						</div>
@@ -99,28 +98,27 @@ foreach ($this->replys as $key => $reply) :
     $userinfo = $this->getUserInfo($floor['author']);
     ?>
 		<div class="l_post ">
-				<a class="l_post_anchor" name="32914296642"></a>
+				<a class="l_post_anchor"></a>
 				<div class="d_author">
 				<?php
-                if ($this->article->author == $userinfo['id']) {
-                    ;
-                ?>
+    if ($this->article->author == $userinfo['id']) {
+        ;
+        ?>
 				    <div class="louzhubiaoshi_wrap">
-						<div class="louzhubiaoshi" author="xxxjkloiqwe">
+						<div class="louzhubiaoshi">
 							<a href="/p/2336142763?pid=32914033419&amp;see_lz=1#32914033419"></a>
 						</div>
 					</div>
 				<?php
-                }
-                ?>
+    }
+    ?>
 					<ul class="p_author post_icon">
 						<li>
 							<div class="icon_relative" style="padding: 4px; margin-top: 2px;">
 								<a class="p_author_face"
 									href="/i/315242756?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
 									target="_blank"><img class="avatar"
-									username="<?php echo $userinfo['username'] ?>"
-									src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $userinfo['avatar'] ?>"
+									src="<?php echo APPLICATION_PUBLIC_PATH . $userinfo['avatar'] ?>"
 									data-passive="loaded" style="width: 80px; height: 80px"></a>
 							</div>
 						</li>
@@ -130,13 +128,13 @@ foreach ($this->replys as $key => $reply) :
 
 				<div class="d_post_content_main ">
 					<div class="p_content"><?php echo $floor['content'];?> </div>
-					<div class="core_reply j_lzl_wrapper">
+					<div class="core_reply">
 <?php if (!empty($subFloors)) : ?>
-						<a class="l_post_anchor" name="32914296642l"></a>
+						<a class="l_post_anchor"></a>
 						<div class="core_reply_tail">
-							<div class="j_lzl_r p_reply">
-								<a href="#" class="lzl_link_unfold" style="display: none;">回复(1)</a>
-								<span class="lzl_link_fold" style="display:;">收起回复</span>
+							<div class="p_reply" style="cursor: pointer">
+								<a href="###" class="lzl_link_unfold"
+									style="display:; cursor: pointer">收起回复</a>
 							</div>
 
 							<ul class="p_tail">
@@ -144,55 +142,111 @@ foreach ($this->replys as $key => $reply) :
 								<li><span><?php echo $floor['ctime']?></span></li>
 							</ul>
 						</div>
-						<div class="j_lzl_container core_reply_wrapper " style="display:">
+
+						<div class="core_reply_wrapper " style="display:">
 							<div class="core_reply_border_top"></div>
-							<div class="j_lzl_c_b_a core_reply_content">
-								<ul class="j_lzl_m_w" style="display:">
-<?php foreach ($subFloors as $subFloor) : ?>
-														  <li class="lzl_single_post j_lzl_s_p first_no_border"><a
-										class="l_post_anchor" name="32919792193"></a>
+							<div class="core_reply_content">
+								<ul style="display:">
+<?php
+        
+        foreach ($subFloors as $subFloor) :
+            $authorInfo = $this->getUserInfo($subFloor['author']);
+            ?>
+                <li class="lzl_single_post first_no_border"><a
+										class="l_post_anchor"></a> <a class="lzl_p_p"
+										href="/i/103280686?st_mod=pb&amp;fr=tb0_forum&amp;st_type=uface"
+										target="_blank"> <img class="forscrollasync"
+											src="<?php echo APPLICATION_PUBLIC_PATH . $authorInfo['avatar']; ?>"
+											style="width: 32px; height: 32px">
+									</a>
 										<div class="lzl_cnt">
-											<a class="at" href="###" username="xxxjkloiqwe"><?php echo $this->getUserInfo($subFloor['author'])['username']; ?></a>
-											回复
-											<a class="at" href="###" username="xxxjkloiqwe"><?php echo $this->getUserInfo($subFloor['reply_to_author'])['username']; ?></a>
-											<span class="lzl_content_main"><?php echo $subFloor['content']?> </span>
+											<a class="at" href="###"><?php
+            echo $authorInfo['username'];
+            ?></a> 回复 <a class="at" href="###"><?php
+            $replyAuthorInfo = $this->getUserInfo($subFloor['reply_to_author']);
+            echo $replyAuthorInfo['username'];
+            ?></a>：<span class="lzl_content_main"><?php echo $subFloor['content']; ?> </span>
 											<div class="lzl_content_reply">
-												<span class="lzl_jb" delete-data="" style="display: none;"><a
-													href="#" class="lzl_jb_in" data-checkun="un">举报</a>&nbsp;|&nbsp;</span>
-												<span class="lzl_op_list j_lzl_o_l" style="display: none;"></span>
-												<span class="lzl_time">2013-5-19 09:37</span> <a href="#"
-													class="lzl_s_r">回复</a>
+												<span class="lzl_op_list" style="display: none;"></span> <span
+													class="lzl_time"><?php echo $subFloor['ctime']; ?></span> <a
+													href="###" class="lzl_s_r">回复</a>
 											</div>
 										</div></li>
 <?php endforeach;?>
-														<li class="lzl_li_pager j_lzl_l_p lzl_li_pager_s">
+										<li class="lzl_li_pager lzl_li_pager_s">
 										<p class="j_lzl_p">
-											<a href="##">我也说一句</a>
+											<a href="###">我也说一句</a>
 										</p>
 										<p>&nbsp;</p>
 
 									</li>
 								</ul>
-								<div
-									class="lzl_editor_container j_lzl_e_c lzl_editor_container_s"
-									style="display: none;"></div>
-								<input type="text" class="j_lzl_e_f_h" style="display: none;">
+
+								<div class="lzl_editor_container lzl_editor_container_s"
+									style="display: block;">
+									<div class="editor_for_container">
+										<div class="lzl_simple_wrapper" style="width: 773px;">
+											<textarea style="width: 767px;"></textarea>
+										</div>
+									</div>
+									<table class="lzl_panel_wrapper">
+										<tbody>
+											<tr>
+												<td style="width: 75%;"></td>
+												<td style="width: 25%;">
+													<div class="lzl_panel_btn">
+														<span class="lzl_panel_submit">发表</span>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
 							</div>
 							<div class="core_reply_border_bottom"></div>
 						</div>
 <?php else : ?>
-<div class="core_reply_tail">
-							<div class="j_lzl_r p_reply"
-								data-field=">
-	                  <a       href="#"
-								class="lzl_link_unfold" style="display:;">
-								回复</a>
+                        <div class="core_reply_tail">
+							<div class="p_reply">
+								<a class="lzl_link_unfold" href="###"
+									style="display:; cursor: pointer">回复</a>
 							</div>
 
 							<ul class="p_tail">
 								<li><span class=""><?php echo ($key + 2); ?>楼</span></li>
 								<li><span><?php echo $floor['ctime'];?></span></li>
 							</ul>
+						</div>
+
+
+
+						<div class="core_reply_wrapper" style="display: none;">
+							<div class="core_reply_border_top"></div>
+							<div class="core_reply_content" style="">
+								<div class="lzl_editor_container lzl_editor_container_s"
+									style="display: block;">
+									<div class="editor_for_container">
+										<div class="lzl_simple_wrapper"
+											style="width: 773px; position: relative;">
+											<textarea style="width: 767px;"></textarea>
+										</div>
+									</div>
+									<table class="lzl_panel_wrapper">
+										<tbody>
+											<tr>
+												<td style="width: 75%;"></td>
+												<td style="width: 25%;">
+													<div class="lzl_panel_btn">
+														<span class="lzl_panel_submit">发表</span>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="core_reply_border_bottom"></div>
 						</div>
 <?php endif; ?>
 </div>
@@ -218,7 +272,7 @@ foreach ($this->replys as $key => $reply) :
 
 	</div>
 	<?php
-echo $this->render('bbs/post.phtml');
+echo $this->render('bbs/reply.phtml');
 ?>
 </div>
 <?php

@@ -15,6 +15,11 @@ echo $this->render('common/menu.phtml');
 <?php
 echo $this->render('common/navi.phtml');
 ?>
+<script type='text/javascript'>
+$(function(){
+	$('.base_info').find('a').eq(2).removeClass().addClass('c');
+});
+</script>
 				<div id="setting_box" class="fl">
 
 						<div id="setting_form" class="setting_password">

@@ -4,39 +4,141 @@ echo $this->render('common/header.phtml');
 <?php
 echo $this->render('common/menu.phtml');
 ?>
-<div id="container"><!--content-->
+<div id="container">
+	<!--content-->
 	<div id="body" class="fm960">
-			<div class="piece1">
-				<div class="piece1_hd"></div>
-				<div class="piece1_bd clearfix">
-					<div id="content" style="width:960px;">
-<?php
-echo $this->render('common/navi.phtml');
-$userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
-$avatar = $userinfo['result']['avatar'];
-?>
-						<div id="setting_box" class="fl">
-							<div id="setting_form" class="setting_avartar">
-								<form id="avartarForm" enctype="multipart/form-data" method="POST" action="/upload/addpic">
-									<input type="hidden" name="type" value="avatar" />
-									<dl>
-										<dd>当前头像：</dd><dt><img class="head_bd r3" src="<?php echo APPLICATION_PUBLIC_PATH; ?>/avatar/<?php echo $avatar;?>" width="38px" height="38px"></dt>
-										<dd>上传新头像：</dd><dt style="position:relative;"><input type="text" id="viewAvartar" readonly="readonly" class="gray_text" onmouseout="document.getElementById('uploadAvartar').style.display='none';"/><input type="button" class="gray_button" onmouseover="document.getElementById('uploadAvartar').style.display='block';"  value="浏览..."/><input type="file" onchange="document.getElementById('viewAvartar').value=this.value;this.style.display='none';" class="tfile" id="uploadAvartar" name="avatar"/></dt>
-										<dd class="msg">&nbsp;</dd><dt class="msg">建议使用正方形的图片，支持JPG、GIF、JPG格式，100K以内。</dt>
-										<dd class="preview">预览：</dd><dt class="preview"></dt>
-										<dd class="avartar_confirm">&nbsp;</dd><dt class="avartar_confirm"><input type="button" value="确定" class="green_button"/></dt>
-									</dl>
-								</form>
-							</div>
-							<input type="hidden" id="refer" value="http://www.mogujie.com/settings/personal">
+		<div class="piece1">
+			<div class="piece1_hd"></div>
+			<div class="piece1_bd clearfix">
+				<div id="content" style="width: 960px;">
+                <?php
+                $uploadFileSession = new Zend_Session_Namespace('uploadfile');
+                echo $this->render('common/navi.phtml');
+                $userinfo = Business_User_Auth::getInstance()->getUserInfoBySession();
+                $avatar = $userinfo['result']['avatar'];
+                ?>
+                    <script type='text/javascript'>
+                    $(function(){
+                    	$('.base_info').find('a').eq(1).removeClass().addClass('c');
+                    });
+                    </script>
+                    <?php if (isset($uploadFileSession->upfile)) { ?>
+                    <link rel="stylesheet" type="text/css"
+						href="<?php echo APPLICATION_PUBLIC_PATH; ?>/css/imgareaselect-default.css" />
+					<script type="text/javascript"
+						src="<?php echo APPLICATION_PUBLIC_PATH; ?>/js/jquery.imgareaselect.min.js"></script>
+					<script type="text/javascript">
+                    function preview(img, selection) 
+                    {
+                        $('#selectbanner').data('x', selection.x1);
+                        $('#selectbanner').data('y', selection.y1);
+                        $('#selectbanner').data('w', selection.width);
+                        $('#selectbanner').data('h', selection.height);
+                    
+                    	var scaleX = 100 / (selection.width || 1);
+                    	var scaleY = 100 / (selection.height || 1);
+                    	$('#ferret > img').css({
+                    		width : Math.round(scaleX * <?php echo $this->width; ?>) + 'px',// 512、390是你上传图片的宽高
+                    		height : Math.round(scaleY * <?php echo $this->height; ?>) + 'px',
+                    		marginLeft : '-' + Math.round(scaleX * selection.x1) + 'px',
+                    		marginTop : '-' + Math.round(scaleY * selection.y1) + 'px'
+                    	});
+                    }
+                    // 这里通过jQuery语法在原来图片后插入预览的小图片
+                    $(document).ready(function(){
+                    	$('<div id="ferret"><img src="<?php echo $uploadFileSession->upfile;?>" style="position: relative;" /><div>').css({
+                    		float: 'left',
+                    		position: 'relative',
+                    		overflow: 'hidden',
+                    		width: '100px',
+                    		height: '100px',
+                    		margin: '0 40px',
+                 	        border: 'solid 1px'
+                    	}).insertAfter($('#selectbanner'));
+
+                    	var x = 0, y = 0, w = 100, h = 100;
+                    	
+                    	$('#selectbanner').imgAreaSelect({ 
+                    	x1:x, y1:y, x2: w,// 初始位置
+                    	maxWidth:200,y2:h,handles: true,
+                    	minWidth:100,
+                    	aspectRatio: '1:1',// 缩放比例
+                    	onSelectEnd: preview // 裁剪后执行的函数，在上面
+                    	});
+
+                    	$('#selectbanner').data('x', x);
+                        $('#selectbanner').data('y', y);
+                        $('#selectbanner').data('w', w);
+                        $('#selectbanner').data('h', h);
+
+                    	// 确认裁剪
+                    	$("#sliceButton").click(function() {
+//                     		var pic = $('#selectbanner').attr('src'); 
+                    		$.post(
+                    			"/user/upload-avatar", // （2）将附上这个页面的代码
+                    			{
+                    				x : $('#selectbanner').data('x'),
+                    				y : $('#selectbanner').data('y'),
+                    				w : $('#selectbanner').data('w'),
+                    				h : $('#selectbanner').data('h'),
+                    			},
+                    			function(data){
+                    			  // 把裁剪后图片加载到#sure
+                    				if(data.errorcode == 0){
+                        				alert('头像修改成功！');
+                    					$('#sure').attr('src',data.result);
+                    					setTimeout(function(){
+                    						window.location.reload();
+                    					}, 1000); // 指定1秒刷新一次
+                    				} else {
+                    					alert('头像修改失败！');
+                    				}
+                    			}
+                    		);
+                    	});
+                    });
+                    </script>
+                    <?php } ?>
+					<div id="setting_box" class="fl">
+						<div id="setting_form" class="setting_avartar">
+							<dl>
+								<dd>当前头像：</dd>
+								<dt>
+									<img id="sure" class="head_bd r3"
+										src="<?php echo APPLICATION_PUBLIC_PATH . $avatar; ?>"
+										width="38px" height="38px">
+								</dt>
+								<dd>上传新头像：</dd>
+								<dt style="position: relative;">
+									<form action="" method="post" enctype="multipart/form-data">
+										<input type="file" name="img" value="" onclick=""
+											style="width: 250px;" /> <input name="submit" id="submit"
+											type="submit" value="提交" class="submit" />
+									</form>
+								</dt>
+								<dd class="msg">&nbsp;</dd>
+								<dt class="msg">建议使用正方形的图片，支持JPG、GIF、JPG格式，100K以内。</dt>
+                                <?php if (isset($uploadFileSession->upfile)) { ?>
+								<dd class="msg">预览：</dd>
+								<dt class="msg">
+									<!--显示图片-->
+									<img id="selectbanner" name="selectbanner"
+										src="<?php echo $uploadFileSession->upfile;?>" title="mypic" style="float: left;" />
+								</dt>
+                                <?php } ?>
+								<dt class="msg">
+									<input id="sliceButton" type="button" value="确定" class="green_button" style="margin-left: 30px;margin-top: 20px;"/>
+								</dt>
+							</dl>
+						</div>
+						<input type="hidden" id="refer"
+							value="http://www.mogujie.com/settings/personal">
 					</div>
-
-               </div>
-            </div>
-           <div class="piece1_ft"></div>
+				</div>
+			</div>
+			<div class="piece1_ft"></div>
+		</div>
 	</div>
-</div>
-
 </div>
 <?php
 echo $this->render('common/footer.phtml');

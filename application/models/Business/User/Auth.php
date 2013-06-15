@@ -259,36 +259,39 @@ class Business_User_Auth extends Business_User_Abstract
         }
     }
     
-    public function userLogin($username, $password)
+    public function userLogin($userid, $password)
     {
-        $authResult = $this->checkLogin($username, $password);
-        if ($authResult['errorcode'] == 0) {
-            $cookieName = Zend_Registry::get('config')->user->cookie;
-            $cookie = $this->generateAuthSignature(
-                $authResult['result'],
-                $this->getCookieExpireTime()
-            );
-            setcookie(
-                $cookieName,
-                $cookie,
-                $this->getCookieExpireTime(),
-                '/'
-            );
-            $this->setUserLogin($authResult['result']);
-            $rtn['errorcode'] = 0;
-            $rtn['errormsg'] = 'succes';
-            $rtn['result'] = array(
-                'id' => $authResult['result']['id'],
-                'username' => $authResult['result']['username'],
-                'avatar' => $authResult['result']['avatar']
-            );
-            $rtn['cookieName'] = $cookieName;
-            $rtn['cookieValue'] = $cookie;
-            $rtn['expire'] = $this->getCookieExpireTime();
-        } else {
-            $rtn['errorcode'] = -1;
-            $rtn['errormsg'] = '用户名和密码错误！';
-        }
+        $authResult = $this->getUserInfoById($userid);
+        $cookieName = Zend_Registry::get('config')->user->cookie;
+        $cookie = $this->generateAuthSignature(
+            $authResult,
+            $this->getCookieExpireTime()
+        );
+        setcookie(
+            $cookieName,
+            $cookie,
+            $this->getCookieExpireTime(),
+            '/'
+        );
+        $this->setUserLogin($authResult);
+        $rtn['errorcode'] = 0;
+        $rtn['errormsg'] = 'succes';
+        $rtn['result'] = array(
+            'id' => $authResult['id'],
+            'username' => $authResult['username'],
+            'avatar' => $authResult['avatar']
+        );
+        $rtn['cookieName'] = $cookieName;
+        $rtn['cookieValue'] = $cookie;
+        $rtn['expire'] = $this->getCookieExpireTime();
         return $rtn;
+    }
+    
+    public function refreshUserInfo()
+    {
+        $userinfo = $this->getUserInfoBySession();
+        Business_User_Auth::getInstance()
+            ->logout()
+            ->userLogin($userinfo['result']['id'], $userinfo['result']['password']);
     }
 }

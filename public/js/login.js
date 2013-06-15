@@ -30,7 +30,6 @@ $(function() {
 			data : {'username':username, 'password':password},
 			success : function (data) {
 				if (data.errorcode == 0) {
-					document.cookie = data.cookieName﻿ + "=" + data.cookieValue﻿﻿;
 					$('#loginBox').pophide();
 					$('#login-guide').html('<input type="hidden" value="' + data.result.id + '"/><a href="/user" class="username">' + data.result.username + '</a> <a href="/user/logout" class="username">退出</a>'﻿﻿);
 				} else {
