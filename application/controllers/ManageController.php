@@ -84,11 +84,10 @@ class ManageController extends Zend_Controller_Action
         if ($authObj->isLogin()) {
             $this->view->title = 'Gift网站首页管理';
             $homepageObj = new Business_Manage_Homepage();
-            list($slider, $sliderTable, $modules, $modulesTable) = $homepageObj->getSliderAndModules();
+            $slider = $homepageObj->getHomepageSlider();
+            $sliderTable = $homepageObj->getHomepageSliderTableInfo();
             $this->view->slider = $slider;
             $this->view->sliderTable = $sliderTable;
-            $this->view->modules = $modules;
-            $this->view->modulesTable = $modulesTable;
         } else {
             $this->_redirect('/manage');
         }
@@ -104,31 +103,6 @@ class ManageController extends Zend_Controller_Action
         $authObj->logout();
         $authObj->deleteCookie();
         $this->_redirect('/manage');
-    }
-    
-    /**
-     * 修改首页模块信息的action
-     */
-    public function modHomepageModulesAction()
-    {
-        $form = $this->_request->getParams();
-        unset($form['controller']);
-        unset($form['action']);
-        unset($form['module']);
-        $content = array();
-        $homepageObj = new Business_Manage_Homepage();
-        $tableMaps = $homepageObj->getHomepageModulesTableInfo();
-        foreach ($form as $key => $value) {
-            $content[$tableMaps->$key] = $value;
-        }
-        $rtn = $homepageObj->updateHomepageModules($content);
-        $this->view->errormsg = $rtn['errormsg'];
-        list($slider, $sliderTable, $modules, $modulesTable) = $homepageObj->getSliderAndModules();
-        $this->view->slider = $slider;
-        $this->view->sliderTable = $sliderTable;
-        $this->view->modules = $modules;
-        $this->view->modulesTable = $modulesTable;
-        $this->render('homepage');
     }
     
     /**
