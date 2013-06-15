@@ -1,0 +1,28 @@
+<div id="container"><!--content-->
+	<div id="talk_content">
+		<div id="write_content">
+			<div id="gr_set_top">
+				<h2 id="new_topic" >发表回复</h2>
+			</div>
+			<div id="topic_con" class="gr_set_form ">
+			<input type="hidden" value="<?php echo $this->article->id?>" id="articleid" />
+			<input type="hidden" value="<?php echo $this->article->author?>" id="articleauthor" />
+			<input type="hidden" value="0" id="replyto" />
+				<dl>
+					<dt>正文：</dt>
+					<dd>
+					<textarea class="editor-textarea" id="article-content" style="height:250px;"></textarea>
+						<span class="desc"></span>
+					</dd>
+				</dl>
+				<dl class="sub_form" >
+				<dt style="width: 75px;"></dt>
+				<dd>
+					<input type="button" class="form_sub mogu-editor-post" id="postReply" value="发表" />
+				</dd>
+				</dl>
+            </div>
+			
+		</div>
+	</div>
+</div>
